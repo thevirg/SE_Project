@@ -30,7 +30,7 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # print(df2['NOC'])
 # print(df2[noc])
 
-# #Test Barchart
+# Test Barchart
 # testchart = Barchart()
 # testchart.title = "test"
 # testchart.file = '../Datasets/Olympic2016Rio.csv'
@@ -44,7 +44,7 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # testchart.generate(0)
 
 
-# #Test Bubblechart
+# Test Bubblechart
 # testchart = Bubblechart()
 # testchart.title = "test"
 # testchart.file = '../Datasets/Olympic2016Rio.csv'
@@ -59,7 +59,11 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # testchart.bubble_scale = 1
 # testchart.generate(0)
 
+
 # #Test Barchart
+
+# Test Barchart
+
 # testchart = Heatmap()
 # testchart.title = "test"
 # testchart.file = '../Datasets/CoronaTimeSeries.csv'
@@ -70,6 +74,7 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # testchart.x_title = "Day of Week"
 # testchart.y_title = "Week of Month"
 # testchart.generate(0)
+
 ydata = [["column1","test"], ["column2", "test2"], ["column3", "test3"]]
 y_array = []
 
@@ -78,3 +83,15 @@ for x in range(len(ydata)):
 
 print(y_array)
 print(y_array[0][0])
+
+
+
+example_dict = {"title": "test title", "xtitle": ""}
+
+bar_data = {"file": '', "x": '', }
+
+example_dict["xtitle"] = "dict entry"
+
+print(example_dict["title"])
+print(example_dict["xtitle"])
+

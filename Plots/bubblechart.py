@@ -69,7 +69,7 @@ class Bubblechart:
         self.limit_num = limit_num
 
 # sets mean boolean to 1, sum to 0. Defaults to 0, so only call this if you need it to be true
-    def sum_true(self):
+    def mean_true(self):
         self.mean = 1
         self.sum = 0
 
