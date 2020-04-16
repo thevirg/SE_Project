@@ -19,6 +19,8 @@ class Barchart:
         self.x_title = ''
         self.y_title = ''
 
+    # generates Barchart using provided data. MUST SET DATA BY ASSIGNING DIRECTLY TO VARIABLES FIRST
+    # Call with a 0 to generate a chart by itself, call with a 1 to send to a dashboard
     def generate(self, for_dash):
         # Load CSV file give by File variable
         df = pd.read_csv(self.file)
