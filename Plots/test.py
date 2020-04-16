@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from Plots.barchart import Barchart
 from Plots.bubblechart import Bubblechart
+from Plots.heatmap import Heatmap
 
 test_bool = 0
 df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
@@ -58,3 +59,14 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # testchart.bubble_scale = 1
 # testchart.generate(0)
 
+#Test Barchart
+testchart = Heatmap()
+testchart.title = "test"
+testchart.file = '../Datasets/CoronaTimeSeries.csv'
+testchart.x = 'Day'
+testchart.y = 'WeekofMonth'
+testchart.z = 'Recovered'
+testchart.title = "Recovered"
+testchart.x_title = "Day of Week"
+testchart.y_title = "Week of Month"
+testchart.generate(0)

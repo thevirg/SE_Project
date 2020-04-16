@@ -30,7 +30,7 @@ class Barchart:
         if self.sum:
             new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
 
-        # Sorting values and select first 20 states
+        # Sorting values and select first limit_num entries
         if self.limit:
             new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
 
@@ -61,3 +61,8 @@ class Barchart:
     def limit_true(self, limit_num):
         self.limit = 1
         self.limit_num = limit_num
+
+    def get_dash_titles(self):
+        data = {'Title': self.title,
+                'XAxis': self.x_title,
+                'YAxis': self.y_title}
