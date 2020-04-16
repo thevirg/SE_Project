@@ -75,3 +75,9 @@ class Bubblechart:
     def sum_true(self):
         self.mean = 1
         self.sum = 0
+
+    def get_dash_titles(self):
+        data = {'Title': self.title,
+                'XAxis': self.x_title,
+                'YAxis': self.y_title,}
+        return data

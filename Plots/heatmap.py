@@ -67,4 +67,5 @@ class Heatmap:
         data = {'Title': self.title,
                 'XAxis': self.x_title,
                 'YAxis': self.y_title}
+        return data
 
