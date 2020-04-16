@@ -14,4 +14,4 @@ layout = go.Layout(title='Max Temperatures by Month and Day of Week', xaxis_titl
 
 # Plot the figure and saving in a html file
 fig = go.Figure(data=data, layout=layout)
-pyo.plot(fig, filename='heatmap.html')
+pyo.plot(fig, filename='../Plots/heatmap.html')

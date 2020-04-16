@@ -26,4 +26,4 @@ layout = go.Layout(title='Corona Virus Confirmed Cases', xaxis_title="Recovered 
 
 # Plot the figure and saving in a html file
 fig = go.Figure(data=data, layout=layout)
-pyo.plot(fig, filename='bubblechart.html')
+pyo.plot(fig, filename='../Plots/bubblechart.html')

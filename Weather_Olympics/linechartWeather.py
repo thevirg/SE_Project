@@ -15,4 +15,4 @@ layout = go.Layout(title='Max Temperatures for Each Month From 2014-07 to 2015-0
 
 #Plot the figure and saving in a html file
 fig = go.Figure(data=data, layout=layout)
-pyo.plot(fig, filename='linechart.html')
+pyo.plot(fig, filename='../Plots/linechart.html')

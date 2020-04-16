@@ -31,4 +31,4 @@ layout = go.Layout(title='Gold, Silver, and Bronze Medals by Country', xaxis_tit
 
 # Plot the figure and saving in a html file
 fig = go.Figure(data=data, layout=layout)
-pyo.plot(fig, filename='stackbarchart.html')
+pyo.plot(fig, filename='../Plots/stackbarchart.html')

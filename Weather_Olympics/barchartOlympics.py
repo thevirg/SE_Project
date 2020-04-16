@@ -23,4 +23,4 @@ layout = go.Layout(title='Total Olympic Medals by Country', xaxis_title="Country
 
 # Plot the figure and saving in a html file
 fig = go.Figure(data=data, layout=layout)
-pyo.plot(fig, filename='barchartOlympics.html')
+pyo.plot(fig, filename='../Plots/barchartOlympics.html')

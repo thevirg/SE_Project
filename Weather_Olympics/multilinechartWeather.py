@@ -18,4 +18,4 @@ layout = go.Layout(title='Min, Max, and Mean Temps by Month From 2014-07 to 2015
 
 # Plot the figure and saving in a html file
 fig = go.Figure(data=data, layout=layout)
-pyo.plot(fig, filename='multilinechart.html')
+pyo.plot(fig, filename='../Plots/multilinechart.html')
