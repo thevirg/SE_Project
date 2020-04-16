@@ -3,6 +3,7 @@ import numpy as np
 from Plots.barchart import Barchart
 from Plots.bubblechart import Bubblechart
 from Plots.heatmap import Heatmap
+from Plots.multilinechart import Multiline
 
 test_bool = 0
 df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
@@ -60,9 +61,7 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # testchart.generate(0)
 
 
-# #Test Barchart
-
-# Test Barchart
+# Test heatmap
 
 # testchart = Heatmap()
 # testchart.title = "test"
@@ -95,3 +94,16 @@ example_dict["xtitle"] = "dict entry"
 print(example_dict["title"])
 print(example_dict["xtitle"])
 
+# test multiline
+
+testmulti = Multiline()
+testmulti.title = "test"
+testmulti.file = '../Datasets/CoronaTimeSeries.csv'
+testmulti.x = 'Date'
+testmulti.date_true()
+testmulti.populate_yaxis([["Death", "Death"]])
+testmulti.populate_yaxis([["Recovered", "Recovered"]])
+testmulti.populate_yaxis([["Unrecovered", "Unrecovered"]])
+testmulti.x_title = "Date"
+testmulti.y_title = "Number of cases"
+testmulti.generate(0)
