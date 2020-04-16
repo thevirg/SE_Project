@@ -9,9 +9,6 @@ class Bubblechart:
     limit_num = 0
 
     def __init__(self):
-        self.sum = 0
-        self.limit = 0
-        self.limit_num = 0
         self.file = ''
         self.x = ''
         self.y = ''
@@ -81,3 +78,4 @@ class Bubblechart:
                 'XAxis': self.x_title,
                 'YAxis': self.y_title,}
         return data
+

@@ -59,14 +59,22 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # testchart.bubble_scale = 1
 # testchart.generate(0)
 
-#Test Barchart
-testchart = Heatmap()
-testchart.title = "test"
-testchart.file = '../Datasets/CoronaTimeSeries.csv'
-testchart.x = 'Day'
-testchart.y = 'WeekofMonth'
-testchart.z = 'Recovered'
-testchart.title = "Recovered"
-testchart.x_title = "Day of Week"
-testchart.y_title = "Week of Month"
-testchart.generate(0)
+# #Test Barchart
+# testchart = Heatmap()
+# testchart.title = "test"
+# testchart.file = '../Datasets/CoronaTimeSeries.csv'
+# testchart.x = 'Day'
+# testchart.y = 'WeekofMonth'
+# testchart.z = 'Recovered'
+# testchart.title = "Recovered"
+# testchart.x_title = "Day of Week"
+# testchart.y_title = "Week of Month"
+# testchart.generate(0)
+ydata = [["column1","test"], ["column2", "test2"], ["column3", "test3"]]
+y_array = []
+
+for x in range(len(ydata)):
+    y_array.append(ydata[x])
+
+print(y_array)
+print(y_array[0][0])
