@@ -1,20 +1,17 @@
 import tkinter as tk
 
 
-# Function used to clear the window and replace it with an empty frame
-# Can be used to create a new page
+# Function used to clear the window to prepare it for a new page
 def clear():
     background.destroy()
-    rebuild()
-
-
-# Creates an empty frame covering the full size of the window
-def rebuild():
-    background = tk.Frame(window)
-    background.place(relwidth=1, relheight=1)
 
 
 def front_page():
+    clear()
+
+    background = tk.Frame(window, bg='white')
+    background.place(relwidth=1, relheight=1)
+
     # Create a new label to hold the title text
     title = tk.Label(background, bg='white', text="Project Carrot")
     font_style = ('', 25)  # can be used to edit font style, '' can be replaced with a new font name
@@ -45,29 +42,77 @@ def front_page():
 
 def bar_chart():
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
+    background = tk.Frame(window, bg='white')
+    background.place(relwidth=1, relheight=1)
+
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = tk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92)
 
 
 def bubble_chart():
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
+    background = tk.Frame(window, bg='white')
+    background.place(relwidth=1, relheight=1)
+
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = tk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92)
 
 
 def heat_map():
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
+    background = tk.Frame(window, bg='white')
+    background.place(relwidth=1, relheight=1)
+
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = tk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92)
 
 
 def line_chart():
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
+    background = tk.Frame(window, bg='white')
+    background.place(relwidth=1, relheight=1)
+
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = tk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92)
 
 
 def multi_line():
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
+    background = tk.Frame(window, bg='white')
+    background.place(relwidth=1, relheight=1)
+
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = tk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92)
 
 
 def stacked_bar():
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
+    background = tk.Frame(window, bg='white')
+    background.place(relwidth=1, relheight=1)
+
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = tk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92)
 
 
-# Function used to get the chart that the user selected from the option menu
+# Function used to get the chart that the user selected from the option menu on the front page
 def get_chart():
     if option.get() == "Bar Chart":
         bar_chart()
@@ -88,7 +133,23 @@ def get_chart():
         stacked_bar()
 
     else:
-        print("Error")
+        # Create an error box pop up to alert user to select a graph to continue
+        error_box = tk.Toplevel(width=300, height=150, bg='white')
+        error_box.title("Error: Select Graph")
+
+        # Create a label at the top of the box
+        error_title = tk.Label(error_box, bg='white', text="Error")
+        font_style = ('', 20)
+        error_title.config(font=font_style)
+        error_title.place(relx=0.5, relwidth=0.75, relheight=0.25, anchor='n')
+
+        # Create error message to user
+        error_content = tk.Label(error_box, bg='white', text="Please select a graph to continue.")
+        error_content.place(relx=0.5, rely=0.3, anchor='n')
+
+        # Create button to close error box
+        button = tk.Button(error_box, text="OK", command=error_box.destroy)
+        button.place(relx=0.5, rely=0.5, anchor='n')
 
 
 # Create a new window
