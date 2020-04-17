@@ -10,6 +10,7 @@ class Stackbar:
     limit = 0
     limit_num = 0
     date = 0
+    sort = 0
 
     def __init__(self):
         self.file = ''
@@ -40,6 +41,8 @@ class Stackbar:
         # If limit is true, selecting first limit_num entries of y data. Always uses first trace
         if self.limit:
             new_df = new_df.sort_values(by=[self.y_array[0][0]], ascending=[False]).head(self.limit_num)
+        if self.sort:
+            new_df = new_df.sort_values(by=[self.sortby], ascending=[False])
 
         new_df2 = new_df
         # Preparing data
@@ -49,6 +52,7 @@ class Stackbar:
                 new_df2 = new_df.agg({self.y_array[i][0]: 'sum'}).reset_index()
             elif self.mean:
                 new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
+
             trace = go.Bar(x=new_df[self.x],
                            y=new_df[self.y_array[i][0]],
                            name=self.y_array[i][1],
@@ -56,9 +60,7 @@ class Stackbar:
             graph_data.append(trace)
 
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
-        if for_dash:
-            return graph_data
-        else:
+
 
             # Preparing layout
             layout = go.Layout(title=self.title, xaxis_title=self.x_title,
@@ -66,6 +68,9 @@ class Stackbar:
 
             # Plot the figure
             fig = go.Figure(data=graph_data, layout=layout)
+            if for_dash:
+                return fig
+            else:
             pyo.plot(fig, filename='stackbarchart.html')
 
 
@@ -93,6 +98,10 @@ class Stackbar:
     def populate_yaxis(self, ydata):
         for x in range(len(ydata)):
             self.y_array.append(ydata[x])
+
+    def sortby(self, column):
+        self.sort = 1
+        self.sortby = column
 
     def get_dash_titles(self):
         data = {'Title': self.title,

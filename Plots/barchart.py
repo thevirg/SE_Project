@@ -41,16 +41,17 @@ class Barchart:
         graph_data = [go.Bar(x=new_df[self.x], y=new_df[self.y])]
 
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
+
+        # Preparing layout
+        layout = go.Layout(title=self.title, xaxis_title=self.x_title,
+                           yaxis_title=self.y_title)
+
+        # Plot the figure
+
+        fig = go.Figure(data=graph_data, layout=layout)
         if for_dash:
-            return graph_data
+            return fig
         else:
-
-            # Preparing layout
-            layout = go.Layout(title=self.title, xaxis_title=self.x_title,
-                               yaxis_title=self.y_title)
-
-            # Plot the figure
-            fig = go.Figure(data=graph_data, layout=layout)
             pyo.plot(fig, filename='barchart.html')
 
     # sets variables in data[]. Variables can be acceessed directly from object, but this allows implementation of
