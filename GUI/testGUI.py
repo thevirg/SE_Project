@@ -26,13 +26,15 @@ def front_page():
 
     # Creates a label indicating to the user to select a chart type
     text = tk.Label(lower_frame, bg='white', text="Please select the type of chart you would like to build: ")
+    font_style = ('', 12)
+    text.config(font=font_style)
     text.place(relx=0.5, rely=0.35, anchor='n')
 
     option.set("Select a Chart")  # sets the default text on the menu selection
     # Creates a menu with the charts as options
     chart_selection = tk.OptionMenu(lower_frame, option, "Bar Chart", "Bubble Chart", "Heat Map", "Line Chart",
                                     "MultiLine Chart", "Stacked Bar Chart")
-    chart_selection.place(relx=0.5, rely=0.5, relwidth=0.25, relheight=0.1, anchor='n')
+    chart_selection.place(relx=0.5, rely=0.5, relwidth=0.25, relheight=0.15, anchor='n')
 
     # Create a button that will get the chart selected from the menu
     next_button = tk.Button(background, text="Next Page", command=get_chart)
