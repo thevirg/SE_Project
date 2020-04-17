@@ -71,7 +71,7 @@ class Stackbar:
             if for_dash:
                 return fig
             else:
-            pyo.plot(fig, filename='stackbarchart.html')
+                pyo.plot(fig, filename='stackbarchart.html')
 
 
 # sets sum boolean to 1, mean to 0. Defaults to 0, so only call this if you need it to be true

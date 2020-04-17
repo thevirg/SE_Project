@@ -9,6 +9,7 @@ class Barchart:
     limit_num = 0
     limit = 0
     sum = 0
+    mean = 0
 
     def __init__(self):
 
