@@ -5,6 +5,7 @@ from Plots.bubblechart import Bubblechart
 from Plots.heatmap import Heatmap
 from Plots.multilinechart import Multiline
 from Plots.linechart import Line
+from Plots.stackbarchart import Stackbar
 
 test_bool = 0
 df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
@@ -47,33 +48,33 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 
 
 # Test Bubblechart
-# testchart = Bubblechart()
-# testchart.title = "test"
-# testchart.file = '../Datasets/Olympic2016Rio.csv'
-# testchart.limit_true(20)
-# testchart.x = 'Total'
-# testchart.y = 'Gold'
-# testchart.marker_data = 'Total'
-# testchart.category = 'NOC'
-# testchart.title = "Olympics"
-# testchart.x_title = "Total Medal"
-# testchart.y_title = "Gold Medals"
-# testchart.bubble_scale = 1
-# testchart.generate(0)
+# testbubble = Bubblechart()
+# testbubble.title = "test"
+# testbubble.file = '../Datasets/Olympic2016Rio.csv'
+# testbubble.limit_true(20)
+# testbubble.x = 'Total'
+# testbubble.y = 'Gold'
+# testbubble.marker_data = 'Total'
+# testbubble.category = 'NOC'
+# testbubble.title = "Olympics"
+# testbubble.x_title = "Total Medal"
+# testbubble.y_title = "Gold Medals"
+# testbubble.bubble_scale = 1
+# testbubble.generate(0)
 
 
 # Test heatmap
 
-# testchart = Heatmap()
-# testchart.title = "test"
-# testchart.file = '../Datasets/CoronaTimeSeries.csv'
-# testchart.x = 'Day'
-# testchart.y = 'WeekofMonth'
-# testchart.z = 'Recovered'
-# testchart.title = "Recovered"
-# testchart.x_title = "Day of Week"
-# testchart.y_title = "Week of Month"
-# testchart.generate(0)
+# testheat = Heatmap()
+# testheat.title = "test"
+# testheat.file = '../Datasets/CoronaTimeSeries.csv'
+# testheat.x = 'Day'
+# testheat.y = 'WeekofMonth'
+# testheat.z = 'Recovered'
+# testheat.title = "Recovered"
+# testheat.x_title = "Day of Week"
+# testheat.y_title = "Week of Month"
+# testheat.generate(0)
 
 ydata = [["column1","test"], ["column2", "test2"], ["column3", "test3"]]
 y_array = []
@@ -109,13 +110,27 @@ print(example_dict["xtitle"])
 # # testmulti.generate(0)
 
 # # test multiline
+#
+# testline = Line()
+# testline.title = "test"
+# testline.file = '../Datasets/CoronaTimeSeries.csv'
+# testline.x = 'Date'
+# testline.date_true()
+# testline.y = 'Confirmed'
+# testline.x_title = "Date"
+# testline.y_title = "Number of cases"
+# testline.generate(0)
 
-testline = Line()
-testline.title = "test"
-testline.file = '../Datasets/CoronaTimeSeries.csv'
-testline.x = 'Date'
-testline.date_true()
-testline.y = 'Confirmed'
-testline.x_title = "Date"
-testline.y_title = "Number of cases"
-testline.generate(0)
+# test stack bar
+
+teststack = Stackbar()
+teststack.title = "test"
+teststack.file = '../Datasets/Olympic2016Rio.csv'
+teststack.x = 'NOC'
+ytest = [["Gold", "Gold", '#ffff00'],["Silver", "Silver", '#cccccc'],["Bronze", "Bronze", '#cc9900']]
+teststack.populate_yaxis(ytest)
+teststack.x_title = "Medals"
+teststack.y_title = "Number of cases"
+teststack.limit_true(20)
+teststack.sum_true()
+teststack.generate(0)

@@ -10,7 +10,7 @@ df = pd.read_csv('../Datasets/Olympic2016Rio.csv')
 df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
 
 # Creating sum of number of Medals group by NOC Column
-new_df = df.groupby(['NOC']).agg({'Gold': 'sum', 'Silver': 'sum', 'Bronze': 'sum', 'Total': 'sum'}).reset_index()
+new_df = df#.groupby(['NOC']).agg({'Gold': 'sum', 'Silver': 'sum', 'Bronze': 'sum', 'Total': 'sum'}).reset_index()
 
 # Sorting values and select 20 first value
 new_df = new_df.sort_values(by=['Total'],

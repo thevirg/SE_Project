@@ -36,18 +36,18 @@ class Multiline:
         if self.date:
             new_df[self.x] = pd.to_datetime(new_df[self.x])
 
-        # If limit is true, selecting first limit_num entries of y data
+        # If limit is true, selecting first limit_num entries of y data. Always sorts by first trace
         if self.limit:
-            new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
+            new_df = new_df.sort_values(by=[self.y_array[0][0]], ascending=[False]).head(self.limit_num)
 
         new_df2 = new_df
         # Preparing data
         graph_data = []
         for i in range(len(self.y_array)):
             if self.sum:
-                new_df2 = new_df.groupby(self.x)[self.y_array[i][0]].sum().reset_index()
+                new_df2 = new_df.agg({self.y_array[i][0]: 'sum'}).reset_index()
             elif self.mean:
-                new_df2 = new_df.groupby(self.x)[self.y[i][0]].mean().reset_index()
+                new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
             trace = go.Scatter(x=new_df2[self.x], y=new_df2[self.y_array[i][0]], mode='lines', name=self.y_array[i][1])
             graph_data.append(trace)
 

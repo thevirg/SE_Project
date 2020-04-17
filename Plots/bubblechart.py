@@ -18,6 +18,9 @@ class Bubblechart:
         self.category = ''
         self.mean = 0
         self.marker_data = ''
+
+        # sets the scale to be used for the bubbles.
+        # 1 means data will be used as is, 10 means scale will be divided by 10, etc
         self.bubble_scale = 1
 
     # generates Bubblechart using provided data. MUST SET DATA BY ASSIGNING DIRECTLY TO VARIABLES FIRST
