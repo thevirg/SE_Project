@@ -47,9 +47,48 @@ def bar_chart():
     clear()
 
 
+def bubble_chart():
+    clear()
+
+
+def heat_map():
+    clear()
+
+
+def line_chart():
+    clear()
+
+
+def multi_line():
+    clear()
+
+
+def stacked_bar():
+    clear()
+
+
 # Function used to get the chart that the user selected from the option menu
 def get_chart():
-    print("The Chart selected is: ", option.get())
+    if option.get() == "Bar Chart":
+        bar_chart()
+
+    elif option.get() == "Bubble Chart":
+        bubble_chart()
+
+    elif option.get() == "Heat Map":
+        heat_map()
+
+    elif option.get() == "Line Chart":
+        line_chart()
+
+    elif option.get() == "MultiLine Chart":
+        multi_line()
+
+    elif option.get() == "Stacked Bar Chart":
+        stacked_bar()
+
+    else:
+        print("Error")
 
 
 # Create a new window
