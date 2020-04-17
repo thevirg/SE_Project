@@ -31,7 +31,8 @@ class Barchart:
         # Creating sum of Y column group by X Column
         if self.sum:
             new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
-
+        elif self.mean:
+            new_df = filtered_df.groupby(self.x)[self.y].mean().reset_index()
         # Sorting values and select first limit_num entries
         if self.limit:
             new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
@@ -63,6 +64,11 @@ class Barchart:
     def limit_true(self, limit_num):
         self.limit = 1
         self.limit_num = limit_num
+
+    # sets mean boolean to 1, sum to 0. Defaults to 0, so only call this if you need it to be true
+    def mean_true(self):
+        self.mean = 1
+        self.sum = 0
 
     def get_dash_titles(self):
         data = {'Title': self.title,

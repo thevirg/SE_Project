@@ -35,18 +35,20 @@ class Multiline:
         # Creating sum of x and y column group by category Column
         if self.date:
             new_df[self.x] = pd.to_datetime(new_df[self.x])
-        if self.sum:
-            new_df = filtered_df.groupby([self.category]).agg({self.x: 'sum', self.y: 'sum', self.marker_data: 'sum'}).reset_index()
-        elif self.mean:
-            new_df = filtered_df.groupby([self.category]).agg({self.x: 'mean', self.y: 'mean', self.marker_data: 'mean'}).reset_index()
+
         # If limit is true, selecting first limit_num entries of y data
         if self.limit:
             new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
 
+        new_df2 = new_df
         # Preparing data
         graph_data = []
         for i in range(len(self.y_array)):
-            trace = go.Scatter(x=df[self.x], y=df[self.y_array[i][0]], mode='lines', name=self.y_array[i][1])
+            if self.sum:
+                new_df2 = new_df.groupby(self.x)[self.y_array[i][0]].sum().reset_index()
+            elif self.mean:
+                new_df2 = new_df.groupby(self.x)[self.y[i][0]].mean().reset_index()
+            trace = go.Scatter(x=new_df2[self.x], y=new_df2[self.y_array[i][0]], mode='lines', name=self.y_array[i][1])
             graph_data.append(trace)
 
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
@@ -74,13 +76,13 @@ class Multiline:
         self.limit_num = limit_num
 
 # sets mean boolean to 1, sum to 0. Defaults to 0, so only call this if you need it to be true
-    def sum_true(self):
+    def mean_true(self):
         self.mean = 1
         self.sum = 0
 
 # sets date boolean to true. Used if X Axis is a collection of dates. This method sets it to true
     def date_true(self):
-        date = 1
+        self.date = 1
 
 # populates array of trace information. will be 2d array. First column, such as [0][0], is the name of the column in the
 # data. Second column, such as [0][1], is the name to be attached to that line. see y_data test in test.py to see more

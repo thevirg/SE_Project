@@ -4,6 +4,7 @@ from Plots.barchart import Barchart
 from Plots.bubblechart import Bubblechart
 from Plots.heatmap import Heatmap
 from Plots.multilinechart import Multiline
+from Plots.linechart import Line
 
 test_bool = 0
 df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
@@ -94,16 +95,27 @@ example_dict["xtitle"] = "dict entry"
 print(example_dict["title"])
 print(example_dict["xtitle"])
 
-# test multiline
+# # test multiline
+# #
+# # testmulti = Multiline()
+# # testmulti.title = "test"
+# # testmulti.file = '../Datasets/CoronaTimeSeries.csv'
+# # testmulti.x = 'Date'
+# # testmulti.date_true()
+# # ytest = [["Death", "Death"],["Recovered", "Recovered"],["Unrecovered", "Unrecovered"]]
+# # testmulti.populate_yaxis(ytest)
+# # testmulti.x_title = "Date"
+# # testmulti.y_title = "Number of cases"
+# # testmulti.generate(0)
 
-testmulti = Multiline()
-testmulti.title = "test"
-testmulti.file = '../Datasets/CoronaTimeSeries.csv'
-testmulti.x = 'Date'
-testmulti.date_true()
-testmulti.populate_yaxis([["Death", "Death"]])
-testmulti.populate_yaxis([["Recovered", "Recovered"]])
-testmulti.populate_yaxis([["Unrecovered", "Unrecovered"]])
-testmulti.x_title = "Date"
-testmulti.y_title = "Number of cases"
-testmulti.generate(0)
+# # test multiline
+
+testline = Line()
+testline.title = "test"
+testline.file = '../Datasets/CoronaTimeSeries.csv'
+testline.x = 'Date'
+testline.date_true()
+testline.y = 'Confirmed'
+testline.x_title = "Date"
+testline.y_title = "Number of cases"
+testline.generate(0)
