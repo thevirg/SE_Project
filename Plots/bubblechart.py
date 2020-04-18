@@ -9,9 +9,6 @@ class Bubblechart:
     limit_num = 0
 
     def __init__(self):
-        self.sum = 0
-        self.limit = 0
-        self.limit_num = 0
         self.file = ''
         self.x = ''
         self.y = ''
@@ -21,6 +18,9 @@ class Bubblechart:
         self.category = ''
         self.mean = 0
         self.marker_data = ''
+
+        # sets the scale to be used for the bubbles.
+        # 1 means data will be used as is, 10 means scale will be divided by 10, etc
         self.bubble_scale = 1
 
     # generates Bubblechart using provided data. MUST SET DATA BY ASSIGNING DIRECTLY TO VARIABLES FIRST
@@ -72,7 +72,7 @@ class Bubblechart:
         self.limit_num = limit_num
 
 # sets mean boolean to 1, sum to 0. Defaults to 0, so only call this if you need it to be true
-    def sum_true(self):
+    def mean_true(self):
         self.mean = 1
         self.sum = 0
 
@@ -81,3 +81,4 @@ class Bubblechart:
                 'XAxis': self.x_title,
                 'YAxis': self.y_title,}
         return data
+

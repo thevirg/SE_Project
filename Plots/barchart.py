@@ -9,6 +9,7 @@ class Barchart:
     limit_num = 0
     limit = 0
     sum = 0
+    mean = 0
 
     def __init__(self):
 
@@ -31,7 +32,8 @@ class Barchart:
         # Creating sum of Y column group by X Column
         if self.sum:
             new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
-
+        elif self.mean:
+            new_df = filtered_df.groupby(self.x)[self.y].mean().reset_index()
         # Sorting values and select first limit_num entries
         if self.limit:
             new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
@@ -40,16 +42,17 @@ class Barchart:
         graph_data = [go.Bar(x=new_df[self.x], y=new_df[self.y])]
 
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
+
+        # Preparing layout
+        layout = go.Layout(title=self.title, xaxis_title=self.x_title,
+                           yaxis_title=self.y_title)
+
+        # Plot the figure
+
+        fig = go.Figure(data=graph_data, layout=layout)
         if for_dash:
-            return graph_data
+            return fig
         else:
-
-            # Preparing layout
-            layout = go.Layout(title=self.title, xaxis_title=self.x_title,
-                               yaxis_title=self.y_title)
-
-            # Plot the figure
-            fig = go.Figure(data=graph_data, layout=layout)
             pyo.plot(fig, filename='barchart.html')
 
     # sets variables in data[]. Variables can be acceessed directly from object, but this allows implementation of
@@ -63,6 +66,11 @@ class Barchart:
     def limit_true(self, limit_num):
         self.limit = 1
         self.limit_num = limit_num
+
+    # sets mean boolean to 1, sum to 0. Defaults to 0, so only call this if you need it to be true
+    def mean_true(self):
+        self.mean = 1
+        self.sum = 0
 
     def get_dash_titles(self):
         data = {'Title': self.title,
