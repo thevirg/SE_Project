@@ -109,6 +109,8 @@ def stacked_bar():
     background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
+    # test comment for merging
+
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)

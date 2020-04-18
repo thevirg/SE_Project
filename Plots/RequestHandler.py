@@ -189,7 +189,12 @@ def request_heat(chart_data, for_dash):
     else:
         chart.generate(0)
 
+# Dash request method. For the dash_data argument, looks for a dictionary of the format
+# {'bar': bar_data, 'line': line_data, 'stack': stack_data, etc...}
+
+
 def request_dash(dash_data):
+
 
     bar_fig, bar_desc = request_bar(dash_data['bar'], 1)
     stack_fig, stack_desc = request_stack(dash_data['stack'], 1)
