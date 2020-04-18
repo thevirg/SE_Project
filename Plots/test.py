@@ -34,20 +34,22 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # print(df2[noc])
 
 # Test Barchart
-# testchart = Barchart()
-# testchart.title = "test"
-# testchart.file = '../Datasets/Olympic2016Rio.csv'
-# testchart.limit_true(20)
-# testchart.sum_true()
-# testchart.x = 'NOC'
-# testchart.y = 'Total'
-# testchart.title = "Olympics"
-# testchart.x_title = "Country"
-# testchart.y_title = "Total Medals"
-# testchart.generate(0)
+
+testchart = Barchart()
+testchart.title = "test"
+testchart.file = '../Datasets/Olympic2016Rio.csv'
+testchart.limit_true(20)
+testchart.sum_true()
+testchart.x = 'NOC'
+testchart.y = 'Total'
+testchart.title = "Olympics"
+testchart.x_title = "Country"
+testchart.y_title = "Total Medals"
+testchart.generate(0)
 
 
 # Test Bubblechart
+
 # testbubble = Bubblechart()
 # testbubble.title = "test"
 # testbubble.file = '../Datasets/Olympic2016Rio.csv'
