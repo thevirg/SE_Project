@@ -47,17 +47,15 @@ class Bubblechart:
                    marker=dict(size=new_df[self.marker_data] / self.bubble_scale,
                                color=new_df[self.marker_data] / self.bubble_scale, showscale=True))]
 
-        # if for a dashboard, return graph_data. Otherwise, generate HTML form
+        # Preparing layout
+        layout = go.Layout(title=self.title, xaxis_title=self.x_title,
+                           yaxis_title=self.y_title, hovermode='closest')
+
+        # Plot the figure
+        fig = go.Figure(data=graph_data, layout=layout)
         if for_dash:
-            return graph_data
+            return fig
         else:
-
-            # Preparing layout
-            layout = go.Layout(title=self.title, xaxis_title=self.x_title,
-                               yaxis_title=self.y_title, hovermode='closest')
-
-            # Plot the figure
-            fig = go.Figure(data=graph_data, layout=layout)
             pyo.plot(fig, filename='bubblechart.html')
 
 
