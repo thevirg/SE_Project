@@ -62,16 +62,16 @@ class Stackbar:
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
 
 
-            # Preparing layout
-            layout = go.Layout(title=self.title, xaxis_title=self.x_title,
-                               yaxis_title=self.y_title, barmode='stack')
+        # Preparing layout
+        layout = go.Layout(title=self.title, xaxis_title=self.x_title,
+                           yaxis_title=self.y_title, barmode='stack')
 
-            # Plot the figure
-            fig = go.Figure(data=graph_data, layout=layout)
-            if for_dash:
-                return fig
-            else:
-                pyo.plot(fig, filename='stackbarchart.html')
+        # Plot the figure
+        fig = go.Figure(data=graph_data, layout=layout)
+        if for_dash:
+            return fig
+        else:
+            pyo.plot(fig, filename='stackbarchart.html')
 
 
 # sets sum boolean to 1, mean to 0. Defaults to 0, so only call this if you need it to be true

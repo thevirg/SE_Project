@@ -51,17 +51,17 @@ class Multiline:
             trace = go.Scatter(x=new_df2[self.x], y=new_df2[self.y_array[i][0]], mode='lines', name=self.y_array[i][1])
             graph_data.append(trace)
 
-        # if for a dashboard, return graph_data. Otherwise, generate HTML form
+
+        # Preparing layout
+        layout = go.Layout(title=self.title, xaxis_title=self.x_title,
+                           yaxis_title=self.y_title, hovermode='closest')
+
+        # Plot the figure
+        fig = go.Figure(data=graph_data, layout=layout)
+
         if for_dash:
-            return graph_data
+            return fig
         else:
-
-            # Preparing layout
-            layout = go.Layout(title=self.title, xaxis_title=self.x_title,
-                               yaxis_title=self.y_title, hovermode='closest')
-
-            # Plot the figure
-            fig = go.Figure(data=graph_data, layout=layout)
             pyo.plot(fig, filename='multilinechart.html')
 
 
