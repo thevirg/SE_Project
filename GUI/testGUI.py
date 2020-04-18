@@ -171,8 +171,7 @@ def stacked_bar():
     background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
-<<<<<<< Updated upstream
-=======
+
     label = tk.Label(background, text='Stacked Bar Chart')
     font_style = ('', 25)
     label.config(font=font_style)
@@ -234,7 +233,7 @@ def stacked_bar():
     y_data_entry = tk.Entry(background, bd=5)
     y_data_entry.place(relx=0.20, rely=0.80)
 
->>>>>>> Stashed changes
+
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)
