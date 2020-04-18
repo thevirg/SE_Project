@@ -97,6 +97,68 @@ def multi_line():
     background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
+    label = tk.Label(background, text='Multi-Line Chart')
+    font_style = ('', 25)
+    label.config(font=font_style)
+    label.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
+
+    file_path_label = tk.Label(background, text='File Path:')
+    font_style = ('', 15)
+    file_path_label.config(font=font_style)
+    file_path_label.place(relx=0.05, rely=0.2,)
+
+    file_path_entry = tk.Entry(background, bd=5)
+    file_path_entry.place(relx=0.20, rely=0.2)
+
+    chart_title_label = tk.Label(background, text= 'Chart name:')
+    font_style = ('', 15)
+    chart_title_label.config(font=font_style)
+    chart_title_label.place(relx=0.05, rely=0.30)
+
+    chart_title_entry = tk.Entry(background, bd=5)
+    chart_title_entry.place(relx=0.20, rely=0.30)
+
+
+    line_number= tk.Label(background, text='Number of lines:')
+    font_style = ('', 15)
+    line_number.config(font = font_style)
+    line_number.place(relx=0.05, rely=0.40)
+
+    line_number_entry = tk.Entry(background, bd=5)
+    line_number_entry.place(relx=0.20, rely=0.40)
+
+    x_axis_label = tk.Label(background, text="X axis title:")
+    font_style = ('', 15)
+    x_axis_label.config(font= font_style)
+    x_axis_label.place(relx=0.05, rely=0.50)
+
+    x_axis_entry = tk.Entry(background, bd = 5)
+    x_axis_entry.place(relx=0.20, rely =0.50)
+
+    y_axis_label = tk.Label(background, text = "Y axis title:")
+    font_style = ('', 15)
+    y_axis_label.config(font = font_style)
+    y_axis_label.place(relx=.05, rely =.60)
+
+    y_axis_entry = tk.Entry(background, bd=5)
+    y_axis_entry.place(relx=0.20, rely=0.60)
+
+    x_data_label = tk.Label(background, text= 'X data:')
+    font_style = ('', 15)
+    x_data_label.config(font=font_style)
+    x_data_label.place(relx=.05, rely=.70)
+
+    x_data_entry = tk.Entry(background, bd = 5)
+    x_data_entry.place(relx=0.20, rely=0.70)
+
+    y_data_label = tk.Label(background, text='Y data:')
+    font_style = ('', 15)
+    y_data_label.config(font=font_style)
+    y_data_label.place(relx=.05, rely=.80)
+
+    y_data_entry = tk.Entry(background, bd=5)
+    y_data_entry.place(relx=0.20, rely=0.80)
+
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)
@@ -109,6 +171,70 @@ def stacked_bar():
     background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
+<<<<<<< Updated upstream
+=======
+    label = tk.Label(background, text='Stacked Bar Chart')
+    font_style = ('', 25)
+    label.config(font=font_style)
+    label.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
+
+    file_path_label = tk.Label(background, text='File Path:')
+    font_style = ('', 15)
+    file_path_label.config(font=font_style)
+    file_path_label.place(relx=0.05, rely=0.2, )
+
+    file_path_entry = tk.Entry(background, bd=5)
+    file_path_entry.place(relx=0.20, rely=0.2)
+
+    chart_title_label = tk.Label(background, text='Chart name:')
+    font_style = ('', 15)
+    chart_title_label.config(font=font_style)
+    chart_title_label.place(relx=0.05, rely=0.30)
+
+    chart_title_entry = tk.Entry(background, bd=5)
+    chart_title_entry.place(relx=0.20, rely=0.30)
+
+    line_number = tk.Label(background, text='Number of bars:')
+    font_style = ('', 15)
+    line_number.config(font=font_style)
+    line_number.place(relx=0.05, rely=0.40)
+
+    line_number_entry = tk.Entry(background, bd=5)
+    line_number_entry.place(relx=0.20, rely=0.40)
+
+    x_axis_label = tk.Label(background, text="X axis title:")
+    font_style = ('', 15)
+    x_axis_label.config(font=font_style)
+    x_axis_label.place(relx=0.05, rely=0.50)
+
+    x_axis_entry = tk.Entry(background, bd=5)
+    x_axis_entry.place(relx=0.20, rely=0.50)
+
+    y_axis_label = tk.Label(background, text="Y axis title:")
+    font_style = ('', 15)
+    y_axis_label.config(font=font_style)
+    y_axis_label.place(relx=.05, rely=.60)
+
+    y_axis_entry = tk.Entry(background, bd=5)
+    y_axis_entry.place(relx=0.20, rely=0.60)
+
+    x_data_label = tk.Label(background, text='X data:')
+    font_style = ('', 15)
+    x_data_label.config(font=font_style)
+    x_data_label.place(relx=.05, rely=.70)
+
+    x_data_entry = tk.Entry(background, bd=5)
+    x_data_entry.place(relx=0.20, rely=0.70)
+
+    y_data_label = tk.Label(background, text='Y data:')
+    font_style = ('', 15)
+    y_data_label.config(font=font_style)
+    y_data_label.place(relx=.05, rely=.80)
+
+    y_data_entry = tk.Entry(background, bd=5)
+    y_data_entry.place(relx=0.20, rely=0.80)
+
+>>>>>>> Stashed changes
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)
