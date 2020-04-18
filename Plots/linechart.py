@@ -42,17 +42,16 @@ class Line:
         # Preparing data
         graph_data = [go.Scatter(x=new_df[self.x], y=new_df[self.y], mode='lines', name=self.y)]
 
-        # if for a dashboard, return graph_data. Otherwise, generate HTML form
+        # Preparing layout
+        layout = go.Layout(title=self.title, xaxis_title=self.x_title,
+                           yaxis_title=self.y_title, hovermode='closest')
+
+        # Plot the figure
+        fig = go.Figure(data=graph_data, layout=layout)
+
         if for_dash:
             return graph_data
         else:
-
-            # Preparing layout
-            layout = go.Layout(title=self.title, xaxis_title=self.x_title,
-                               yaxis_title=self.y_title, hovermode='closest')
-
-            # Plot the figure
-            fig = go.Figure(data=graph_data, layout=layout)
             pyo.plot(fig, filename='linechart.html')
 
 

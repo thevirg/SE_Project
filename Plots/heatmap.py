@@ -42,15 +42,17 @@ class Heatmap:
         graph_data = [go.Heatmap(x=new_df[self.x], y=new_df[self.y], z=new_df[self.z].values.tolist(), colorscale='Jet')]
 
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
-        if for_dash:
-            return graph_data
-        else:
-            # Preparing layout
-            layout = go.Layout(title=self.title, xaxis_title=self.x_title,
-                               yaxis_title=self.y_title)
 
-            # Plot the figure
-            fig = go.Figure(data=graph_data, layout=layout)
+        # Preparing layout
+        layout = go.Layout(title=self.title, xaxis_title=self.x_title,
+                           yaxis_title=self.y_title)
+
+        # Plot the figure
+        fig = go.Figure(data=graph_data, layout=layout)
+
+        if for_dash:
+            return fig
+        else:
             pyo.plot(fig, filename='heatmap.html')
 
     # sets variables in data[]. Variables can be acceessed directly from object, but this allows implementation of
