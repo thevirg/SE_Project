@@ -248,7 +248,6 @@ def multi_line():
     chart_title_entry = tk.Entry(background, bd=5)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
-
     line_number= tk.Label(background, text='Number of lines:')
     font_style = ('', 15)
     line_number.config(font = font_style)
@@ -300,9 +299,6 @@ def stacked_bar():
     # Widgets should be added to background so the clear method can delete the frame for a new page
     background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
-
-
-
 
     label = tk.Label(background, text='Stacked Bar Chart')
     font_style = ('', 25)
@@ -364,9 +360,6 @@ def stacked_bar():
 
     y_data_entry = tk.Entry(background, bd=5)
     y_data_entry.place(relx=0.20, rely=0.80)
-
-
-
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
