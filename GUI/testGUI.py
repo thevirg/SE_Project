@@ -47,24 +47,200 @@ def bar_chart():
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
-    background = tk.Frame(window, bg='white')
+    background = tk.Frame(window, bg='gray')
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)
+
+    # Create a title label to be placed at the top of the page
+    title_label = tk.Label(background, bg='gray', text="Bar Chart")
+    font_style = ('', 20)  # configure font size
+    title_label.config(font=font_style)  # change the font size of the title
+    title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
+
+    # Create a frame for the widgets on this page to be placed in
+    body_frame = tk.Frame(background, bg='gray')
+    body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
+
+    # Create a label to indicate to the user to enter the file path
+    file_path_label = tk.Label(body_frame, bg='gray', text="Please enter the file path:")
+    file_path_label.place(relx=0.01, rely=0.01)
+
+    # Create an entry box for the user to input the file path
+    file_path_entry = tk.Entry(body_frame)
+    file_path_entry.place(relx=0.23, rely=0.01, relwidth=0.3)
+
+    chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
+    chart_title_label.place(relx=0.6, rely=0.01)
+
+    chart_title_entry = tk.Entry(body_frame)
+    chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
+
+    x_title_label = tk.Label(body_frame, bg='gray', text="X Axis Title:")
+    x_title_label.place(relx=0.01, rely=0.2)
+
+    x_title_entry = tk.Entry(body_frame)
+    x_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
+
+    x_column_label = tk.Label(body_frame, bg='gray', text="Column of X-Axis Data:")
+    x_column_label.place(relx=0.45, rely=0.2)
+
+    x_entry = tk.Entry(body_frame)
+    x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
+
+    y_title_label = tk.Label(body_frame, bg='gray', text="Y Axis Title:")
+    y_title_label.place(relx=0.01, rely=0.39)
+
+    y_title_entry = tk.Entry(body_frame)
+    y_title_entry.place(relx=0.12, rely=0.39, relwidth=0.3)
+
+    y_column_label = tk.Label(body_frame, bg='gray', text="Column of Y-Axis Data:")
+    y_column_label.place(relx=0.45, rely=0.39)
+
+    y_entry = tk.Entry(body_frame)
+    y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
+
+    # Create a drop down menu
+    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
+    chart_selection.place(relx=0.01, rely=0.75, relwidth=0.25)
+
+    limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
+    limit_label.place(relx=0.01, rely=0.58)
+
+    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(body_frame, limit_menu, "Yes", "No")
+    chart_selection.place(relx=0.3, rely=0.58, relwidth=0.25)
+
+    value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
+    value_label.place(relx=0.6, rely=0.58)
+
+    limit_entry = tk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.58)
+
+    # Create a submit button to send all user entries to a variable
+    # The parameters are each of the entries returning their user input
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
+                                                                                  chart_title_entry.get(),
+                                                                                  x_title_entry.get(),
+                                                                                  x_entry.get(),
+                                                                                  y_title_entry.get(),
+                                                                                  y_entry.get(),
+                                                                                  None,
+                                                                                  sum_mean.get(),
+                                                                                  limit_menu.get(),
+                                                                                  limit_entry.get(), None, None, None,
+                                                                                  "Bar Chart"))
+    submit_button.place(relx=0.93, rely=0.92)
 
 
 def bubble_chart():
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
-    background = tk.Frame(window, bg='white')
+    background = tk.Frame(window, bg='gray')
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)
+
+    # Create a title label to be placed at the top of the page
+    title_label = tk.Label(background, bg='gray', text="Bubble Chart")
+    font_style = ('', 20)  # configure font size
+    title_label.config(font=font_style)  # change the font size of the title
+    title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
+
+    # Create a frame for the widgets on this page to be placed in
+    body_frame = tk.Frame(background, bg='gray')
+    body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
+
+    # Create a label to indicate to the user to enter the file path
+    file_path_label = tk.Label(body_frame, bg='gray', text="Please enter the file path:")
+    file_path_label.place(relx=0.01, rely=0.01)
+
+    # Create an entry box for the user to input the file path
+    file_path_entry = tk.Entry(body_frame)
+    file_path_entry.place(relx=0.23, rely=0.01, relwidth=0.3)
+
+    chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
+    chart_title_label.place(relx=0.6, rely=0.01)
+
+    chart_title_entry = tk.Entry(body_frame)
+    chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
+
+    x_title_label = tk.Label(body_frame, bg='gray', text="X Axis Title:")
+    x_title_label.place(relx=0.01, rely=0.2)
+
+    x_title_entry = tk.Entry(body_frame)
+    x_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
+
+    x_column_label = tk.Label(body_frame, bg='gray', text="Column of X-Axis Data:")
+    x_column_label.place(relx=0.45, rely=0.2)
+
+    x_entry = tk.Entry(body_frame)
+    x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
+
+    y_title_label = tk.Label(body_frame, bg='gray', text="Y Axis Title:")
+    y_title_label.place(relx=0.01, rely=0.39)
+
+    y_title_entry = tk.Entry(body_frame)
+    y_title_entry.place(relx=0.12, rely=0.39, relwidth=0.3)
+
+    y_column_label = tk.Label(body_frame, bg='gray', text="Column of Y-Axis Data:")
+    y_column_label.place(relx=0.45, rely=0.39)
+
+    y_entry = tk.Entry(body_frame)
+    y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
+
+    marker_label = tk.Label(body_frame, bg='gray', text="Marker Data:")
+    marker_label.place(relx=0.01, rely=0.58)
+
+    marker_entry = tk.Entry(body_frame)
+    marker_entry.place(relx=0.13, rely=0.58, relwidth=0.3)
+
+    # Create a drop down menu
+    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
+    chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
+
+    limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
+    limit_label.place(relx=0.01, rely=0.75)
+
+    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(body_frame, limit_menu, "Yes", "No")
+    chart_selection.place(relx=0.3, rely=0.75, relwidth=0.25)
+
+    value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
+    value_label.place(relx=0.6, rely=0.75)
+
+    limit_entry = tk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.75)
+
+    category_label = tk.Label(body_frame, bg='gray', text="Enter Category:")
+    category_label.place(relx=0.01, rely=0.9)
+
+    category_entry = tk.Entry(body_frame)
+    category_entry.place(relx=0.15, rely=0.9)
+
+    # Create a submit button to send all user entries to a variable
+    # The parameters are each of the entries returning their user input
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
+                                                                                  chart_title_entry.get(),
+                                                                                  x_title_entry.get(),
+                                                                                  x_entry.get(),
+                                                                                  y_title_entry.get(),
+                                                                                  y_entry.get(),
+                                                                                  None,
+                                                                                  sum_mean.get(),
+                                                                                  limit_menu.get(),
+                                                                                  limit_entry.get(), None,
+                                                                                  marker_entry.get(),
+                                                                                  category_entry.get(),
+                                                                                  "Bubble Chart"))
+    submit_button.place(relx=0.93, rely=0.92)
 
 
 def heat_map():
@@ -133,8 +309,8 @@ def heat_map():
     z_entry.place(relx=0.22, rely=0.58, relwidth=0.3)
 
     # Create a drop down menu
-    option.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, option, "None", "Sum", "Mean")
+    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
     chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
 
     limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
@@ -152,17 +328,17 @@ def heat_map():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_heat_map(file_path_entry.get(),
-                                                                                      chart_title_entry.get(),
-                                                                                      x_title_entry.get(),
-                                                                                      x_entry.get(),
-                                                                                      y_title_entry.get(),
-                                                                                      y_entry.get(),
-                                                                                      z_entry.get(),
-                                                                                      option.get(),
-                                                                                      limit_menu.get(),
-                                                                                      limit_entry.get(),
-                                                                                      "Heat Map"))
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
+                                                                                  chart_title_entry.get(),
+                                                                                  x_title_entry.get(),
+                                                                                  x_entry.get(),
+                                                                                  y_title_entry.get(),
+                                                                                  y_entry.get(),
+                                                                                  z_entry.get(),
+                                                                                  sum_mean.get(),
+                                                                                  limit_menu.get(),
+                                                                                  limit_entry.get(), None, None,
+                                                                                  None, "Heat Map"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -225,22 +401,45 @@ def line_chart():
     y_entry = tk.Entry(body_frame)
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
-    z_label = tk.Label(body_frame, bg='gray', text="Column of Z-Axis Data:")
+    z_label = tk.Label(body_frame, bg='gray', text="Does the X-Axis Show a Period of Time?:")
     z_label.place(relx=0.01, rely=0.58)
 
-    z_entry = tk.Entry(body_frame)
-    z_entry.place(relx=0.22, rely=0.58, relwidth=0.3)
+    line_chart_date.set("Please make a selection")
+    chart_selection = tk.OptionMenu(body_frame, line_chart_date, "Yes", "No")
+    chart_selection.place(relx=0.36, rely=0.58, relwidth=0.25)
+
+    # Create a drop down menu
+    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
+    chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
+
+    limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
+    limit_label.place(relx=0.01, rely=0.75)
+
+    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(body_frame, limit_menu, "Yes", "No")
+    chart_selection.place(relx=0.3, rely=0.75, relwidth=0.25)
+
+    value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
+    value_label.place(relx=0.6, rely=0.75)
+
+    limit_entry = tk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.75)
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_heat_map(file_path_entry.get(),
-                                                                                      chart_title_entry.get(),
-                                                                                      x_title_entry.get(),
-                                                                                      x_entry.get(),
-                                                                                      y_title_entry.get(),
-                                                                                      y_entry.get(),
-                                                                                      z_entry.get()))
-    submit_button.place(relx=0.91, rely=0.92)
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
+                                                                                  chart_title_entry.get(),
+                                                                                  x_title_entry.get(),
+                                                                                  x_entry.get(),
+                                                                                  y_title_entry.get(),
+                                                                                  y_entry.get(), None,
+                                                                                  sum_mean.get(),
+                                                                                  limit_menu.get(),
+                                                                                  limit_entry.get(),
+                                                                                  line_chart_date.get(), None, None,
+                                                                                  "Line Chart"))
+    submit_button.place(relx=0.93, rely=0.92)
 
 
 def multi_line():
@@ -258,12 +457,12 @@ def multi_line():
     file_path_label = tk.Label(background, text='File Path:')
     font_style = ('', 15)
     file_path_label.config(font=font_style)
-    file_path_label.place(relx=0.05, rely=0.2,)
+    file_path_label.place(relx=0.05, rely=0.2, )
 
     file_path_entry = tk.Entry(background, bd=5)
     file_path_entry.place(relx=0.20, rely=0.2)
 
-    chart_title_label = tk.Label(background, text= 'Chart name:')
+    chart_title_label = tk.Label(background, text='Chart name:')
     font_style = ('', 15)
     chart_title_label.config(font=font_style)
     chart_title_label.place(relx=0.05, rely=0.30)
@@ -271,9 +470,9 @@ def multi_line():
     chart_title_entry = tk.Entry(background, bd=5)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
-    line_number= tk.Label(background, text='Number of lines:')
+    line_number = tk.Label(background, text='Number of lines:')
     font_style = ('', 15)
-    line_number.config(font = font_style)
+    line_number.config(font=font_style)
     line_number.place(relx=0.05, rely=0.40)
 
     line_number_entry = tk.Entry(background, bd=5)
@@ -281,26 +480,26 @@ def multi_line():
 
     x_axis_label = tk.Label(background, text="X axis title:")
     font_style = ('', 15)
-    x_axis_label.config(font= font_style)
+    x_axis_label.config(font=font_style)
     x_axis_label.place(relx=0.05, rely=0.50)
 
-    x_axis_entry = tk.Entry(background, bd = 5)
-    x_axis_entry.place(relx=0.20, rely =0.50)
+    x_axis_entry = tk.Entry(background, bd=5)
+    x_axis_entry.place(relx=0.20, rely=0.50)
 
-    y_axis_label = tk.Label(background, text = "Y axis title:")
+    y_axis_label = tk.Label(background, text="Y axis title:")
     font_style = ('', 15)
-    y_axis_label.config(font = font_style)
-    y_axis_label.place(relx=.05, rely =.60)
+    y_axis_label.config(font=font_style)
+    y_axis_label.place(relx=.05, rely=.60)
 
     y_axis_entry = tk.Entry(background, bd=5)
     y_axis_entry.place(relx=0.20, rely=0.60)
 
-    x_data_label = tk.Label(background, text= 'X data:')
+    x_data_label = tk.Label(background, text='X data:')
     font_style = ('', 15)
     x_data_label.config(font=font_style)
     x_data_label.place(relx=.05, rely=.70)
 
-    x_data_entry = tk.Entry(background, bd = 5)
+    x_data_entry = tk.Entry(background, bd=5)
     x_data_entry.place(relx=0.20, rely=0.70)
 
     y_data_label = tk.Label(background, text='Y data:')
@@ -408,6 +607,7 @@ def get_chart():
 
     elif option.get() == "Stacked Bar Chart":
         stacked_bar()
+
     # This else statement would indicate that the user did not select a graph from the drop down menu
     else:
         # Create an error box pop up to alert user to select a graph to continue
@@ -433,7 +633,8 @@ def get_chart():
 # RequestHandler.py
 # The chart key should be different depending on which chart calls this method so that the correct method from the
 # RequestHandler.py can be called
-def get_heat_map(file, chart_title, x_title, x, y_title, y, z, sum_mean, limit_option, limit_value, chart_key):
+def get_info(file, chart_title, x_title, x, y_title, y, z, sum_mean, limit_option, limit_value, date, marker, category,
+             chart_key):
     chart_data['file'] = file
     chart_data['title'] = chart_title
     chart_data['x_title'] = x_title
@@ -441,23 +642,36 @@ def get_heat_map(file, chart_title, x_title, x, y_title, y, z, sum_mean, limit_o
     chart_data['y_title'] = y_title
     chart_data['y'] = y
     chart_data['z'] = z
-    chart_data['limit_num'] = limit_value
+    chart_data['limit_num'] = int(limit_value)
+    chart_data['marker_data'] = marker
+    chart_data['category'] = category
 
+    # Determines if the user selected to include a sum or a mean
     if sum_mean == "Sum":
         chart_data['sum'] = 1
     elif sum_mean == "Mean":
         chart_data['mean'] = 1
 
+    if date == "Yes":
+        chart_data['date'] = 1
+
     if limit_option == "Yes":
         chart_data['limit'] = 1
 
-    if chart_key == "Heat Map":
+    # Reads the chart key to determine which method from the request handler should be called
+    if chart_key == "Bar Chart":
+        request.request_bar(chart_data, 0)
+    elif chart_key == "Bubble Chart":
+        request.request_bubble(chart_data, 0)
+    elif chart_key == "Heat Map":
         request.request_heat(chart_data, 0)
+    elif chart_key == "Line Chart":
+        request.request_line(chart_data, 0)
 
 
 # Create a global dictionary that can be sent to RequestHandler.py
 chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,
-              'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0}
+              'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None}
 
 # Create a new window
 window = tk.Tk()
@@ -465,9 +679,14 @@ window = tk.Tk()
 # Change the title of the window
 window.title("Project Carrot")
 
-# Creates a tkinter variable to use in functions
+# Creates a tkinter variable to be used in drop down menu for chart selection on front page
 option = tk.StringVar(window)
+# Creates a tkinter variable to be used in drop down menu to select a sum or mean
+sum_mean = tk.StringVar(window)
+# Creates a tkinter variable to be used in the drop down menu to select whether a limit should be used
 limit_menu = tk.StringVar(window)
+# Creates a tkinter variable to be used in the drop down menu to select date for line_chart()
+line_chart_date = tk.StringVar(window)
 
 # Create a canvas to adjust the window size
 window_size = tk.Canvas(window, width=800, height=400)
