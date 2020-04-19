@@ -478,7 +478,6 @@ background = tk.Frame(window, bg='white')
 # The background takes up the entire window, all widgets will be placed inside this frame
 background.place(relwidth=1, relheight=1)
 
-# front_page()
-heat_map()
+front_page()
 
 window.mainloop()
