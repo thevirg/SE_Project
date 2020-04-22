@@ -162,7 +162,7 @@ def request_bubble(chart_data, for_dash):
 
 
 def request_heat(chart_data, for_dash):
-    chart = Bubblechart()
+    chart = Heatmap()
     chart.title = chart_data['title']
     chart.x = chart_data['x']
 
