@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import Plots.RequestHandler as request
 
 # Function used to clear the window to prepare it for a new page
 def clear():
@@ -254,7 +254,8 @@ def multi_line():
     line_number.config(font = font_style)
     line_number.place(relx=0.05, rely=0.40)
 
-    line_number_entry = tk.Entry(background, bd=5)
+    option.set("Please make a selection")
+    line_number_entry = tk.OptionMenu(background, option, "1", "2","3" )
     line_number_entry.place(relx=0.20, rely=0.40)
 
     x_axis_label = tk.Label(background, text="X axis title:")
@@ -288,6 +289,33 @@ def multi_line():
 
     y_data_entry = tk.Entry(background, bd=5)
     y_data_entry.place(relx=0.20, rely=0.80)
+
+    option.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(background, option, "None", "Sum", "Mean")
+    chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
+
+    limit_label = tk.Label(background, text="Would you like to place a limit?")
+    limit_label.place(relx=0.41, rely=0.75)
+
+    # limit_menu.set("Please make a selection")  # sets the default text on the menu selection
+    # chart_selection = tk.OptionMenu(background, limit_menu, "Yes", "No")
+    # chart_selection.place(relx=0.6, rely=0.75, relwidth=0.25)
+
+    value_label = tk.Label(background, text="Enter a limit, or 0 for none")
+    value_label.place(relx=0.6, rely=0.85)
+
+    limit_entry = tk.Entry(background)
+    limit_entry.place(relx=0.84, rely=0.85)
+
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_multiline_chart(file_path_entry.get(),
+                                                                                      chart_title_entry.get(),
+                                                                                      x_axis_entry.get(),
+                                                                                      x_data_entry.get(),
+                                                                                      y_axis_entry.get(),
+                                                                                      y_data_entry.get(),
+                                                                                      ))
+    submit_button.place(relx=0.91, rely=0.92)
+
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
@@ -423,6 +451,15 @@ def get_heat_map(file, chart_title, x_title, x, y_title, y, z):
     chart_data['y_title'] = y_title
     chart_data['y'] = y
     chart_data['z'] = z
+    print(chart_data)
+
+def get_multiline_chart(file, chart_title, x_title, x, y_title, y_array,):
+    chart_data['file'] = file
+    chart_data['title'] = chart_title
+    chart_data['x_title'] = x_title
+    chart_data['x'] = x
+    chart_data['y_title'] = y_title
+    chart_data['y_array'] = y_array
     print(chart_data)
 
 
