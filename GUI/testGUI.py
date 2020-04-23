@@ -65,10 +65,11 @@ def bar_chart():
     body_frame = tk.Frame(background, bg='gray')
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
+    # Creates a label to indicate to the user to select a
     file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
-    # Create an entry box for the user to input the file path
+    # Create a button for the user to select the file
     file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
@@ -122,16 +123,17 @@ def bar_chart():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
-                                                                                  x_title_entry.get(),
-                                                                                  x_entry.get(),
-                                                                                  y_title_entry.get(),
-                                                                                  y_entry.get(),
-                                                                                  None,
-                                                                                  sum_mean.get(),
-                                                                                  limit_menu.get(),
-                                                                                  limit_entry.get(), None, None, None,
-                                                                                  "Bar Chart"))
+    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                     x_title_entry.get(),
+                                                                                     x_entry.get(),
+                                                                                     y_title_entry.get(),
+                                                                                     y_entry.get(),
+                                                                                     None,
+                                                                                     sum_mean.get(),
+                                                                                     limit_menu.get(),
+                                                                                     limit_entry.get(), None, None,
+                                                                                     None,
+                                                                                     "Bar Chart"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -160,7 +162,7 @@ def bubble_chart():
     file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
-    # Create an entry box for the user to input the file path
+    # Create a button for the user to select the file
     file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
@@ -226,18 +228,18 @@ def bubble_chart():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
-                                                                                  x_title_entry.get(),
-                                                                                  x_entry.get(),
-                                                                                  y_title_entry.get(),
-                                                                                  y_entry.get(),
-                                                                                  None,
-                                                                                  sum_mean.get(),
-                                                                                  limit_menu.get(),
-                                                                                  limit_entry.get(), None,
-                                                                                  marker_entry.get(),
-                                                                                  category_entry.get(),
-                                                                                  "Bubble Chart"))
+    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                     x_title_entry.get(),
+                                                                                     x_entry.get(),
+                                                                                     y_title_entry.get(),
+                                                                                     y_entry.get(),
+                                                                                     None,
+                                                                                     sum_mean.get(),
+                                                                                     limit_menu.get(),
+                                                                                     limit_entry.get(), None,
+                                                                                     marker_entry.get(),
+                                                                                     category_entry.get(),
+                                                                                     "Bubble Chart"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -266,7 +268,7 @@ def heat_map():
     file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
-    # Create an entry box for the user to input the file path
+    # Create a button for the user to select the file
     file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
@@ -326,16 +328,16 @@ def heat_map():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
-                                                                                  x_title_entry.get(),
-                                                                                  x_entry.get(),
-                                                                                  y_title_entry.get(),
-                                                                                  y_entry.get(),
-                                                                                  z_entry.get(),
-                                                                                  sum_mean.get(),
-                                                                                  limit_menu.get(),
-                                                                                  limit_entry.get(), None, None,
-                                                                                  None, "Heat Map"))
+    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                     x_title_entry.get(),
+                                                                                     x_entry.get(),
+                                                                                     y_title_entry.get(),
+                                                                                     y_entry.get(),
+                                                                                     z_entry.get(),
+                                                                                     sum_mean.get(),
+                                                                                     limit_menu.get(),
+                                                                                     limit_entry.get(), None, None,
+                                                                                     None, "Heat Map"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -364,7 +366,7 @@ def line_chart():
     file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
-    # Create an entry box for the user to input the file path
+    # Create a button for the user to select the file
     file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
@@ -425,16 +427,16 @@ def line_chart():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
-                                                                                  x_title_entry.get(),
-                                                                                  x_entry.get(),
-                                                                                  y_title_entry.get(),
-                                                                                  y_entry.get(), None,
-                                                                                  sum_mean.get(),
-                                                                                  limit_menu.get(),
-                                                                                  limit_entry.get(),
-                                                                                  line_chart_date.get(), None, None,
-                                                                                  "Line Chart"))
+    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                     x_title_entry.get(),
+                                                                                     x_entry.get(),
+                                                                                     y_title_entry.get(),
+                                                                                     y_entry.get(), None,
+                                                                                     sum_mean.get(),
+                                                                                     limit_menu.get(),
+                                                                                     limit_entry.get(),
+                                                                                     line_chart_date.get(), None, None,
+                                                                                     "Line Chart"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -629,8 +631,8 @@ def get_chart():
 # RequestHandler.py
 # The chart key should be different depending on which chart calls this method so that the correct method from the
 # RequestHandler.py can be called
-def get_info(chart_title, x_title, x, y_title, y, z, sum_mean, limit_option, limit_value, date, marker, category,
-             chart_key):
+def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_option, limit_value, date, marker, category,
+                chart_key):
     chart_data['title'] = chart_title
     chart_data['x_title'] = x_title
     chart_data['x'] = x
@@ -642,9 +644,9 @@ def get_info(chart_title, x_title, x, y_title, y, z, sum_mean, limit_option, lim
     chart_data['category'] = category
 
     # Determines if the user selected to include a sum or a mean
-    if sum_mean == "Sum":
+    if sum_or_mean == "Sum":
         chart_data['sum'] = 1
-    elif sum_mean == "Mean":
+    elif sum_or_mean == "Mean":
         chart_data['mean'] = 1
 
     if date == "Yes":
