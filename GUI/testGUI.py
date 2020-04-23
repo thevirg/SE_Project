@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import filedialog
 import Plots.RequestHandler as request
 
 
@@ -10,23 +11,23 @@ def clear():
 def front_page():
     clear()
 
-    background = tk.Frame(window, bg='white')
+    background = tk.Frame(window, bg='gray')
     background.place(relwidth=1, relheight=1)
 
     # Create a new label to hold the title text
-    title = tk.Label(background, bg='white', text="Project Carrot")
+    title = tk.Label(background, bg='gray', text="Project Carrot")
     font_style = ('', 25)  # can be used to edit font style, '' can be replaced with a new font name
     title.config(font=font_style)  # applies the new font style
     # places the label in the top middle of the screen
     title.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
 
     # Creates a new frame to hold new widgets
-    lower_frame = tk.Frame(background, bg='white')
+    lower_frame = tk.Frame(background, bg='gray')
     # Places the frame near the center of the screen
     lower_frame.place(relx=0.5, rely=0.2, relwidth=0.75, relheight=0.5, anchor='n')
 
     # Creates a label indicating to the user to select a chart type
-    text = tk.Label(lower_frame, bg='white', text="Please select the type of chart you would like to build: ")
+    text = tk.Label(lower_frame, bg='gray', text="Please select the type of chart you would like to build: ")
     font_style = ('', 12)
     text.config(font=font_style)
     text.place(relx=0.5, rely=0.35, anchor='n')
@@ -64,13 +65,12 @@ def bar_chart():
     body_frame = tk.Frame(background, bg='gray')
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
-    # Create a label to indicate to the user to enter the file path
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please enter the file path:")
+    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create an entry box for the user to input the file path
-    file_path_entry = tk.Entry(body_frame)
-    file_path_entry.place(relx=0.23, rely=0.01, relwidth=0.3)
+    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -122,8 +122,7 @@ def bar_chart():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
-                                                                                  chart_title_entry.get(),
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
                                                                                   x_title_entry.get(),
                                                                                   x_entry.get(),
                                                                                   y_title_entry.get(),
@@ -158,12 +157,12 @@ def bubble_chart():
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
     # Create a label to indicate to the user to enter the file path
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please enter the file path:")
+    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create an entry box for the user to input the file path
-    file_path_entry = tk.Entry(body_frame)
-    file_path_entry.place(relx=0.23, rely=0.01, relwidth=0.3)
+    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -227,8 +226,7 @@ def bubble_chart():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
-                                                                                  chart_title_entry.get(),
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
                                                                                   x_title_entry.get(),
                                                                                   x_entry.get(),
                                                                                   y_title_entry.get(),
@@ -265,12 +263,12 @@ def heat_map():
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
     # Create a label to indicate to the user to enter the file path
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please enter the file path:")
+    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create an entry box for the user to input the file path
-    file_path_entry = tk.Entry(body_frame)
-    file_path_entry.place(relx=0.23, rely=0.01, relwidth=0.3)
+    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -328,8 +326,7 @@ def heat_map():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
-                                                                                  chart_title_entry.get(),
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
                                                                                   x_title_entry.get(),
                                                                                   x_entry.get(),
                                                                                   y_title_entry.get(),
@@ -364,12 +361,12 @@ def line_chart():
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
     # Create a label to indicate to the user to enter the file path
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please enter the file path:")
+    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create an entry box for the user to input the file path
-    file_path_entry = tk.Entry(body_frame)
-    file_path_entry.place(relx=0.23, rely=0.01, relwidth=0.3)
+    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -428,8 +425,7 @@ def line_chart():
 
     # Create a submit button to send all user entries to a variable
     # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(file_path_entry.get(),
-                                                                                  chart_title_entry.get(),
+    submit_button = tk.Button(background, text="Submit", command=lambda: get_info(chart_title_entry.get(),
                                                                                   x_title_entry.get(),
                                                                                   x_entry.get(),
                                                                                   y_title_entry.get(),
@@ -633,9 +629,8 @@ def get_chart():
 # RequestHandler.py
 # The chart key should be different depending on which chart calls this method so that the correct method from the
 # RequestHandler.py can be called
-def get_info(file, chart_title, x_title, x, y_title, y, z, sum_mean, limit_option, limit_value, date, marker, category,
+def get_info(chart_title, x_title, x, y_title, y, z, sum_mean, limit_option, limit_value, date, marker, category,
              chart_key):
-    chart_data['file'] = file
     chart_data['title'] = chart_title
     chart_data['x_title'] = x_title
     chart_data['x'] = x
@@ -667,6 +662,13 @@ def get_info(file, chart_title, x_title, x, y_title, y, z, sum_mean, limit_optio
         request.request_heat(chart_data, 0)
     elif chart_key == "Line Chart":
         request.request_line(chart_data, 0)
+
+
+# Function that can be called by a button or other widget that will allow the user to select the file they
+# wish to open, this function will change the value in the global dictionary
+# This function is used so that the user does not have to type the file path themselves
+def file_selector():
+    chart_data['file'] = filedialog.askopenfilename()
 
 
 # Create a global dictionary that can be sent to RequestHandler.py
