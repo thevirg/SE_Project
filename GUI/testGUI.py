@@ -639,7 +639,6 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
     chart_data['y_title'] = y_title
     chart_data['y'] = y
     chart_data['z'] = z
-    chart_data['limit_num'] = int(limit_value)
     chart_data['marker_data'] = marker
     chart_data['category'] = category
 
@@ -649,13 +648,19 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
     elif sum_or_mean == "Mean":
         chart_data['mean'] = 1
 
+    # Determines if the user selected the x-axis to show a period of time for the line graph
     if date == "Yes":
         chart_data['date'] = 1
 
+    # Determines if the user selected to include a limit
     if limit_option == "Yes":
         chart_data['limit'] = 1
 
-    # Reads the chart key to determine which method from the request handler should be called
+    # Checks to see if the user entered a value for the limit, makes sure there is an integer value to cast to
+    if limit_value != "":
+        chart_data['limit_num'] = int(limit_value)
+
+    # Reads the chart key to determine which type of chart should be generated from the request handler
     if chart_key == "Bar Chart":
         request.request_bar(chart_data, 0)
     elif chart_key == "Bubble Chart":
