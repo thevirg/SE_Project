@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import ttk
 import Plots.RequestHandler as request
 
 
@@ -9,6 +10,8 @@ def clear():
 
 
 def front_page():
+    global for_dash
+    for_dash = 0  # changes the value back to 0 in case the user uses the back button
     clear()
 
     background = tk.Frame(window, bg='gray')
@@ -32,19 +35,19 @@ def front_page():
     text.config(font=font_style)
     text.place(relx=0.5, rely=0.35, anchor='n')
 
-    option.set("Select a Chart")  # sets the default text on the menu selection
     # Creates a menu with the charts as options
-    chart_selection = tk.OptionMenu(lower_frame, option, "Bar Chart", "Bubble Chart", "Heat Map", "Line Chart",
-                                    "MultiLine Chart", "Stacked Bar Chart", "Dashboard")
+    chart_selection = ttk.OptionMenu(lower_frame, option, "Select a Chart", "Bar Chart", "Bubble Chart", "Heat Map",
+                                     "Line Chart", "MultiLine Chart", "Stacked Bar Chart", "Dashboard")
     chart_selection.place(relx=0.5, rely=0.5, relwidth=0.25, relheight=0.15, anchor='n')
 
     # Create a button that will get the chart selected from the menu
-    next_button = tk.Button(background, text="Next Page", command=get_chart)
+    next_button = ttk.Button(background, text="Next Page", command=get_chart)
     # places the button in the lower right corner of the screen
-    next_button.place(relx=0.91, rely=0.92)
+    next_button.place(relx=0.9, rely=0.92)
 
 
 def bar_chart():
+    global for_dash
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
@@ -52,8 +55,8 @@ def bar_chart():
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
-    bck_button = tk.Button(background, text="Back", command=front_page)
-    bck_button.place(relx=0.01, rely=0.92)
+    bck_button = ttk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
     title_label = tk.Label(background, bg='gray', text="Bar Chart")
@@ -70,7 +73,7 @@ def bar_chart():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
@@ -104,15 +107,13 @@ def bar_chart():
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
     # Create a drop down menu
-    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
+    chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
     chart_selection.place(relx=0.01, rely=0.75, relwidth=0.25)
 
     limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
     limit_label.place(relx=0.01, rely=0.58)
 
-    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, limit_menu, "Yes", "No")
+    chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
     chart_selection.place(relx=0.3, rely=0.58, relwidth=0.25)
 
     value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
@@ -121,23 +122,41 @@ def bar_chart():
     limit_entry = tk.Entry(body_frame)
     limit_entry.place(relx=0.84, rely=0.58)
 
-    # Create a submit button to send all user entries to a variable
-    # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
-                                                                                     x_title_entry.get(),
-                                                                                     x_entry.get(),
-                                                                                     y_title_entry.get(),
-                                                                                     y_entry.get(),
-                                                                                     None,
-                                                                                     sum_mean.get(),
-                                                                                     limit_menu.get(),
-                                                                                     limit_entry.get(), None, None,
-                                                                                     None,
-                                                                                     "Bar Chart"))
-    submit_button.place(relx=0.93, rely=0.92)
+    # This if statement checks to see if the user selected to generate a dashboard
+    # If a dashboard was selected the submit button will take the user to the next chart to enter data for
+    # Because this option occurs when the user selects to generate a dashboard, bubble chart is also called
+    if for_dash:
+        # Create a submit button to send all user entries to a variable
+        # The parameters are each of the entries returning their user input
+        next_button = ttk.Button(background, text="Next Page", command=lambda: [submit_info(chart_title_entry.get(),
+                                                                                            x_title_entry.get(),
+                                                                                            x_entry.get(),
+                                                                                            y_title_entry.get(),
+                                                                                            y_entry.get(), None,
+                                                                                            sum_mean.get(),
+                                                                                            limit_menu.get(),
+                                                                                            limit_entry.get(), None,
+                                                                                            None, None,
+                                                                                            "Bar Chart"),
+                                                                                bubble_chart()])
+        next_button.place(relx=0.9, rely=0.92)
+    else:
+        submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_entry.get(),
+                                                                                          None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(), None, None,
+                                                                                          None,
+                                                                                          "Bar Chart"))
+        submit_button.place(relx=0.9, rely=0.92)
 
 
 def bubble_chart():
+    global for_dash
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
@@ -145,8 +164,8 @@ def bubble_chart():
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
-    bck_button = tk.Button(background, text="Back", command=front_page)
-    bck_button.place(relx=0.01, rely=0.92)
+    bck_button = ttk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
     title_label = tk.Label(background, bg='gray', text="Bubble Chart")
@@ -163,7 +182,7 @@ def bubble_chart():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
@@ -203,15 +222,13 @@ def bubble_chart():
     marker_entry.place(relx=0.13, rely=0.58, relwidth=0.3)
 
     # Create a drop down menu
-    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
+    chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
     chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
 
     limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
     limit_label.place(relx=0.01, rely=0.75)
 
-    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, limit_menu, "Yes", "No")
+    chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
     chart_selection.place(relx=0.3, rely=0.75, relwidth=0.25)
 
     value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
@@ -226,21 +243,38 @@ def bubble_chart():
     category_entry = tk.Entry(body_frame)
     category_entry.place(relx=0.15, rely=0.9)
 
-    # Create a submit button to send all user entries to a variable
-    # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
-                                                                                     x_title_entry.get(),
-                                                                                     x_entry.get(),
-                                                                                     y_title_entry.get(),
-                                                                                     y_entry.get(),
-                                                                                     None,
-                                                                                     sum_mean.get(),
-                                                                                     limit_menu.get(),
-                                                                                     limit_entry.get(), None,
-                                                                                     marker_entry.get(),
-                                                                                     category_entry.get(),
-                                                                                     "Bubble Chart"))
-    submit_button.place(relx=0.93, rely=0.92)
+    # This if statement checks to see if the user selected to generate a dashboard
+    # If a dashboard was selected the submit button will take the user to the next chart to enter data for
+    if for_dash:
+        # Create a submit button to send all user entries to a variable
+        # The parameters are each of the entries returning their user input
+        # because this option occurs when the user has selected to generate a dashboard, the button also calls heat map
+        submit_button = ttk.Button(background, text="Next Page", command=lambda: [submit_info(chart_title_entry.get(),
+                                                                                              x_title_entry.get(),
+                                                                                              x_entry.get(),
+                                                                                              y_title_entry.get(),
+                                                                                              y_entry.get(), None,
+                                                                                              sum_mean.get(),
+                                                                                              limit_menu.get(),
+                                                                                              limit_entry.get(), None,
+                                                                                              marker_entry.get(),
+                                                                                              category_entry.get(),
+                                                                                              "Bubble Chart"),
+                                                                                  heat_map()])
+        submit_button.place(relx=0.9, rely=0.92)
+    else:
+        submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_entry.get(), None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(), None,
+                                                                                          marker_entry.get(),
+                                                                                          category_entry.get(),
+                                                                                          "Bubble Chart"))
+        submit_button.place(relx=0.9, rely=0.92)
 
 
 def heat_map():
@@ -587,6 +621,8 @@ def stacked_bar():
 
 
 def dashboard():
+    global for_dash
+    for_dash = 1  # changes the value to 1 so that charts will be generated for the dashboard
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
@@ -594,14 +630,27 @@ def dashboard():
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
-    bck_button = tk.Button(background, text="Back", command=front_page)
-    bck_button.place(relx=0.01, rely=0.92)
+    bck_button = ttk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
-    title_label = tk.Label(background, bg='gray', text="Dashboard")
+    title_label = tk.Label(background, bg='gray', text="Dashboard Generation")
     font_style = ('', 20)  # configure font size
     title_label.config(font=font_style)  # change the font size of the title
     title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
+
+    title_entry_label = tk.Label(background, bg='gray', text="Please Enter a Title for the Dashboard:")
+    title_entry_label.place(relx=0.1, rely=0.3)
+
+    title_entry = ttk.Entry(background)
+    title_entry.place(relx=0.37, rely=0.3, relwidth=0.3)
+
+    # Create a button that will get the chart selected from the menu
+    next_button = ttk.Button(background, text="Next Page", command=lambda: [set_dash_title(title_entry.get()),
+                                                                            bar_chart()])
+    # places the button in the lower right corner of the screen
+    next_button.place(relx=0.9, rely=0.92)
+
 
 # Function used to get the chart that the user selected from the option menu on the front page
 def get_chart():
@@ -653,6 +702,7 @@ def get_chart():
 # RequestHandler.py can be called
 def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_option, limit_value, date, marker, category,
                 chart_key):
+    global for_dash
     chart_data['title'] = chart_title
     chart_data['x_title'] = x_title
     chart_data['x'] = x
@@ -682,13 +732,20 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
 
     # Reads the chart key to determine which type of chart should be generated from the request handler
     if chart_key == "Bar Chart":
-        request.request_bar(chart_data, 0)
+        if for_dash:  # Checks to see if the chart will be generated as a dashboard
+            dash_data['bar'] = request.request_bar(chart_data, for_dash)
+        else:
+            request.request_bar(chart_data, for_dash)
     elif chart_key == "Bubble Chart":
-        request.request_bubble(chart_data, 0)
+        if for_dash:
+            dash_data['bubble'] = request.request_bubble(chart_data, for_dash)
+            print(dash_data)
+        else:
+            request.request_bubble(chart_data, for_dash)
     elif chart_key == "Heat Map":
-        request.request_heat(chart_data, 0)
+        request.request_heat(chart_data, for_dash)
     elif chart_key == "Line Chart":
-        request.request_line(chart_data, 0)
+        request.request_line(chart_data, for_dash)
 
 
 # Function that can be called by a button or other widget that will allow the user to select the file they
@@ -698,16 +755,22 @@ def file_selector():
     chart_data['file'] = filedialog.askopenfilename()
 
 
+def set_dash_title(title):
+    dash_data['dash_title'] = title
+
+
 # Create a global dictionary that can be sent to RequestHandler.py
 chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,
               'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None}
+dash_data = {'bar': None, 'bubble': None, 'heat': None, 'line': None, 'multi': None, 'stack': None, 'dash_title': None}
 
 # Create a new window
 window = tk.Tk()
 
 # Change the title of the window
 window.title("Project Carrot")
-
+# Changes the icon in upper left corner for Windows users
+window.iconbitmap(default="icon.ico")
 # Creates a tkinter variable to be used in drop down menu for chart selection on front page
 option = tk.StringVar(window)
 # Creates a tkinter variable to be used in drop down menu to select a sum or mean
@@ -716,6 +779,9 @@ sum_mean = tk.StringVar(window)
 limit_menu = tk.StringVar(window)
 # Creates a tkinter variable to be used in the drop down menu to select date for line_chart()
 line_chart_date = tk.StringVar(window)
+# Holds a boolean value to determine if the charts should be generated for a dashboard
+# if the user selects a dashboard on the front page the value changes to 1
+for_dash = 0
 
 # Create a canvas to adjust the window size
 window_size = tk.Canvas(window, width=800, height=400)
