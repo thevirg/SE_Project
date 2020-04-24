@@ -554,18 +554,19 @@ def multi_line():
     y4 = y4_entry.get()
     y5 = y5_entry.get()
     y6 = y6_entry.get()
-    y_data_entry = [["Death", "Death"],["Recovered", "Recovered"],["Unrecovered", "Unrecovered"]]
 
     submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
                                                                                      x_axis_entry.get(),
                                                                                      x_data_entry.get(),
                                                                                      y_axis_entry.get(),
-                                                                                     y_data_entry, None,
+                                                                                     y_data(y1, y2, y3, y4, y5, y6),
+                                                                                     None,
                                                                                      sum_mean.get(),
                                                                                      limit_menu.get(),
                                                                                      limit_entry.get(),
                                                                                      line_chart_date.get(), None, None,
                                                                                      "MultiLine Chart"))
+
     submit_button.place(relx=0.91, rely=0.92)
 
     # Creates a back button to allow the user to go back to the chart selection page
@@ -790,6 +791,11 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
         request.request_stack(chart_data, 0)
 
 
+def y_data(y1, y2, y3, y4, y5, y6):
+    y_array = [[y1, y4], [y2, y5], [y3, y6]]
+    return y_array
+
+
 # Function that can be called by a button or other widget that will allow the user to select the file they
 # wish to open, this function will change the value in the global dictionary
 # This function is used so that the user does not have to type the file path themselves
@@ -799,7 +805,8 @@ def file_selector():
 
 # Create a global dictionary that can be sent to RequestHandler.py
 chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,
-              'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None}
+              'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None,
+              'y_array': None}
 
 # Create a new window
 window = tk.Tk()
