@@ -35,7 +35,7 @@ def front_page():
     option.set("Select a Chart")  # sets the default text on the menu selection
     # Creates a menu with the charts as options
     chart_selection = tk.OptionMenu(lower_frame, option, "Bar Chart", "Bubble Chart", "Heat Map", "Line Chart",
-                                    "MultiLine Chart", "Stacked Bar Chart")
+                                    "MultiLine Chart", "Stacked Bar Chart", "Dashboard")
     chart_selection.place(relx=0.5, rely=0.5, relwidth=0.25, relheight=0.15, anchor='n')
 
     # Create a button that will get the chart selected from the menu
@@ -586,6 +586,23 @@ def stacked_bar():
     bck_button.place(relx=0.01, rely=0.92)
 
 
+def dashboard():
+    clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
+    background = tk.Frame(window, bg='gray')
+    background.place(relwidth=1, relheight=1)
+
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = tk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92)
+
+    # Create a title label to be placed at the top of the page
+    title_label = tk.Label(background, bg='gray', text="Dashboard")
+    font_style = ('', 20)  # configure font size
+    title_label.config(font=font_style)  # change the font size of the title
+    title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
+
 # Function used to get the chart that the user selected from the option menu on the front page
 def get_chart():
     if option.get() == "Bar Chart":
@@ -605,6 +622,9 @@ def get_chart():
 
     elif option.get() == "Stacked Bar Chart":
         stacked_bar()
+
+    elif option.get() == "Dashboard":
+        dashboard()
 
     # This else statement would indicate that the user did not select a graph from the drop down menu
     else:
