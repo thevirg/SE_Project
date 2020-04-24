@@ -452,13 +452,13 @@ def multi_line():
     label.config(font=font_style)
     label.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
 
-    file_path_label = tk.Label(background, text='File Path:')
-    font_style = ('', 15)
-    file_path_label.config(font=font_style)
-    file_path_label.place(relx=0.05, rely=0.2, )
+    # Creates a label to indicate to the user to select a
+    file_path_label = tk.Label(background, bg='gray', text="Please Select a File:")
+    file_path_label.place(relx=0.01, rely=0.01)
 
-    file_path_entry = tk.Entry(background, bd=5)
-    file_path_entry.place(relx=0.20, rely=0.2)
+    # Create a button for the user to select the file
+    file_path_entry = tk.Button(background, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(background, text='Chart name:')
     font_style = ('', 15)
@@ -474,7 +474,7 @@ def multi_line():
     line_number.place(relx=0.05, rely=0.40)
 
     option.set("Please make a selection")
-    line_number_entry = tk.OptionMenu(background, option, "1", "2","3" )
+    line_number_entry = tk.OptionMenu(background, option, "1", "2", "3")
     line_number_entry.place(relx=0.20, rely=0.40)
 
     x_axis_label = tk.Label(background, text="X axis title:")
@@ -501,40 +501,72 @@ def multi_line():
     x_data_entry = tk.Entry(background, bd=5)
     x_data_entry.place(relx=0.20, rely=0.70)
 
-    y_data_label = tk.Label(background, text='Y data:')
+    y_data_label = _data_label = tk.Label(background, text='Y data:')
     font_style = ('', 15)
     y_data_label.config(font=font_style)
     y_data_label.place(relx=.05, rely=.80)
 
-    y_data_entry = tk.Entry(background, bd=5)
-    y_data_entry.place(relx=0.20, rely=0.80)
+    y1_entry = tk.Entry(background, bd=5)
+    y1_entry.place(relx=0.20, rely=0.80, relwidth=0.2)
 
-    option.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(background, option, "None", "Sum", "Mean")
-    chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
+    y2_entry = tk.Entry(background, bd=5)
+    y2_entry.place(relx=0.40, rely=0.80, relwidth=0.2)
+
+    y3_entry = tk.Entry(background, bd=5)
+    y3_entry.place(relx=0.60, rely=0.80, relwidth=0.2)
+
+    y4_entry = tk.Entry(background, bd=5)
+    y4_entry.place(relx=0.20, rely=0.90, relwidth=0.2)
+
+    y5_entry = tk.Entry(background, bd=5)
+    y5_entry.place(relx=0.40, rely=0.90, relwidth=0.2)
+
+    y6_entry = tk.Entry(background, bd=5)
+    y6_entry.place(relx=0.60, rely=0.90, relwidth=0.2)
+
+    z_label = tk.Label(background, bg='gray', text="Does the X-Axis Show a Period of Time?:")
+    z_label.place(relx=0.41, rely=0.2)
+
+    line_chart_date.set("Please make a selection")
+    chart_selection = tk.OptionMenu(background, line_chart_date, "Yes", "No")
+    chart_selection.place(relx=0.6, rely=0.2, relwidth=0.25)
+
+    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(background, sum_mean, "None", "Sum", "Mean")
+    chart_selection.place(relx=0.6, rely=0.30, relwidth=0.25)
 
     limit_label = tk.Label(background, text="Would you like to place a limit?")
-    limit_label.place(relx=0.41, rely=0.75)
+    limit_label.place(relx=0.41, rely=0.40)
 
-    # limit_menu.set("Please make a selection")  # sets the default text on the menu selection
-    # chart_selection = tk.OptionMenu(background, limit_menu, "Yes", "No")
-    # chart_selection.place(relx=0.6, rely=0.75, relwidth=0.25)
+    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(background, limit_menu, "Yes", "No")
+    chart_selection.place(relx=0.6, rely=0.40, relwidth=0.25)
 
     value_label = tk.Label(background, text="Enter a limit, or 0 for none")
-    value_label.place(relx=0.6, rely=0.85)
+    value_label.place(relx=0.41, rely=0.5)
 
     limit_entry = tk.Entry(background)
-    limit_entry.place(relx=0.84, rely=0.85)
+    limit_entry.place(relx=0.6, rely=0.5)
 
-    submit_button = tk.Button(background, text="Submit", command=lambda: get_multiline_chart(file_path_entry.get(),
-                                                                                      chart_title_entry.get(),
-                                                                                      x_axis_entry.get(),
-                                                                                      x_data_entry.get(),
-                                                                                      y_axis_entry.get(),
-                                                                                      y_data_entry.get(),
-                                                                                      ))
+    y1 = y1_entry.get()
+    y2 = y2_entry.get()
+    y3 = y3_entry.get()
+    y4 = y4_entry.get()
+    y5 = y5_entry.get()
+    y6 = y6_entry.get()
+    y_data_entry = [["Death", "Death"],["Recovered", "Recovered"],["Unrecovered", "Unrecovered"]]
+
+    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                     x_axis_entry.get(),
+                                                                                     x_data_entry.get(),
+                                                                                     y_axis_entry.get(),
+                                                                                     y_data_entry, None,
+                                                                                     sum_mean.get(),
+                                                                                     limit_menu.get(),
+                                                                                     limit_entry.get(),
+                                                                                     line_chart_date.get(), None, None,
+                                                                                     "MultiLine Chart"))
     submit_button.place(relx=0.91, rely=0.92)
-
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
@@ -553,13 +585,13 @@ def stacked_bar():
     label.config(font=font_style)
     label.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
 
-    file_path_label = tk.Label(background, text='File Path:')
-    font_style = ('', 15)
-    file_path_label.config(font=font_style)
-    file_path_label.place(relx=0.05, rely=0.2, )
+    # Creates a label to indicate to the user to select a
+    file_path_label = tk.Label(background, bg='gray', text="Please Select a File:")
+    file_path_label.place(relx=0.01, rely=0.01)
 
-    file_path_entry = tk.Entry(background, bd=5)
-    file_path_entry.place(relx=0.20, rely=0.2)
+    # Create a button for the user to select the file
+    file_path_entry = tk.Button(background, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
     chart_title_label = tk.Label(background, text='Chart name:')
     font_style = ('', 15)
@@ -569,12 +601,13 @@ def stacked_bar():
     chart_title_entry = tk.Entry(background, bd=5)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
-    line_number = tk.Label(background, text='Number of bars:')
+    line_number = tk.Label(background, text='Number of Bars:')
     font_style = ('', 15)
     line_number.config(font=font_style)
     line_number.place(relx=0.05, rely=0.40)
 
-    line_number_entry = tk.Entry(background, bd=5)
+    option.set("Please make a selection")
+    line_number_entry = tk.OptionMenu(background, option, "1", "2", "3")
     line_number_entry.place(relx=0.20, rely=0.40)
 
     x_axis_label = tk.Label(background, text="X axis title:")
@@ -601,13 +634,67 @@ def stacked_bar():
     x_data_entry = tk.Entry(background, bd=5)
     x_data_entry.place(relx=0.20, rely=0.70)
 
-    y_data_label = tk.Label(background, text='Y data:')
+    y_data_label = _data_label = tk.Label(background, text='Y data:')
     font_style = ('', 15)
     y_data_label.config(font=font_style)
     y_data_label.place(relx=.05, rely=.80)
 
-    y_data_entry = tk.Entry(background, bd=5)
-    y_data_entry.place(relx=0.20, rely=0.80)
+    y1_entry = tk.Entry(background, bd=5)
+    y1_entry.place(relx=0.20, rely=0.80, relwidth=0.2)
+
+    y2_entry = tk.Entry(background, bd=5)
+    y2_entry.place(relx=0.40, rely=0.80, relwidth=0.2)
+
+    y3_entry = tk.Entry(background, bd=5)
+    y3_entry.place(relx=0.60, rely=0.80, relwidth=0.2)
+
+    y4_entry = tk.Entry(background, bd=5)
+    y4_entry.place(relx=0.20, rely=0.90, relwidth=0.2)
+
+    y5_entry = tk.Entry(background, bd=5)
+    y5_entry.place(relx=0.40, rely=0.90, relwidth=0.2)
+
+    # y6_entry = tk.Entry(background, bd=5)
+    # y6_entry.place(relx=0.60, rely=0.90, relwidth=0.2)
+
+    z_label = tk.Label(background, bg='gray', text="Does the X-Axis Show a Period of Time?:")
+    z_label.place(relx=0.41, rely=0.2)
+
+    line_chart_date.set("Please make a selection")
+    chart_selection = tk.OptionMenu(background, line_chart_date, "Yes", "No")
+    chart_selection.place(relx=0.6, rely=0.2, relwidth=0.25)
+
+    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(background, sum_mean, "None", "Sum", "Mean")
+    chart_selection.place(relx=0.6, rely=0.30, relwidth=0.25)
+
+    limit_label = tk.Label(background, text="Would you like to place a limit?")
+    limit_label.place(relx=0.41, rely=0.40)
+
+    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
+    chart_selection = tk.OptionMenu(background, limit_menu, "Yes", "No")
+    chart_selection.place(relx=0.6, rely=0.40, relwidth=0.25)
+
+    value_label = tk.Label(background, text="Enter a limit, or 0 for none")
+    value_label.place(relx=0.41, rely=0.5)
+
+    limit_entry = tk.Entry(background)
+    limit_entry.place(relx=0.6, rely=0.5)
+
+    y_data_entry = [["Death", "Death", '#ffff00'], ["Recovered", "Recovered", '#cccccc'],
+                    ["Unrecovered", "Unrecovered", '#cc9900']]
+
+    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                     x_axis_entry.get(),
+                                                                                     x_data_entry.get(),
+                                                                                     y_axis_entry.get(),
+                                                                                     y_data_entry, None,
+                                                                                     sum_mean.get(),
+                                                                                     limit_menu.get(),
+                                                                                     limit_entry.get(),
+                                                                                     line_chart_date.get(), None, None,
+                                                                                     "Stacked Bar Chart"))
+    submit_button.place(relx=0.91, rely=0.92)
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
@@ -697,15 +784,10 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
         request.request_heat(chart_data, 0)
     elif chart_key == "Line Chart":
         request.request_line(chart_data, 0)
-
-def get_multiline_chart(file, chart_title, x_title, x, y_title, y_array,):
-    chart_data['file'] = file
-    chart_data['title'] = chart_title
-    chart_data['x_title'] = x_title
-    chart_data['x'] = x
-    chart_data['y_title'] = y_title
-    chart_data['y_array'] = y_array
-    print(chart_data)
+    elif chart_key == "MultiLine Chart":
+        request.request_multi(chart_data, 0)
+    elif chart_key == "Stacked Bar Chart":
+        request.request_stack(chart_data, 0)
 
 
 # Function that can be called by a button or other widget that will allow the user to select the file they
