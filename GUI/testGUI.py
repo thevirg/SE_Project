@@ -548,18 +548,14 @@ def multi_line():
     limit_entry = tk.Entry(background)
     limit_entry.place(relx=0.6, rely=0.5)
 
-    y1 = y1_entry.get()
-    y2 = y2_entry.get()
-    y3 = y3_entry.get()
-    y4 = y4_entry.get()
-    y5 = y5_entry.get()
-    y6 = y6_entry.get()
 
     submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
                                                                                      x_axis_entry.get(),
                                                                                      x_data_entry.get(),
                                                                                      y_axis_entry.get(),
-                                                                                     y_data(y1, y2, y3, y4, y5, y6),
+                                                                                     y_data(y1_entry.get(), y2_entry.get(),
+                                                                                     y3_entry.get(), y4_entry.get(),
+                                                                                     y5_entry.get(), y6_entry.get()),
                                                                                      None,
                                                                                      sum_mean.get(),
                                                                                      limit_menu.get(),
@@ -786,6 +782,7 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
     elif chart_key == "Line Chart":
         request.request_line(chart_data, 0)
     elif chart_key == "MultiLine Chart":
+
         request.request_multi(chart_data, 0)
     elif chart_key == "Stacked Bar Chart":
         request.request_stack(chart_data, 0)
