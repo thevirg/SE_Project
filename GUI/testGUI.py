@@ -133,7 +133,7 @@ def bar_chart():
                                                                                      limit_menu.get(),
                                                                                      limit_entry.get(), None, None,
                                                                                      None,
-                                                                                     "Bar Chart"))
+                                                                                     None, "Bar Chart"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -238,7 +238,7 @@ def bubble_chart():
                                                                                      limit_menu.get(),
                                                                                      limit_entry.get(), None,
                                                                                      marker_entry.get(),
-                                                                                     category_entry.get(),
+                                                                                     category_entry.get(), None,
                                                                                      "Bubble Chart"))
     submit_button.place(relx=0.93, rely=0.92)
 
@@ -337,7 +337,7 @@ def heat_map():
                                                                                      sum_mean.get(),
                                                                                      limit_menu.get(),
                                                                                      limit_entry.get(), None, None,
-                                                                                     None, "Heat Map"))
+                                                                                     None, None, "Heat Map"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -436,7 +436,7 @@ def line_chart():
                                                                                      limit_menu.get(),
                                                                                      limit_entry.get(),
                                                                                      line_chart_date.get(), None, None,
-                                                                                     "Line Chart"))
+                                                                                     None, "Line Chart"))
     submit_button.place(relx=0.93, rely=0.92)
 
 
@@ -468,61 +468,59 @@ def multi_line():
     chart_title_entry = tk.Entry(background, bd=5)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
-    line_number = tk.Label(background, text='Number of lines:')
-    font_style = ('', 15)
-    line_number.config(font=font_style)
-    line_number.place(relx=0.05, rely=0.40)
 
-    option.set("Please make a selection")
-    line_number_entry = tk.OptionMenu(background, option, "1", "2", "3")
-    line_number_entry.place(relx=0.20, rely=0.40)
 
     x_axis_label = tk.Label(background, text="X axis title:")
     font_style = ('', 15)
     x_axis_label.config(font=font_style)
-    x_axis_label.place(relx=0.05, rely=0.50)
+    x_axis_label.place(relx=0.05, rely=0.40)
 
     x_axis_entry = tk.Entry(background, bd=5)
-    x_axis_entry.place(relx=0.20, rely=0.50)
+    x_axis_entry.place(relx=0.20, rely=0.40)
 
     y_axis_label = tk.Label(background, text="Y axis title:")
     font_style = ('', 15)
     y_axis_label.config(font=font_style)
-    y_axis_label.place(relx=.05, rely=.60)
+    y_axis_label.place(relx=.05, rely=.50)
 
     y_axis_entry = tk.Entry(background, bd=5)
-    y_axis_entry.place(relx=0.20, rely=0.60)
+    y_axis_entry.place(relx=0.20, rely=0.50)
 
+    y_data_title = tk.Label(background, text='Y data title:')
+    font_style = ('', 15)
+    y_data_title.config(font=font_style)
+    y_data_title.place(relx=.05, rely=.80)
+    
     x_data_label = tk.Label(background, text='X data:')
     font_style = ('', 15)
     x_data_label.config(font=font_style)
-    x_data_label.place(relx=.05, rely=.70)
+    x_data_label.place(relx=.05, rely=.60)
 
     x_data_entry = tk.Entry(background, bd=5)
-    x_data_entry.place(relx=0.20, rely=0.70)
+    x_data_entry.place(relx=0.20, rely=0.60)
 
     y_data_label = _data_label = tk.Label(background, text='Y data:')
     font_style = ('', 15)
     y_data_label.config(font=font_style)
-    y_data_label.place(relx=.05, rely=.80)
+    y_data_label.place(relx=.05, rely=.70)
 
     y1_entry = tk.Entry(background, bd=5)
-    y1_entry.place(relx=0.20, rely=0.80, relwidth=0.2)
+    y1_entry.place(relx=0.20, rely=0.70, relwidth=0.2)
 
     y2_entry = tk.Entry(background, bd=5)
-    y2_entry.place(relx=0.40, rely=0.80, relwidth=0.2)
+    y2_entry.place(relx=0.40, rely=0.70, relwidth=0.2)
 
     y3_entry = tk.Entry(background, bd=5)
-    y3_entry.place(relx=0.60, rely=0.80, relwidth=0.2)
+    y3_entry.place(relx=0.60, rely=0.70, relwidth=0.2)
 
     y4_entry = tk.Entry(background, bd=5)
-    y4_entry.place(relx=0.20, rely=0.90, relwidth=0.2)
+    y4_entry.place(relx=0.20, rely=0.80, relwidth=0.2)
 
     y5_entry = tk.Entry(background, bd=5)
-    y5_entry.place(relx=0.40, rely=0.90, relwidth=0.2)
+    y5_entry.place(relx=0.40, rely=0.80, relwidth=0.2)
 
     y6_entry = tk.Entry(background, bd=5)
-    y6_entry.place(relx=0.60, rely=0.90, relwidth=0.2)
+    y6_entry.place(relx=0.60, rely=0.80, relwidth=0.2)
 
     z_label = tk.Label(background, bg='gray', text="Does the X-Axis Show a Period of Time?:")
     z_label.place(relx=0.41, rely=0.2)
@@ -548,20 +546,22 @@ def multi_line():
     limit_entry = tk.Entry(background)
     limit_entry.place(relx=0.6, rely=0.5)
 
-
     submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
                                                                                      x_axis_entry.get(),
                                                                                      x_data_entry.get(),
                                                                                      y_axis_entry.get(),
-                                                                                     y_data(y1_entry.get(), y2_entry.get(),
-                                                                                     y3_entry.get(), y4_entry.get(),
-                                                                                     y5_entry.get(), y6_entry.get()),
+                                                                                     y_data_multi(y1_entry.get(),
+                                                                                                  y2_entry.get(),
+                                                                                                  y3_entry.get(),
+                                                                                                  y4_entry.get(),
+                                                                                                  y5_entry.get(),
+                                                                                                  y6_entry.get()),
                                                                                      None,
                                                                                      sum_mean.get(),
                                                                                      limit_menu.get(),
                                                                                      limit_entry.get(),
                                                                                      line_chart_date.get(), None, None,
-                                                                                     "MultiLine Chart"))
+                                                                                     None, "MultiLine Chart"))
 
     submit_button.place(relx=0.91, rely=0.92)
 
@@ -598,98 +598,105 @@ def stacked_bar():
     chart_title_entry = tk.Entry(background, bd=5)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
-    line_number = tk.Label(background, text='Number of Bars:')
-    font_style = ('', 15)
-    line_number.config(font=font_style)
-    line_number.place(relx=0.05, rely=0.40)
-
-    option.set("Please make a selection")
-    line_number_entry = tk.OptionMenu(background, option, "1", "2", "3")
-    line_number_entry.place(relx=0.20, rely=0.40)
-
     x_axis_label = tk.Label(background, text="X axis title:")
     font_style = ('', 15)
     x_axis_label.config(font=font_style)
-    x_axis_label.place(relx=0.05, rely=0.50)
+    x_axis_label.place(relx=0.05, rely=0.40)
 
     x_axis_entry = tk.Entry(background, bd=5)
-    x_axis_entry.place(relx=0.20, rely=0.50)
+    x_axis_entry.place(relx=0.20, rely=0.40)
 
     y_axis_label = tk.Label(background, text="Y axis title:")
     font_style = ('', 15)
     y_axis_label.config(font=font_style)
-    y_axis_label.place(relx=.05, rely=.60)
+    y_axis_label.place(relx=.05, rely=.50)
 
     y_axis_entry = tk.Entry(background, bd=5)
-    y_axis_entry.place(relx=0.20, rely=0.60)
+    y_axis_entry.place(relx=0.20, rely=0.50)
 
     x_data_label = tk.Label(background, text='X data:')
     font_style = ('', 15)
     x_data_label.config(font=font_style)
-    x_data_label.place(relx=.05, rely=.70)
+    x_data_label.place(relx=.05, rely=.60)
 
     x_data_entry = tk.Entry(background, bd=5)
-    x_data_entry.place(relx=0.20, rely=0.70)
+    x_data_entry.place(relx=0.20, rely=0.60)
 
-    y_data_label = _data_label = tk.Label(background, text='Y data:')
+    y_data_label =  tk.Label(background, text='Y data:')
     font_style = ('', 15)
     y_data_label.config(font=font_style)
-    y_data_label.place(relx=.05, rely=.80)
+    y_data_label.place(relx=.05, rely=.70)
+
+    y_data_title = tk.Label(background, text= 'Y data title:')
+    font_style = ('', 15)
+    y_data_title.config(font=font_style)
+    y_data_title.place(relx=.05, rely=.80)
 
     y1_entry = tk.Entry(background, bd=5)
-    y1_entry.place(relx=0.20, rely=0.80, relwidth=0.2)
+    y1_entry.place(relx=0.20, rely=0.70, relwidth=0.2)
 
     y2_entry = tk.Entry(background, bd=5)
-    y2_entry.place(relx=0.40, rely=0.80, relwidth=0.2)
+    y2_entry.place(relx=0.40, rely=0.70, relwidth=0.2)
 
     y3_entry = tk.Entry(background, bd=5)
-    y3_entry.place(relx=0.60, rely=0.80, relwidth=0.2)
+    y3_entry.place(relx=0.60, rely=0.70, relwidth=0.2)
 
     y4_entry = tk.Entry(background, bd=5)
-    y4_entry.place(relx=0.20, rely=0.90, relwidth=0.2)
+    y4_entry.place(relx=0.20, rely=0.80, relwidth=0.2)
 
     y5_entry = tk.Entry(background, bd=5)
-    y5_entry.place(relx=0.40, rely=0.90, relwidth=0.2)
+    y5_entry.place(relx=0.40, rely=0.80, relwidth=0.2)
 
-    # y6_entry = tk.Entry(background, bd=5)
-    # y6_entry.place(relx=0.60, rely=0.90, relwidth=0.2)
+    y6_entry = tk.Entry(background, bd=5)
+    y6_entry.place(relx=0.60, rely=0.80, relwidth=0.2)
 
     z_label = tk.Label(background, bg='gray', text="Does the X-Axis Show a Period of Time?:")
     z_label.place(relx=0.41, rely=0.2)
 
     line_chart_date.set("Please make a selection")
     chart_selection = tk.OptionMenu(background, line_chart_date, "Yes", "No")
-    chart_selection.place(relx=0.6, rely=0.2, relwidth=0.25)
+    chart_selection.place(relx=0.7, rely=0.2, relwidth=0.25)
 
     sum_mean.set("Please make a selection")  # sets the default text on the menu selection
     chart_selection = tk.OptionMenu(background, sum_mean, "None", "Sum", "Mean")
-    chart_selection.place(relx=0.6, rely=0.30, relwidth=0.25)
+    chart_selection.place(relx=0.7, rely=0.30, relwidth=0.25)
 
     limit_label = tk.Label(background, text="Would you like to place a limit?")
     limit_label.place(relx=0.41, rely=0.40)
 
     limit_menu.set("Please make a selection")  # sets the default text on the menu selection
     chart_selection = tk.OptionMenu(background, limit_menu, "Yes", "No")
-    chart_selection.place(relx=0.6, rely=0.40, relwidth=0.25)
+    chart_selection.place(relx=0.7, rely=0.40, relwidth=0.25)
 
     value_label = tk.Label(background, text="Enter a limit, or 0 for none")
-    value_label.place(relx=0.41, rely=0.5)
+    value_label.place(relx=0.41, rely=0.50)
 
     limit_entry = tk.Entry(background)
-    limit_entry.place(relx=0.6, rely=0.5)
+    limit_entry.place(relx=0.7, rely=0.50)
 
-    y_data_entry = [["Death", "Death", '#ffff00'], ["Recovered", "Recovered", '#cccccc'],
-                    ["Unrecovered", "Unrecovered", '#cc9900']]
+    sort_label = tk.Label(background, text= "Would you like the chart to be sorted?")
+    sort_label.place(relx=.41, rely=.60)
+
+    sort_menu.set("Please make a selection")
+    sort_selection = tk.OptionMenu(background, sort_menu,"Yes", "No")
+    sort_selection.place(relx=.7, rely=.6)
 
     submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
                                                                                      x_axis_entry.get(),
                                                                                      x_data_entry.get(),
                                                                                      y_axis_entry.get(),
-                                                                                     y_data_entry, None,
+                                                                                     y_data_stacked(y1_entry.get(),
+                                                                                                    y2_entry.get(),
+                                                                                                    y3_entry.get(),
+                                                                                                    y4_entry.get(),
+                                                                                                    y5_entry.get(),
+                                                                                                    y6_entry.get()),
+                                                                                     None,
                                                                                      sum_mean.get(),
                                                                                      limit_menu.get(),
                                                                                      limit_entry.get(),
                                                                                      line_chart_date.get(), None, None,
+                                                                                     sort_menu.get(),
                                                                                      "Stacked Bar Chart"))
     submit_button.place(relx=0.91, rely=0.92)
 
@@ -744,7 +751,7 @@ def get_chart():
 # The chart key should be different depending on which chart calls this method so that the correct method from the
 # RequestHandler.py can be called
 def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_option, limit_value, date, marker, category,
-                chart_key):
+                sort, chart_key):
     chart_data['title'] = chart_title
     chart_data['x_title'] = x_title
     chart_data['x'] = x
@@ -753,6 +760,7 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
     chart_data['z'] = z
     chart_data['marker_data'] = marker
     chart_data['category'] = category
+    chart_data['sort'] = sort
 
     # Determines if the user selected to include a sum or a mean
     if sum_or_mean == "Sum":
@@ -782,14 +790,18 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
     elif chart_key == "Line Chart":
         request.request_line(chart_data, 0)
     elif chart_key == "MultiLine Chart":
-
         request.request_multi(chart_data, 0)
     elif chart_key == "Stacked Bar Chart":
         request.request_stack(chart_data, 0)
 
 
-def y_data(y1, y2, y3, y4, y5, y6):
+def y_data_multi(y1, y2, y3, y4, y5, y6):
     y_array = [[y1, y4], [y2, y5], [y3, y6]]
+    return y_array
+
+
+def y_data_stacked(y1, y2, y3, y4, y5, y6):
+    y_array = [[y1, y4, '#ffff00'], [y2, y5, '#cccccc'], [y3, y6, '#cc9900']]
     return y_array
 
 
@@ -803,7 +815,7 @@ def file_selector():
 # Create a global dictionary that can be sent to RequestHandler.py
 chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,
               'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None,
-              'y_array': None}
+              'sort': None, 'y_array': None}
 
 # Create a new window
 window = tk.Tk()
@@ -819,6 +831,8 @@ sum_mean = tk.StringVar(window)
 limit_menu = tk.StringVar(window)
 # Creates a tkinter variable to be used in the drop down menu to select date for line_chart()
 line_chart_date = tk.StringVar(window)
+# Creates a tkinter variable to be used in the drop down menu to select whether the chart will be sorted
+sort_menu = tk.StringVar(window)
 
 # Create a canvas to adjust the window size
 window_size = tk.Canvas(window, width=800, height=400)

@@ -13,7 +13,7 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # array_test = df2.to_numpy()
 
 # test = []
-# for x in range(0,df2.size):
+# for x in range(0,df.size):
 #     test.append({'label': df2.iloc[x]['NOC'], 'value': df2.iloc[x]['NOC']})
 #
 # print(test)
