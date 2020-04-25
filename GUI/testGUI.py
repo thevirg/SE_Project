@@ -465,7 +465,7 @@ def multi_line():
     chart_title_label.config(font=font_style)
     chart_title_label.place(relx=0.05, rely=0.30)
 
-    chart_title_entry = tk.Entry(background, bd=5)
+    chart_title_entry = tk.Entry(background)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
 
@@ -475,7 +475,7 @@ def multi_line():
     x_axis_label.config(font=font_style)
     x_axis_label.place(relx=0.05, rely=0.40)
 
-    x_axis_entry = tk.Entry(background, bd=5)
+    x_axis_entry = tk.Entry(background)
     x_axis_entry.place(relx=0.20, rely=0.40)
 
     y_axis_label = tk.Label(background, text="Y axis title:")
@@ -483,7 +483,7 @@ def multi_line():
     y_axis_label.config(font=font_style)
     y_axis_label.place(relx=.05, rely=.50)
 
-    y_axis_entry = tk.Entry(background, bd=5)
+    y_axis_entry = tk.Entry(background)
     y_axis_entry.place(relx=0.20, rely=0.50)
 
     y_data_title = tk.Label(background, text='Y data title:')
@@ -496,7 +496,7 @@ def multi_line():
     x_data_label.config(font=font_style)
     x_data_label.place(relx=.05, rely=.60)
 
-    x_data_entry = tk.Entry(background, bd=5)
+    x_data_entry = tk.Entry(background)
     x_data_entry.place(relx=0.20, rely=0.60)
 
     y_data_label = _data_label = tk.Label(background, text='Y data:')
