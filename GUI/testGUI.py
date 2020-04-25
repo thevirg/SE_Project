@@ -14,23 +14,23 @@ def front_page():
     for_dash = 0  # changes the value back to 0 in case the user uses the back button
     clear()
 
-    background = tk.Frame(window, bg='gray')
+    background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
     # Create a new label to hold the title text
-    title = tk.Label(background, bg='gray', text="Project Carrot")
+    title = tk.Label(background, bg='white', text="Project Carrot")
     font_style = ('', 25)  # can be used to edit font style, '' can be replaced with a new font name
     title.config(font=font_style)  # applies the new font style
     # places the label in the top middle of the screen
     title.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
 
     # Creates a new frame to hold new widgets
-    lower_frame = tk.Frame(background, bg='gray')
+    lower_frame = tk.Frame(background, bg='white')
     # Places the frame near the center of the screen
     lower_frame.place(relx=0.5, rely=0.2, relwidth=0.75, relheight=0.5, anchor='n')
 
     # Creates a label indicating to the user to select a chart type
-    text = tk.Label(lower_frame, bg='gray', text="Please select the type of chart you would like to build: ")
+    text = tk.Label(lower_frame, bg='white', text="Please select the type of chart you would like to build: ")
     font_style = ('', 12)
     text.config(font=font_style)
     text.place(relx=0.5, rely=0.35, anchor='n')
@@ -51,7 +51,7 @@ def bar_chart():
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
-    background = tk.Frame(window, bg='gray')
+    background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
@@ -59,68 +59,68 @@ def bar_chart():
     bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
-    title_label = tk.Label(background, bg='gray', text="Bar Chart")
+    title_label = tk.Label(background, bg='white', text="Bar Chart")
     font_style = ('', 20)  # configure font size
     title_label.config(font=font_style)  # change the font size of the title
     title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
 
     # Create a frame for the widgets on this page to be placed in
-    body_frame = tk.Frame(background, bg='gray')
+    body_frame = tk.Frame(background, bg='white')
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
     # Creates a label to indicate to the user to select a
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
+    file_path_label = tk.Label(body_frame, bg='white', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
     file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
-    chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
+    chart_title_label = tk.Label(body_frame, bg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
 
-    chart_title_entry = tk.Entry(body_frame)
+    chart_title_entry = ttk.Entry(body_frame)
     chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
 
-    x_title_label = tk.Label(body_frame, bg='gray', text="X Axis Title:")
+    x_title_label = tk.Label(body_frame, bg='white', text="X Axis Title:")
     x_title_label.place(relx=0.01, rely=0.2)
 
-    x_title_entry = tk.Entry(body_frame)
+    x_title_entry = ttk.Entry(body_frame)
     x_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
 
-    x_column_label = tk.Label(body_frame, bg='gray', text="Column of X-Axis Data:")
+    x_column_label = tk.Label(body_frame, bg='white', text="Column of X-Axis Data:")
     x_column_label.place(relx=0.45, rely=0.2)
 
-    x_entry = tk.Entry(body_frame)
+    x_entry = ttk.Entry(body_frame)
     x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
 
-    y_title_label = tk.Label(body_frame, bg='gray', text="Y Axis Title:")
+    y_title_label = tk.Label(body_frame, bg='white', text="Y Axis Title:")
     y_title_label.place(relx=0.01, rely=0.39)
 
-    y_title_entry = tk.Entry(body_frame)
+    y_title_entry = ttk.Entry(body_frame)
     y_title_entry.place(relx=0.12, rely=0.39, relwidth=0.3)
 
-    y_column_label = tk.Label(body_frame, bg='gray', text="Column of Y-Axis Data:")
+    y_column_label = tk.Label(body_frame, bg='white', text="Column of Y-Axis Data:")
     y_column_label.place(relx=0.45, rely=0.39)
 
-    y_entry = tk.Entry(body_frame)
+    y_entry = ttk.Entry(body_frame)
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
     # Create a drop down menu
     chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
     chart_selection.place(relx=0.01, rely=0.75, relwidth=0.25)
 
-    limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
+    limit_label = tk.Label(body_frame, bg='white', text="Would you like to place a limit?")
     limit_label.place(relx=0.01, rely=0.58)
 
     chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
     chart_selection.place(relx=0.3, rely=0.58, relwidth=0.25)
 
-    value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
+    value_label = tk.Label(body_frame, bg='white', text="Enter a limit, or 0 for none")
     value_label.place(relx=0.6, rely=0.58)
 
-    limit_entry = tk.Entry(body_frame)
-    limit_entry.place(relx=0.84, rely=0.58)
+    limit_entry = ttk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.58, relwidth=0.15)
 
     # This if statement checks to see if the user selected to generate a dashboard
     # If a dashboard was selected the submit button will take the user to the next chart to enter data for
@@ -141,7 +141,7 @@ def bar_chart():
                                                                                 bubble_chart()])
         next_button.place(relx=0.9, rely=0.92)
     else:
-        submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+        submit_button = ttk.Button(background, text="Generate Chart", command=lambda: submit_info(chart_title_entry.get(),
                                                                                           x_title_entry.get(),
                                                                                           x_entry.get(),
                                                                                           y_title_entry.get(),
@@ -160,7 +160,7 @@ def bubble_chart():
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
-    background = tk.Frame(window, bg='gray')
+    background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
@@ -168,79 +168,79 @@ def bubble_chart():
     bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
-    title_label = tk.Label(background, bg='gray', text="Bubble Chart")
+    title_label = tk.Label(background, bg='white', text="Bubble Chart")
     font_style = ('', 20)  # configure font size
     title_label.config(font=font_style)  # change the font size of the title
     title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
 
     # Create a frame for the widgets on this page to be placed in
-    body_frame = tk.Frame(background, bg='gray')
+    body_frame = tk.Frame(background, bg='white')
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
     # Create a label to indicate to the user to enter the file path
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
+    file_path_label = tk.Label(body_frame, bg='white', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
     file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
-    chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
+    chart_title_label = tk.Label(body_frame, bg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
 
-    chart_title_entry = tk.Entry(body_frame)
+    chart_title_entry = ttk.Entry(body_frame)
     chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
 
-    x_title_label = tk.Label(body_frame, bg='gray', text="X Axis Title:")
+    x_title_label = tk.Label(body_frame, bg='white', text="X Axis Title:")
     x_title_label.place(relx=0.01, rely=0.2)
 
-    x_title_entry = tk.Entry(body_frame)
+    x_title_entry = ttk.Entry(body_frame)
     x_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
 
-    x_column_label = tk.Label(body_frame, bg='gray', text="Column of X-Axis Data:")
+    x_column_label = tk.Label(body_frame, bg='white', text="Column of X-Axis Data:")
     x_column_label.place(relx=0.45, rely=0.2)
 
-    x_entry = tk.Entry(body_frame)
+    x_entry = ttk.Entry(body_frame)
     x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
 
-    y_title_label = tk.Label(body_frame, bg='gray', text="Y Axis Title:")
+    y_title_label = tk.Label(body_frame, bg='white', text="Y Axis Title:")
     y_title_label.place(relx=0.01, rely=0.39)
 
-    y_title_entry = tk.Entry(body_frame)
+    y_title_entry = ttk.Entry(body_frame)
     y_title_entry.place(relx=0.12, rely=0.39, relwidth=0.3)
 
-    y_column_label = tk.Label(body_frame, bg='gray', text="Column of Y-Axis Data:")
+    y_column_label = tk.Label(body_frame, bg='white', text="Column of Y-Axis Data:")
     y_column_label.place(relx=0.45, rely=0.39)
 
-    y_entry = tk.Entry(body_frame)
+    y_entry = ttk.Entry(body_frame)
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
-    marker_label = tk.Label(body_frame, bg='gray', text="Marker Data:")
+    marker_label = tk.Label(body_frame, bg='white', text="Marker Data:")
     marker_label.place(relx=0.01, rely=0.58)
 
-    marker_entry = tk.Entry(body_frame)
+    marker_entry = ttk.Entry(body_frame)
     marker_entry.place(relx=0.13, rely=0.58, relwidth=0.3)
 
     # Create a drop down menu
     chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
     chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
 
-    limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
+    limit_label = tk.Label(body_frame, bg='white', text="Would you like to place a limit?")
     limit_label.place(relx=0.01, rely=0.75)
 
     chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
     chart_selection.place(relx=0.3, rely=0.75, relwidth=0.25)
 
-    value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
+    value_label = tk.Label(body_frame, bg='white', text="Enter a limit, or 0 for none")
     value_label.place(relx=0.6, rely=0.75)
 
-    limit_entry = tk.Entry(body_frame)
-    limit_entry.place(relx=0.84, rely=0.75)
+    limit_entry = ttk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.75, relwidth=0.15)
 
-    category_label = tk.Label(body_frame, bg='gray', text="Enter Category:")
+    category_label = tk.Label(body_frame, bg='white', text="Enter Category:")
     category_label.place(relx=0.01, rely=0.9)
 
-    category_entry = tk.Entry(body_frame)
+    category_entry = ttk.Entry(body_frame)
     category_entry.place(relx=0.15, rely=0.9)
 
     # This if statement checks to see if the user selected to generate a dashboard
@@ -278,200 +278,224 @@ def bubble_chart():
 
 
 def heat_map():
+    global for_dash
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
-    background = tk.Frame(window, bg='gray')
+    background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
-    bck_button = tk.Button(background, text="Back", command=front_page)
-    bck_button.place(relx=0.01, rely=0.92)
+    bck_button = ttk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
-    title_label = tk.Label(background, bg='gray', text="Heat Map")
+    title_label = tk.Label(background, bg='white', text="Heat Map")
     font_style = ('', 20)  # configure font size
     title_label.config(font=font_style)  # change the font size of the title
     title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
 
     # Create a frame for the widgets on this page to be placed in
-    body_frame = tk.Frame(background, bg='gray')
+    body_frame = tk.Frame(background, bg='white')
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
     # Create a label to indicate to the user to enter the file path
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
+    file_path_label = tk.Label(body_frame, bg='white', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
-    chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
+    chart_title_label = tk.Label(body_frame, bg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
 
-    chart_title_entry = tk.Entry(body_frame)
+    chart_title_entry = ttk.Entry(body_frame)
     chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
 
-    x_title_label = tk.Label(body_frame, bg='gray', text="X Axis Title:")
+    x_title_label = tk.Label(body_frame, bg='white', text="X Axis Title:")
     x_title_label.place(relx=0.01, rely=0.2)
 
-    x_title_entry = tk.Entry(body_frame)
+    x_title_entry = ttk.Entry(body_frame)
     x_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
 
-    x_column_label = tk.Label(body_frame, bg='gray', text="Column of X-Axis Data:")
+    x_column_label = tk.Label(body_frame, bg='white', text="Column of X-Axis Data:")
     x_column_label.place(relx=0.45, rely=0.2)
 
-    x_entry = tk.Entry(body_frame)
+    x_entry = ttk.Entry(body_frame)
     x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
 
-    y_title_label = tk.Label(body_frame, bg='gray', text="Y Axis Title:")
+    y_title_label = tk.Label(body_frame, bg='white', text="Y Axis Title:")
     y_title_label.place(relx=0.01, rely=0.39)
 
-    y_title_entry = tk.Entry(body_frame)
+    y_title_entry = ttk.Entry(body_frame)
     y_title_entry.place(relx=0.12, rely=0.39, relwidth=0.3)
 
-    y_column_label = tk.Label(body_frame, bg='gray', text="Column of Y-Axis Data:")
+    y_column_label = tk.Label(body_frame, bg='white', text="Column of Y-Axis Data:")
     y_column_label.place(relx=0.45, rely=0.39)
 
-    y_entry = tk.Entry(body_frame)
+    y_entry = ttk.Entry(body_frame)
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
-    z_label = tk.Label(body_frame, bg='gray', text="Column of Z-Axis Data:")
+    z_label = tk.Label(body_frame, bg='white', text="Column of Z-Axis Data:")
     z_label.place(relx=0.01, rely=0.58)
 
-    z_entry = tk.Entry(body_frame)
+    z_entry = ttk.Entry(body_frame)
     z_entry.place(relx=0.22, rely=0.58, relwidth=0.3)
 
     # Create a drop down menu
-    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
+    chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
     chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
 
-    limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
+    limit_label = tk.Label(body_frame, bg='white', text="Would you like to place a limit?")
     limit_label.place(relx=0.01, rely=0.75)
 
-    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, limit_menu, "Yes", "No")
+    chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
     chart_selection.place(relx=0.3, rely=0.75, relwidth=0.25)
 
-    value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
+    value_label = tk.Label(body_frame, bg='white', text="Enter a limit, or 0 for none")
     value_label.place(relx=0.6, rely=0.75)
 
-    limit_entry = tk.Entry(body_frame)
-    limit_entry.place(relx=0.84, rely=0.75)
+    limit_entry = ttk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.75, relwidth=0.15)
 
-    # Create a submit button to send all user entries to a variable
-    # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
-                                                                                     x_title_entry.get(),
-                                                                                     x_entry.get(),
-                                                                                     y_title_entry.get(),
-                                                                                     y_entry.get(),
-                                                                                     z_entry.get(),
-                                                                                     sum_mean.get(),
-                                                                                     limit_menu.get(),
-                                                                                     limit_entry.get(), None, None,
-                                                                                     None, "Heat Map"))
-    submit_button.place(relx=0.93, rely=0.92)
+    if for_dash:
+        # Create a submit button to send all user entries to a variable
+        # The parameters are each of the entries returning their user input
+        submit_button = ttk.Button(background, text="Next Page", command=lambda: [submit_info(chart_title_entry.get(),
+                                                                                              x_title_entry.get(),
+                                                                                              x_entry.get(),
+                                                                                              y_title_entry.get(),
+                                                                                              y_entry.get(),
+                                                                                              z_entry.get(),
+                                                                                              sum_mean.get(),
+                                                                                              limit_menu.get(),
+                                                                                              limit_entry.get(), None,
+                                                                                              None, None, "Heat Map"),
+                                                                                  line_chart()])
+        submit_button.place(relx=0.9, rely=0.92)
+    else:
+        submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_entry.get(),
+                                                                                          z_entry.get(),
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(), None, None,
+                                                                                          None, "Heat Map"))
+        submit_button.place(relx=0.9, rely=0.92)
 
 
 def line_chart():
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
-    background = tk.Frame(window, bg='gray')
+    background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
-    bck_button = tk.Button(background, text="Back", command=front_page)
-    bck_button.place(relx=0.01, rely=0.92)
+    bck_button = ttk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
-    title_label = tk.Label(background, bg='gray', text="Line Chart")
+    title_label = tk.Label(background, bg='white', text="Line Chart")
     font_style = ('', 20)  # configure font size
     title_label.config(font=font_style)  # change the font size of the title
     title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
 
     # Create a frame for the widgets on this page to be placed in
-    body_frame = tk.Frame(background, bg='gray')
+    body_frame = tk.Frame(background, bg='white')
     body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
     # Create a label to indicate to the user to enter the file path
-    file_path_label = tk.Label(body_frame, bg='gray', text="Please Select a File:")
+    file_path_label = tk.Label(body_frame, bg='white', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = tk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
     file_path_entry.place(relx=0.2, rely=0.01)
 
-    chart_title_label = tk.Label(body_frame, bg='gray', text="Chart Title:")
+    chart_title_label = tk.Label(body_frame, bg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
 
-    chart_title_entry = tk.Entry(body_frame)
+    chart_title_entry = ttk.Entry(body_frame)
     chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
 
-    x_title_label = tk.Label(body_frame, bg='gray', text="X Axis Title:")
+    x_title_label = tk.Label(body_frame, bg='white', text="X Axis Title:")
     x_title_label.place(relx=0.01, rely=0.2)
 
-    x_title_entry = tk.Entry(body_frame)
+    x_title_entry = ttk.Entry(body_frame)
     x_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
 
-    x_column_label = tk.Label(body_frame, bg='gray', text="Column of X-Axis Data:")
+    x_column_label = tk.Label(body_frame, bg='white', text="Column of X-Axis Data:")
     x_column_label.place(relx=0.45, rely=0.2)
 
-    x_entry = tk.Entry(body_frame)
+    x_entry = ttk.Entry(body_frame)
     x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
 
-    y_title_label = tk.Label(body_frame, bg='gray', text="Y Axis Title:")
+    y_title_label = tk.Label(body_frame, bg='white', text="Y Axis Title:")
     y_title_label.place(relx=0.01, rely=0.39)
 
-    y_title_entry = tk.Entry(body_frame)
+    y_title_entry = ttk.Entry(body_frame)
     y_title_entry.place(relx=0.12, rely=0.39, relwidth=0.3)
 
-    y_column_label = tk.Label(body_frame, bg='gray', text="Column of Y-Axis Data:")
+    y_column_label = tk.Label(body_frame, bg='white', text="Column of Y-Axis Data:")
     y_column_label.place(relx=0.45, rely=0.39)
 
-    y_entry = tk.Entry(body_frame)
+    y_entry = ttk.Entry(body_frame)
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
-    z_label = tk.Label(body_frame, bg='gray', text="Does the X-Axis Show a Period of Time?:")
+    z_label = tk.Label(body_frame, bg='white', text="Does the X-Axis Show a Period of Time?:")
     z_label.place(relx=0.01, rely=0.58)
 
-    line_chart_date.set("Please make a selection")
-    chart_selection = tk.OptionMenu(body_frame, line_chart_date, "Yes", "No")
+    chart_selection = ttk.OptionMenu(body_frame, line_chart_date, "Please make a selection", "Yes", "No")
     chart_selection.place(relx=0.36, rely=0.58, relwidth=0.25)
 
     # Create a drop down menu
-    sum_mean.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, sum_mean, "None", "Sum", "Mean")
+    chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
     chart_selection.place(relx=0.65, rely=0.58, relwidth=0.25)
 
-    limit_label = tk.Label(body_frame, bg='gray', text="Would you like to place a limit?")
+    limit_label = tk.Label(body_frame, bg='white', text="Would you like to place a limit?")
     limit_label.place(relx=0.01, rely=0.75)
 
-    limit_menu.set("Please make a selection")  # sets the default text on the menu selection
-    chart_selection = tk.OptionMenu(body_frame, limit_menu, "Yes", "No")
+    chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
     chart_selection.place(relx=0.3, rely=0.75, relwidth=0.25)
 
-    value_label = tk.Label(body_frame, bg='gray', text="Enter a limit, or 0 for none")
+    value_label = tk.Label(body_frame, bg='white', text="Enter a limit, or 0 for none")
     value_label.place(relx=0.6, rely=0.75)
 
-    limit_entry = tk.Entry(body_frame)
-    limit_entry.place(relx=0.84, rely=0.75)
+    limit_entry = ttk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.75, relwidth=0.15)
 
-    # Create a submit button to send all user entries to a variable
-    # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
-                                                                                     x_title_entry.get(),
-                                                                                     x_entry.get(),
-                                                                                     y_title_entry.get(),
-                                                                                     y_entry.get(), None,
-                                                                                     sum_mean.get(),
-                                                                                     limit_menu.get(),
-                                                                                     limit_entry.get(),
-                                                                                     line_chart_date.get(), None, None,
-                                                                                     "Line Chart"))
-    submit_button.place(relx=0.93, rely=0.92)
+    if for_dash:
+        # Create a submit button to send all user entries to a variable
+        # The parameters are each of the entries returning their user input
+        submit_button = ttk.Button(background, text="Next Page", command=lambda: [submit_info(chart_title_entry.get(),
+                                                                                              x_title_entry.get(),
+                                                                                              x_entry.get(),
+                                                                                              y_title_entry.get(),
+                                                                                              y_entry.get(), None,
+                                                                                              sum_mean.get(),
+                                                                                              limit_menu.get(),
+                                                                                              limit_entry.get(),
+                                                                                              line_chart_date.get(),
+                                                                                              None, None, "Line Chart"),
+                                                                                  multi_line()])
+        submit_button.place(relx=0.9, rely=0.92)
+    else:
+        submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_entry.get(), None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(), None,
+                                                                                          None, "Line Chart"))
+        submit_button.place(relx=0.9, rely=0.92)
 
 
 def multi_line():
@@ -491,7 +515,7 @@ def multi_line():
     file_path_label.config(font=font_style)
     file_path_label.place(relx=0.05, rely=0.2, )
 
-    file_path_entry = tk.Entry(background, bd=5)
+    file_path_entry = ttk.Entry(background, bd=5)
     file_path_entry.place(relx=0.20, rely=0.2)
 
     chart_title_label = tk.Label(background, text='Chart name:')
@@ -499,7 +523,7 @@ def multi_line():
     chart_title_label.config(font=font_style)
     chart_title_label.place(relx=0.05, rely=0.30)
 
-    chart_title_entry = tk.Entry(background, bd=5)
+    chart_title_entry = ttk.Entry(background, bd=5)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
     line_number = tk.Label(background, text='Number of lines:')
@@ -507,7 +531,7 @@ def multi_line():
     line_number.config(font=font_style)
     line_number.place(relx=0.05, rely=0.40)
 
-    line_number_entry = tk.Entry(background, bd=5)
+    line_number_entry = ttk.Entry(background, bd=5)
     line_number_entry.place(relx=0.20, rely=0.40)
 
     x_axis_label = tk.Label(background, text="X axis title:")
@@ -515,7 +539,7 @@ def multi_line():
     x_axis_label.config(font=font_style)
     x_axis_label.place(relx=0.05, rely=0.50)
 
-    x_axis_entry = tk.Entry(background, bd=5)
+    x_axis_entry = ttk.Entry(background, bd=5)
     x_axis_entry.place(relx=0.20, rely=0.50)
 
     y_axis_label = tk.Label(background, text="Y axis title:")
@@ -523,7 +547,7 @@ def multi_line():
     y_axis_label.config(font=font_style)
     y_axis_label.place(relx=.05, rely=.60)
 
-    y_axis_entry = tk.Entry(background, bd=5)
+    y_axis_entry = ttk.Entry(background, bd=5)
     y_axis_entry.place(relx=0.20, rely=0.60)
 
     x_data_label = tk.Label(background, text='X data:')
@@ -531,7 +555,7 @@ def multi_line():
     x_data_label.config(font=font_style)
     x_data_label.place(relx=.05, rely=.70)
 
-    x_data_entry = tk.Entry(background, bd=5)
+    x_data_entry = ttk.Entry(background, bd=5)
     x_data_entry.place(relx=0.20, rely=0.70)
 
     y_data_label = tk.Label(background, text='Y data:')
@@ -539,7 +563,7 @@ def multi_line():
     y_data_label.config(font=font_style)
     y_data_label.place(relx=.05, rely=.80)
 
-    y_data_entry = tk.Entry(background, bd=5)
+    y_data_entry = ttk.Entry(background, bd=5)
     y_data_entry.place(relx=0.20, rely=0.80)
 
     # Creates a back button to allow the user to go back to the chart selection page
@@ -564,7 +588,7 @@ def stacked_bar():
     file_path_label.config(font=font_style)
     file_path_label.place(relx=0.05, rely=0.2, )
 
-    file_path_entry = tk.Entry(background, bd=5)
+    file_path_entry = ttk.Entry(background, bd=5)
     file_path_entry.place(relx=0.20, rely=0.2)
 
     chart_title_label = tk.Label(background, text='Chart name:')
@@ -572,7 +596,7 @@ def stacked_bar():
     chart_title_label.config(font=font_style)
     chart_title_label.place(relx=0.05, rely=0.30)
 
-    chart_title_entry = tk.Entry(background, bd=5)
+    chart_title_entry = ttk.Entry(background, bd=5)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
     line_number = tk.Label(background, text='Number of bars:')
@@ -580,7 +604,7 @@ def stacked_bar():
     line_number.config(font=font_style)
     line_number.place(relx=0.05, rely=0.40)
 
-    line_number_entry = tk.Entry(background, bd=5)
+    line_number_entry = ttk.Entry(background, bd=5)
     line_number_entry.place(relx=0.20, rely=0.40)
 
     x_axis_label = tk.Label(background, text="X axis title:")
@@ -588,7 +612,7 @@ def stacked_bar():
     x_axis_label.config(font=font_style)
     x_axis_label.place(relx=0.05, rely=0.50)
 
-    x_axis_entry = tk.Entry(background, bd=5)
+    x_axis_entry = ttk.Entry(background, bd=5)
     x_axis_entry.place(relx=0.20, rely=0.50)
 
     y_axis_label = tk.Label(background, text="Y axis title:")
@@ -596,7 +620,7 @@ def stacked_bar():
     y_axis_label.config(font=font_style)
     y_axis_label.place(relx=.05, rely=.60)
 
-    y_axis_entry = tk.Entry(background, bd=5)
+    y_axis_entry = ttk.Entry(background, bd=5)
     y_axis_entry.place(relx=0.20, rely=0.60)
 
     x_data_label = tk.Label(background, text='X data:')
@@ -604,7 +628,7 @@ def stacked_bar():
     x_data_label.config(font=font_style)
     x_data_label.place(relx=.05, rely=.70)
 
-    x_data_entry = tk.Entry(background, bd=5)
+    x_data_entry = ttk.Entry(background, bd=5)
     x_data_entry.place(relx=0.20, rely=0.70)
 
     y_data_label = tk.Label(background, text='Y data:')
@@ -612,7 +636,7 @@ def stacked_bar():
     y_data_label.config(font=font_style)
     y_data_label.place(relx=.05, rely=.80)
 
-    y_data_entry = tk.Entry(background, bd=5)
+    y_data_entry = ttk.Entry(background, bd=5)
     y_data_entry.place(relx=0.20, rely=0.80)
 
     # Creates a back button to allow the user to go back to the chart selection page
@@ -626,7 +650,7 @@ def dashboard():
     clear()
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
-    background = tk.Frame(window, bg='gray')
+    background = tk.Frame(window, bg='white')
     background.place(relwidth=1, relheight=1)
 
     # Creates a back button to allow the user to go back to the chart selection page
@@ -634,12 +658,12 @@ def dashboard():
     bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
     # Create a title label to be placed at the top of the page
-    title_label = tk.Label(background, bg='gray', text="Dashboard Generation")
+    title_label = tk.Label(background, bg='white', text="Dashboard Generation")
     font_style = ('', 20)  # configure font size
     title_label.config(font=font_style)  # change the font size of the title
     title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
 
-    title_entry_label = tk.Label(background, bg='gray', text="Please Enter a Title for the Dashboard:")
+    title_entry_label = tk.Label(background, bg='white', text="Please Enter a Title for the Dashboard:")
     title_entry_label.place(relx=0.1, rely=0.3)
 
     title_entry = ttk.Entry(background)
@@ -692,7 +716,7 @@ def get_chart():
         error_content.place(relx=0.5, rely=0.3, anchor='n')
 
         # Create button to close error box
-        button = tk.Button(error_box, text="OK", command=error_box.destroy)
+        button = ttk.Button(error_box, text="OK", command=error_box.destroy)
         button.place(relx=0.5, rely=0.5, anchor='n')
 
 
@@ -733,19 +757,24 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
     # Reads the chart key to determine which type of chart should be generated from the request handler
     if chart_key == "Bar Chart":
         if for_dash:  # Checks to see if the chart will be generated as a dashboard
-            dash_data['bar'] = request.request_bar(chart_data, for_dash)
+            dash_data['bar'] = request.request_bar(chart_data, for_dash)  # stores data inside global dictionary
         else:
             request.request_bar(chart_data, for_dash)
     elif chart_key == "Bubble Chart":
         if for_dash:
             dash_data['bubble'] = request.request_bubble(chart_data, for_dash)
-            print(dash_data)
         else:
             request.request_bubble(chart_data, for_dash)
     elif chart_key == "Heat Map":
-        request.request_heat(chart_data, for_dash)
+        if for_dash:
+            dash_data['heat'] = request.request_heat(chart_data, for_dash)
+        else:
+            request.request_heat(chart_data, for_dash)
     elif chart_key == "Line Chart":
-        request.request_line(chart_data, for_dash)
+        if for_dash:
+            dash_data['multi'] = request.request_line(chart_data, for_dash)
+        else:
+            request.request_line(chart_data, for_dash)
 
 
 # Function that can be called by a button or other widget that will allow the user to select the file they
