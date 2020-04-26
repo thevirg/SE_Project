@@ -75,8 +75,8 @@ def bar_chart():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
-    file_path_entry.place(relx=0.2, rely=0.01)
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -185,8 +185,8 @@ def bubble_chart():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
-    file_path_entry.place(relx=0.2, rely=0.01)
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e',fg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -307,8 +307,8 @@ def heat_map():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
-    file_path_entry.place(relx=0.2, rely=0.01)
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -417,8 +417,8 @@ def line_chart():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
-    file_path_entry.place(relx=0.2, rely=0.01)
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -537,9 +537,9 @@ def multi_line(num_lines):
     file_path_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Please Select a File:")
     file_path_label.place(relx=0.01, rely=0.01)
 
-    # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
-    file_path_entry.place(relx=0.2, rely=0.01)
+    # Create a button for the user to select the file.
+    file_path_entry= ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -769,8 +769,8 @@ def stacked_bar(num_bars):
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
-    file_path_entry.place(relx=0.2, rely=0.01)
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
     chart_title_label.place(relx=0.6, rely=0.01)
@@ -796,6 +796,9 @@ def stacked_bar(num_bars):
     y_title_entry = ttk.Entry(body_frame)
     y_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
 
+
+#popultes the fields based on number of data entries selected.
+
     for i in range(count):
         number = str(i+1)
 
@@ -811,6 +814,8 @@ def stacked_bar(num_bars):
         y_name_entry[i] = ttk.Entry(body_frame)
         y_name_entry[i].place(relx=0.55, rely=(.3+(.1*i)), relwidth=0.3)
 
+# Based on current iteration, adds a color selection button. The current index on generation is passed to the get_color
+        # function, then the frame is updated to change button color
         if i == 0:
             y_color_button[i] = tk.Button(body_frame, text="Color", command=lambda: [get_color(0, y_color_button),
                                                                                                      body_frame.update()])
@@ -1215,13 +1220,21 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
 # Function that can be called by a button or other widget that will allow the user to select the file they
 # wish to open, this function will change the value in the global dictionary
 # This function is used so that the user does not have to type the file path themselves
-def file_selector():
+def file_selector(button):
     chart_data['file'] = filedialog.askopenfilename()
+    button_update = chart_data['file'].split('/')
+    print(button_update)
+    button_update = "../"+button_update[-2]+"/"+button_update[-1]
+    button.config(text = button_update)
 
 
 def set_dash_title(title):
     dash_data['dash_title'] = title
 
+
+# Takes in the index of the calling button (specified in the for loop in stacked_bar(), and uses it to assign
+# a color to the corresponding stack_color nased on the tkinter colorpicker. Then, sets the color of the calling button
+# to the selected color.
 def get_color(index, button_array):
     stack_color[index] = askcolor()[1]
     button_array[index].config(bg=stack_color[index])
