@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import ttk
+from tkinter.colorchooser import askcolor
 import Plots.RequestHandler as request
 
 
@@ -738,6 +739,8 @@ def stacked_bar(num_bars):
     y_name_label = [None] * count
     y_name_entry = [None] * count
     y_array = []
+    y_color_button = [None] * count
+    y_color = [None] * count
 
     clear()
     # The two lines of code below create an empty background frame that can be added to
@@ -806,7 +809,24 @@ def stacked_bar(num_bars):
         y_name_label[i].place(relx=.45, rely=(.3+(.1*i)))
 
         y_name_entry[i] = ttk.Entry(body_frame)
-        y_name_entry[i].place(relx=0.66, rely=(.3+(.1*i)), relwidth=0.3)
+        y_name_entry[i].place(relx=0.55, rely=(.3+(.1*i)), relwidth=0.3)
+
+        if i == 0:
+            y_color_button[i] = tk.Button(body_frame, text="Color", command=lambda: [get_color(0, y_color_button),
+                                                                                                     body_frame.update()])
+            y_color_button[i].place(relx=0.88, rely=(.3+(.1*i)))
+        elif i == 1:
+            y_color_button[i] = tk.Button(body_frame, text="Color", command=lambda: [get_color(1, y_color_button),
+                                                                                                     body_frame.update()])
+            y_color_button[i].place(relx=0.88, rely=(.3+(.1*i)))
+        elif i == 2:
+            y_color_button[i] = tk.Button(body_frame, text="Color", command=lambda: [get_color(2, y_color_button),
+                                                                                                     body_frame.update()])
+            y_color_button[i].place(relx=0.88, rely=(.3+(.1*i)))
+        elif i == 3:
+            y_color_button[i] = tk.Button(body_frame, text="Color", command=lambda: [get_color(3, y_color_button),
+                                                                                                     body_frame.update()])
+            y_color_button[i].place(relx=0.88, rely=(.3+(.1*i)))
 
 
     z_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Does the X-Axis Show a Period of Time?:")
@@ -838,9 +858,11 @@ def stacked_bar(num_bars):
         # place it in the proper place in an array to pass to submit_info
         if count == 2:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
-                                                                                                      y_name_entry[0].get()]),
+                                                                                                      y_name_entry[0].get(),
+                                                                                                      stack_color[0]]),
                                                                                       y_array.append([y_data_entry[1].get(),
-                                                                                                      y_name_entry[1].get()]),
+                                                                                                      y_name_entry[1].get(),
+                                                                                                      stack_color[1]]),
                                                                                       submit_info(chart_title_entry.get(),
                                                                                                   x_title_entry.get(),
                                                                                                   x_entry.get(),
@@ -854,11 +876,14 @@ def stacked_bar(num_bars):
                                                                                       request.request_dash(dash_data)])
         elif count == 3:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
-                                                                                                      y_name_entry[0].get()]),
+                                                                                                      y_name_entry[0].get(),
+                                                                                                      stack_color[0]]),
                                                                                       y_array.append([y_data_entry[1].get(),
-                                                                                                      y_name_entry[1].get()]),
+                                                                                                      y_name_entry[1].get(),
+                                                                                                      stack_color[1]]),
                                                                                       y_array.append([y_data_entry[2].get(),
-                                                                                                      y_name_entry[2].get()]),
+                                                                                                      y_name_entry[2].get(),
+                                                                                                      stack_color[2]]),
                                                                                       submit_info(
                                                                                           chart_title_entry.get(),
                                                                                           x_title_entry.get(),
@@ -873,13 +898,17 @@ def stacked_bar(num_bars):
                                                                                       request.request_dash(dash_data)])
         else:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
-                                                                                                      y_name_entry[0].get()]),
+                                                                                                      y_name_entry[0].get(),
+                                                                                                      stack_color[0]]),
                                                                                       y_array.append([y_data_entry[1].get(),
-                                                                                                      y_name_entry[1].get()]),
+                                                                                                      y_name_entry[1].get(),
+                                                                                                      stack_color[1]]),
                                                                                       y_array.append([y_data_entry[2].get(),
-                                                                                                      y_name_entry[2].get()]),
+                                                                                                      y_name_entry[2].get(),
+                                                                                                      stack_color[2]]),
                                                                                       y_array.append([y_data_entry[3].get(),
-                                                                                                      y_name_entry[3].get()]),
+                                                                                                      y_name_entry[3].get(),
+                                                                                                      stack_color[3]]),
                                                                                       submit_info(
                                                                                           chart_title_entry.get(),
                                                                                           x_title_entry.get(),
@@ -898,9 +927,11 @@ def stacked_bar(num_bars):
         # place it in the proper place in an array to pass to submit_info
         if count == 2:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
-                                                                                                      y_name_entry[0].get()]),
+                                                                                                      y_name_entry[0].get(),
+                                                                                                      stack_color[0]]),
                                                                                       y_array.append([y_data_entry[1].get(),
-                                                                                                      y_name_entry[1].get()]),
+                                                                                                      y_name_entry[1].get(),
+                                                                                                      stack_color[1]]),
                                                                                       submit_info(
                                                                                           chart_title_entry.get(),
                                                                                           x_title_entry.get(),
@@ -914,11 +945,14 @@ def stacked_bar(num_bars):
                                                                                           None, None, "Stack Bar")])
         elif count == 3:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
-                                                                                                      y_name_entry[0].get()]),
+                                                                                                      y_name_entry[0].get(),
+                                                                                                      stack_color[0]]),
                                                                                       y_array.append([y_data_entry[1].get(),
-                                                                                                      y_name_entry[1].get()]),
+                                                                                                      y_name_entry[1].get(),
+                                                                                                      stack_color[1]]),
                                                                                       y_array.append([y_data_entry[2].get(),
-                                                                                                      y_name_entry[2].get()]),
+                                                                                                      y_name_entry[2].get(),
+                                                                                                      stack_color[2]]),
                                                                                       submit_info(
                                                                                           chart_title_entry.get(),
                                                                                           x_title_entry.get(),
@@ -932,13 +966,17 @@ def stacked_bar(num_bars):
                                                                                           None, None, "Stack Bar")])
         else:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
-                                                                                                      y_name_entry[0].get()]),
+                                                                                                      y_name_entry[0].get(),
+                                                                                                      stack_color[0]]),
                                                                                       y_array.append([y_data_entry[1].get(),
-                                                                                                      y_name_entry[1].get()]),
+                                                                                                      y_name_entry[1].get(),
+                                                                                                      stack_color[1]]),
                                                                                       y_array.append([y_data_entry[2].get(),
-                                                                                                      y_name_entry[2].get()]),
+                                                                                                      y_name_entry[2].get(),
+                                                                                                      stack_color[2]]),
                                                                                       y_array.append([y_data_entry[3].get(),
-                                                                                                      y_name_entry[3].get()]),
+                                                                                                      y_name_entry[3].get(),
+                                                                                                      stack_color[3]]),
                                                                                       submit_info(
                                                                                           chart_title_entry.get(),
                                                                                           x_title_entry.get(),
@@ -1184,12 +1222,17 @@ def file_selector():
 def set_dash_title(title):
     dash_data['dash_title'] = title
 
+def get_color(index, button_array):
+    stack_color[index] = askcolor()[1]
+    button_array[index].config(bg=stack_color[index])
 
 # Create a global dictionary that can be sent to RequestHandler.py
 chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,
               'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None}
 dash_data = {'bar': None, 'bubble': None, 'heat': None, 'line': None, 'multi': None, 'stack': None, 'dash_title': None}
 
+
+stack_color = ['','','','']
 # Create a new window
 window = tk.Tk()
 

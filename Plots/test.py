@@ -146,7 +146,20 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 #     print(string)
 
 
-testarray = []
-testarray.append(["a","b"])
-print(testarray)
-print(testarray[0][0])
+# testarray = []
+# testarray.append(["a","b"])
+# print(testarray)
+# print(testarray[0][0])
+
+
+def test1():
+    testarray = [1,2]
+    test2(testarray)
+
+    print(testarray)
+
+def test2(array):
+    array[0] = 5
+    array[1] = 7
+
+test1()

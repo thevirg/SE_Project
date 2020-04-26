@@ -56,7 +56,7 @@ class Stackbar:
             trace = go.Bar(x=new_df[self.x],
                            y=new_df[self.y_array[i][0]],
                            name=self.y_array[i][1],
-                           marker={'color': self.y_array[i][1]})
+                           marker={'color': self.y_array[i][2]})
             graph_data.append(trace)
 
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
