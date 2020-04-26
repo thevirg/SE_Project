@@ -597,16 +597,13 @@ def multi_line():
     chart_title_entry = ttk.Entry(background)
     chart_title_entry.place(relx=0.20, rely=0.30)
 
-    line_number_entry = ttk.Entry(background)
-    line_number_entry.place(relx=0.20, rely=0.40)
-
     x_axis_label = tk.Label(background, bg='#10435e', fg='white', text="X axis title:")
     font_style = ('', 15)
     x_axis_label.config(font=font_style)
     x_axis_label.place(relx=0.05, rely=0.40)
 
     x_axis_entry = ttk.Entry(background)
-    x_axis_entry.place(relx=0.20, rely=0.50)
+    x_axis_entry.place(relx=0.20, rely=0.40)
 
     y_axis_label = tk.Label(background, bg='#10435e', fg='white', text="Y axis title:")
     font_style = ('', 15)
@@ -614,25 +611,24 @@ def multi_line():
     y_axis_label.place(relx=.05, rely=.50)
 
     y_axis_entry = ttk.Entry(background)
-    y_axis_entry.place(relx=0.20, rely=0.60)
-
-    y_data_title = tk.Label(background, bg='#10435e', fg='white',text='Y data title:')
-    font_style = ('', 15)
-    y_data_title.config(font=font_style)
-    y_data_title.place(relx=.05, rely=.80)
-
+    y_axis_entry.place(relx=0.20, rely=0.50)
     x_data_label = tk.Label(background, bg='#10435e', fg='white', text='X data:')
     font_style = ('', 15)
     x_data_label.config(font=font_style)
     x_data_label.place(relx=.05, rely=.60)
 
     x_data_entry = ttk.Entry(background)
-    x_data_entry.place(relx=0.20, rely=0.70)
+    x_data_entry.place(relx=0.20, rely=0.60)
 
     y_data_label = tk.Label(background, bg='#10435e', fg='white', text='Y data:')
     font_style = ('', 15)
     y_data_label.config(font=font_style)
     y_data_label.place(relx=.05, rely=.70)
+
+    y_data_title = tk.Label(background, bg='#10435e', fg='white', text='Y data title:')
+    font_style = ('', 15)
+    y_data_title.config(font=font_style)
+    y_data_title.place(relx=.05, rely=.80)
 
     y1_entry = ttk.Entry(background)
     y1_entry.place(relx=0.20, rely=0.70, relwidth=0.2)
@@ -695,9 +691,6 @@ def multi_line():
 
     submit_button.place(relx=0.91, rely=0.92)
 
-    y_data_entry = ttk.Entry(background)
-    y_data_entry.place(relx=0.20, rely=0.80)
-
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)
@@ -710,7 +703,7 @@ def stacked_bar():
     background = tk.Frame(window, bg='#10435e')
     background.place(relwidth=1, relheight=1)
 
-    label = tk.Label(background, bg='#10435e', fg='white', text='Multi-Line Chart')
+    label = tk.Label(background, bg='#10435e', fg='white', text='Stacked Bar Chart')
     font_style = ('', 25)
     label.config(font=font_style)
     label.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
@@ -737,7 +730,7 @@ def stacked_bar():
     x_axis_label.place(relx=0.05, rely=0.40)
 
     x_axis_entry = ttk.Entry(background)
-    x_axis_entry.place(relx=0.20, rely=0.50)
+    x_axis_entry.place(relx=0.20, rely=0.40)
 
     y_axis_label = tk.Label(background, bg='#10435e', fg='white', text="Y axis title:")
     font_style = ('', 15)
@@ -745,12 +738,7 @@ def stacked_bar():
     y_axis_label.place(relx=.05, rely=.50)
 
     y_axis_entry = ttk.Entry(background)
-    y_axis_entry.place(relx=0.20, rely=0.60)
-
-    y_data_title = tk.Label(background, bg='#10435e', fg='white', text='Y data title:')
-    font_style = ('', 15)
-    y_data_title.config(font=font_style)
-    y_data_title.place(relx=.05, rely=.80)
+    y_axis_entry.place(relx=0.20, rely=0.50)
 
     x_data_label = tk.Label(background, bg='#10435e', fg='white', text='X data:')
     font_style = ('', 15)
@@ -758,13 +746,17 @@ def stacked_bar():
     x_data_label.place(relx=.05, rely=.60)
 
     x_data_entry = ttk.Entry(background)
-    x_data_entry.place(relx=0.20, rely=0.70)
+    x_data_entry.place(relx=0.20, rely=0.60)
 
     y_data_label = tk.Label(background, bg='#10435e', fg='white', text='Y data:')
     font_style = ('', 15)
     y_data_label.config(font=font_style)
     y_data_label.place(relx=.05, rely=.70)
 
+    y_data_title = tk.Label(background, bg='#10435e', fg='white', text='Y data title:')
+    font_style = ('', 15)
+    y_data_title.config(font=font_style)
+    y_data_title.place(relx=.05, rely=.80)
     y1_entry = ttk.Entry(background)
     y1_entry.place(relx=0.20, rely=0.70, relwidth=0.2)
 
@@ -807,7 +799,6 @@ def stacked_bar():
     limit_entry = ttk.Entry(background)
     limit_entry.place(relx=0.6, rely=0.5)
 
-
     sort_label = tk.Label(background, bg='#10435e', fg='white', text="Would you like the chart to be sorted?")
     sort_label.place(relx=.41, rely=.60)
 
@@ -833,9 +824,6 @@ def stacked_bar():
                                                                                      sort_menu.get(),
                                                                                      "Stacked Bar Chart"))
     submit_button.place(relx=0.91, rely=0.92)
-
-    y_data_entry = ttk.Entry(background)
-    y_data_entry.place(relx=0.20, rely=0.80)
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
@@ -923,7 +911,6 @@ def get_chart():
 # The chart key should be different depending on which chart calls this method so that the correct method from the
 # RequestHandler.py can be called
 def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_option, limit_value, date, marker, category,
-
                 sort, chart_key):
     global for_dash
 
@@ -1007,7 +994,6 @@ def set_dash_title(title):
 
 # Create a global dictionary that can be sent to RequestHandler.py
 chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,
-
               'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None,
               'sort': None, 'y_array': None}
 dash_data = {'bar': None, 'bubble': None, 'heat': None, 'line': None, 'multi': None, 'stack': None, 'dash_title': None}
