@@ -77,62 +77,76 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # testheat.x_title = "Day of Week"
 # testheat.y_title = "Week of Month"
 # testheat.generate(0)
-
-ydata = [["column1","test"], ["column2", "test2"], ["column3", "test3"]]
-y_array = []
-
-for x in range(len(ydata)):
-    y_array.append(ydata[x])
-
-print(y_array)
-print(y_array[0][0])
-
-
-
-example_dict = {"title": "test title", "xtitle": ""}
-
-bar_data = {"file": '', "x": '', }
-
-example_dict["xtitle"] = "dict entry"
-
-print(example_dict["title"])
-print(example_dict["xtitle"])
-
-# # test multiline
-# #
-# # testmulti = Multiline()
-# # testmulti.title = "test"
-# # testmulti.file = '../Datasets/CoronaTimeSeries.csv'
-# # testmulti.x = 'Date'
-# # testmulti.date_true()
-# # ytest = [["Death", "Death"],["Recovered", "Recovered"],["Unrecovered", "Unrecovered"]]
-# # testmulti.populate_yaxis(ytest)
-# # testmulti.x_title = "Date"
-# # testmulti.y_title = "Number of cases"
-# # testmulti.generate(0)
-
-# # test multiline
 #
-# testline = Line()
-# testline.title = "test"
-# testline.file = '../Datasets/CoronaTimeSeries.csv'
-# testline.x = 'Date'
-# testline.date_true()
-# testline.y = 'Confirmed'
-# testline.x_title = "Date"
-# testline.y_title = "Number of cases"
-# testline.generate(0)
+# ydata = [["column1","test"], ["column2", "test2"], ["column3", "test3"]]
+# y_array = []
+#
+# for x in range(len(ydata)):
+#     y_array.append(ydata[x])
+#
+# print(y_array)
+# print(y_array[0][0])
+#
+#
+#
+# example_dict = {"title": "test title", "xtitle": ""}
+#
+# bar_data = {"file": '', "x": '', }
+#
+# example_dict["xtitle"] = "dict entry"
+#
+# print(example_dict["title"])
+# print(example_dict["xtitle"])
+#
+# # # test multiline
+# # #
+# # # testmulti = Multiline()
+# # # testmulti.title = "test"
+# # # testmulti.file = '../Datasets/CoronaTimeSeries.csv'
+# # # testmulti.x = 'Date'
+# # # testmulti.date_true()
+# # # ytest = [["Death", "Death"],["Recovered", "Recovered"],["Unrecovered", "Unrecovered"]]
+# # # testmulti.populate_yaxis(ytest)
+# # # testmulti.x_title = "Date"
+# # # testmulti.y_title = "Number of cases"
+# # # testmulti.generate(0)
+#
+# # # test multiline
+# #
+# # testline = Line()
+# # testline.title = "test"
+# # testline.file = '../Datasets/CoronaTimeSeries.csv'
+# # testline.x = 'Date'
+# # testline.date_true()
+# # testline.y = 'Confirmed'
+# # testline.x_title = "Date"
+# # testline.y_title = "Number of cases"
+# # testline.generate(0)
+#
+# # test stack bar
+#
+# teststack = Stackbar()
+# teststack.title = "test"
+# teststack.file = '../Datasets/Olympic2016Rio.csv'
+# teststack.x = 'NOC'
+# ytest = [["Gold", "Gold", '#ffff00'],["Silver", "Silver", '#cccccc'],["Bronze", "Bronze", '#cc9900']]
+# teststack.populate_yaxis(ytest)
+# teststack.x_title = "Medals"
+# teststack.y_title = "Number of cases"
+# teststack.limit_true(20)
+# teststack.sum_true()
+# teststack.generate(0)
 
-# test stack bar
+# test = "1"
+# print(int(test))
+# string = "test" + str(int(test)+1)
+#
+#
+# if int(test) == 1:
+#     print(string)
 
-teststack = Stackbar()
-teststack.title = "test"
-teststack.file = '../Datasets/Olympic2016Rio.csv'
-teststack.x = 'NOC'
-ytest = [["Gold", "Gold", '#ffff00'],["Silver", "Silver", '#cccccc'],["Bronze", "Bronze", '#cc9900']]
-teststack.populate_yaxis(ytest)
-teststack.x_title = "Medals"
-teststack.y_title = "Number of cases"
-teststack.limit_true(20)
-teststack.sum_true()
-teststack.generate(0)
+
+testarray = []
+testarray.append(["a","b"])
+print(testarray)
+print(testarray[0][0])

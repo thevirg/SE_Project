@@ -484,7 +484,7 @@ def line_chart():
                                                                                               limit_entry.get(),
                                                                                               line_chart_date.get(),
                                                                                               None, None, "Line Chart"),
-                                                                                  multi_line()])
+                                                                                  multi_line_number()])
         submit_button.place(relx=0.9, rely=0.92)
     else:
         submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
@@ -500,146 +500,458 @@ def line_chart():
         submit_button.place(relx=0.9, rely=0.92)
 
 
-def multi_line():
+def multi_line(num_lines):
+
+    count = int(num_lines)
+
+    y_data_label = [None] * count
+    y_data_entry = [None] * count
+    y_name_label = [None] * count
+    y_name_entry = [None] * count
+    y_array = []
+
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
     background = tk.Frame(window, bg='#10435e')
     background.place(relwidth=1, relheight=1)
 
-    label = tk.Label(background, text='Multi-Line Chart')
-    font_style = ('', 25)
-    label.config(font=font_style)
-    label.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = ttk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
-    file_path_label = tk.Label(background, text='File Path:')
-    font_style = ('', 15)
-    file_path_label.config(font=font_style)
-    file_path_label.place(relx=0.05, rely=0.2, )
+    # Create a title label to be placed at the top of the page
+    title_label = tk.Label(background, bg='#10435e', fg='white', text="Multi-Line Chart")
+    font_style = ('', 20)  # configure font size
+    title_label.config(font=font_style)  # change the font size of the title
+    title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
 
-    file_path_entry = ttk.Entry(background, bd=5)
-    file_path_entry.place(relx=0.20, rely=0.2)
+    # Create a frame for the widgets on this page to be placed in
+    body_frame = tk.Frame(background, bg='#10435e')
+    body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
-    chart_title_label = tk.Label(background, text='Chart name:')
-    font_style = ('', 15)
-    chart_title_label.config(font=font_style)
-    chart_title_label.place(relx=0.05, rely=0.30)
+    # Create a label to indicate to the user to enter the file path
+    file_path_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Please Select a File:")
+    file_path_label.place(relx=0.01, rely=0.01)
 
-    chart_title_entry = ttk.Entry(background, bd=5)
-    chart_title_entry.place(relx=0.20, rely=0.30)
+    # Create a button for the user to select the file
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
-    line_number = tk.Label(background, text='Number of lines:')
-    font_style = ('', 15)
-    line_number.config(font=font_style)
-    line_number.place(relx=0.05, rely=0.40)
+    chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
+    chart_title_label.place(relx=0.6, rely=0.01)
 
-    line_number_entry = ttk.Entry(background, bd=5)
-    line_number_entry.place(relx=0.20, rely=0.40)
+    chart_title_entry = ttk.Entry(body_frame)
+    chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
 
-    x_axis_label = tk.Label(background, text="X axis title:")
-    font_style = ('', 15)
-    x_axis_label.config(font=font_style)
-    x_axis_label.place(relx=0.05, rely=0.50)
+    x_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="X Axis Title:")
+    x_title_label.place(relx=0.01, rely=0.1)
 
-    x_axis_entry = ttk.Entry(background, bd=5)
-    x_axis_entry.place(relx=0.20, rely=0.50)
+    x_title_entry = ttk.Entry(body_frame)
+    x_title_entry.place(relx=0.12, rely=0.1, relwidth=0.3)
 
-    y_axis_label = tk.Label(background, text="Y axis title:")
-    font_style = ('', 15)
-    y_axis_label.config(font=font_style)
-    y_axis_label.place(relx=.05, rely=.60)
+    x_column_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Column of X-Axis Data:")
+    x_column_label.place(relx=0.45, rely=0.1)
 
-    y_axis_entry = ttk.Entry(background, bd=5)
-    y_axis_entry.place(relx=0.20, rely=0.60)
+    x_entry = ttk.Entry(body_frame)
+    x_entry.place(relx=0.66, rely=0.1, relwidth=0.3)
 
-    x_data_label = tk.Label(background, text='X data:')
-    font_style = ('', 15)
-    x_data_label.config(font=font_style)
-    x_data_label.place(relx=.05, rely=.70)
+    y_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Y Axis Title:")
+    y_title_label.place(relx=0.01, rely=0.2)
 
-    x_data_entry = ttk.Entry(background, bd=5)
-    x_data_entry.place(relx=0.20, rely=0.70)
+    y_title_entry = ttk.Entry(body_frame)
+    y_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
 
-    y_data_label = tk.Label(background, text='Y data:')
-    font_style = ('', 15)
-    y_data_label.config(font=font_style)
-    y_data_label.place(relx=.05, rely=.80)
+    for i in range(count):
+        number = str(i+1)
 
-    y_data_entry = ttk.Entry(background, bd=5)
-    y_data_entry.place(relx=0.20, rely=0.80)
+        y_data_label[i] = tk.Label(body_frame, bg='#10435e', fg='white', text="Y"+number+" data:")
+        y_data_label[i].place(relx=.01, rely=(.3+(.1*i)))
+
+        y_data_entry[i] = ttk.Entry(body_frame)
+        y_data_entry[i].place(relx=0.12, rely=(.3+(.1*i)), relwidth=0.3)
+
+        y_name_label[i] = tk.Label(body_frame, bg='#10435e', fg='white', text="Y" + number + " Label:")
+        y_name_label[i].place(relx=.45, rely=(.3+(.1*i)))
+
+        y_name_entry[i] = ttk.Entry(body_frame)
+        y_name_entry[i].place(relx=0.66, rely=(.3+(.1*i)), relwidth=0.3)
+
+
+    z_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Does the X-Axis Show a Period of Time?:")
+    z_label.place(relx=0.01, rely=0.7)
+
+    chart_selection = ttk.OptionMenu(body_frame, line_chart_date, "Please make a selection", "Yes", "No")
+    chart_selection.place(relx=0.36, rely=0.7, relwidth=0.25)
+
+    # Create a drop down menu
+    chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
+    chart_selection.place(relx=0.65, rely=0.7, relwidth=0.25)
+
+    limit_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Would you like to place a limit?")
+    limit_label.place(relx=0.01, rely=0.8)
+
+    chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
+    chart_selection.place(relx=0.3, rely=0.8, relwidth=0.25)
+
+    value_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Enter a limit, or 0 for none")
+    value_label.place(relx=0.6, rely=0.8)
+
+    limit_entry = ttk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.8, relwidth=0.15)
+
+    if for_dash:
+        # Create a submit button to send all user entries to a variable
+        # The parameters are each of the entries returning their user input
+        # each if loop checks how many lines there are, and makes the submit command get all appropriate y_data and
+        # place it in the proper place in an array to pass to submit_info
+        if count == 2:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      submit_info(chart_title_entry.get(),
+                                                                                                  x_title_entry.get(),
+                                                                                                  x_entry.get(),
+                                                                                                  y_title_entry.get(),
+                                                                                                  y_array, None,
+                                                                                                  sum_mean.get(),
+                                                                                                  limit_menu.get(),
+                                                                                                  limit_entry.get(),
+                                                                                                  line_chart_date.get(),
+                                                                                                  None, None, "Multi Line"),
+                                                                                      stacked_bar_number()])
+        elif count == 3:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Multi Line"),
+                                                                                      stacked_bar_number()])
+        else:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      y_array.append([y_data_entry[3].get(),
+                                                                                                      y_name_entry[3].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Multi Line"),
+                                                                                      stacked_bar_number()])
+        submit_button.place(relx=0.9, rely=0.92)
+    else:
+        # each if loop checks how many lines there are, and makes the submit command get all appropriate y_data and
+        # place it in the proper place in an array to pass to submit_info
+        if count == 2:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Multi Line")])
+        elif count == 3:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Multi Line")])
+        else:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      y_array.append([y_data_entry[3].get(),
+                                                                                                      y_name_entry[3].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Multi Line")])
+
+        submit_button.place(relx=0.9, rely=0.92)
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
     bck_button.place(relx=0.01, rely=0.92)
 
 
-def stacked_bar():
+def stacked_bar(num_bars):
+
+    count = int(num_bars)
+
+    y_data_label = [None] * count
+    y_data_entry = [None] * count
+    y_name_label = [None] * count
+    y_name_entry = [None] * count
+    y_array = []
+
     clear()
+    # The two lines of code below create an empty background frame that can be added to
+    # Widgets should be added to background so the clear method can delete the frame for a new page
     # The two lines of code below create an empty background frame that can be added to
     # Widgets should be added to background so the clear method can delete the frame for a new page
     background = tk.Frame(window, bg='#10435e')
     background.place(relwidth=1, relheight=1)
 
-    label = tk.Label(background, text='Stacked Bar Chart')
-    font_style = ('', 25)
-    label.config(font=font_style)
-    label.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
+    # Creates a back button to allow the user to go back to the chart selection page
+    bck_button = ttk.Button(background, text="Back", command=front_page)
+    bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
-    file_path_label = tk.Label(background, text='File Path:')
-    font_style = ('', 15)
-    file_path_label.config(font=font_style)
-    file_path_label.place(relx=0.05, rely=0.2, )
+    # Create a title label to be placed at the top of the page
+    title_label = tk.Label(background, bg='#10435e', fg='white', text="Stacked Bar Chart")
+    font_style = ('', 20)  # configure font size
+    title_label.config(font=font_style)  # change the font size of the title
+    title_label.place(relx=0.5, rely=0, relwidth=0.75, relheight=0.2, anchor='n')
 
-    file_path_entry = ttk.Entry(background, bd=5)
-    file_path_entry.place(relx=0.20, rely=0.2)
+    # Create a frame for the widgets on this page to be placed in
+    body_frame = tk.Frame(background, bg='#10435e')
+    body_frame.place(relx=0.5, rely=0.2, relwidth=0.8, relheight=0.75, anchor='n')
 
-    chart_title_label = tk.Label(background, text='Chart name:')
-    font_style = ('', 15)
-    chart_title_label.config(font=font_style)
-    chart_title_label.place(relx=0.05, rely=0.30)
+    # Create a label to indicate to the user to enter the file path
+    file_path_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Please Select a File:")
+    file_path_label.place(relx=0.01, rely=0.01)
 
-    chart_title_entry = ttk.Entry(background, bd=5)
-    chart_title_entry.place(relx=0.20, rely=0.30)
+    # Create a button for the user to select the file
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector())
+    file_path_entry.place(relx=0.2, rely=0.01)
 
-    line_number = tk.Label(background, text='Number of bars:')
-    font_style = ('', 15)
-    line_number.config(font=font_style)
-    line_number.place(relx=0.05, rely=0.40)
+    chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
+    chart_title_label.place(relx=0.6, rely=0.01)
 
-    line_number_entry = ttk.Entry(background, bd=5)
-    line_number_entry.place(relx=0.20, rely=0.40)
+    chart_title_entry = ttk.Entry(body_frame)
+    chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
 
-    x_axis_label = tk.Label(background, text="X axis title:")
-    font_style = ('', 15)
-    x_axis_label.config(font=font_style)
-    x_axis_label.place(relx=0.05, rely=0.50)
+    x_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="X Axis Title:")
+    x_title_label.place(relx=0.01, rely=0.1)
 
-    x_axis_entry = ttk.Entry(background, bd=5)
-    x_axis_entry.place(relx=0.20, rely=0.50)
+    x_title_entry = ttk.Entry(body_frame)
+    x_title_entry.place(relx=0.12, rely=0.1, relwidth=0.3)
 
-    y_axis_label = tk.Label(background, text="Y axis title:")
-    font_style = ('', 15)
-    y_axis_label.config(font=font_style)
-    y_axis_label.place(relx=.05, rely=.60)
+    x_column_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Column of X-Axis Data:")
+    x_column_label.place(relx=0.45, rely=0.1)
 
-    y_axis_entry = ttk.Entry(background, bd=5)
-    y_axis_entry.place(relx=0.20, rely=0.60)
+    x_entry = ttk.Entry(body_frame)
+    x_entry.place(relx=0.66, rely=0.1, relwidth=0.3)
 
-    x_data_label = tk.Label(background, text='X data:')
-    font_style = ('', 15)
-    x_data_label.config(font=font_style)
-    x_data_label.place(relx=.05, rely=.70)
+    y_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Y Axis Title:")
+    y_title_label.place(relx=0.01, rely=0.2)
 
-    x_data_entry = ttk.Entry(background, bd=5)
-    x_data_entry.place(relx=0.20, rely=0.70)
+    y_title_entry = ttk.Entry(body_frame)
+    y_title_entry.place(relx=0.12, rely=0.2, relwidth=0.3)
 
-    y_data_label = tk.Label(background, text='Y data:')
-    font_style = ('', 15)
-    y_data_label.config(font=font_style)
-    y_data_label.place(relx=.05, rely=.80)
+    for i in range(count):
+        number = str(i+1)
 
-    y_data_entry = ttk.Entry(background, bd=5)
-    y_data_entry.place(relx=0.20, rely=0.80)
+        y_data_label[i] = tk.Label(body_frame, bg='#10435e', fg='white', text="Y"+number+" data:")
+        y_data_label[i].place(relx=.01, rely=(.3+(.1*i)))
+
+        y_data_entry[i] = ttk.Entry(body_frame)
+        y_data_entry[i].place(relx=0.12, rely=(.3+(.1*i)), relwidth=0.3)
+
+        y_name_label[i] = tk.Label(body_frame, bg='#10435e', fg='white', text="Y" + number + " Label:")
+        y_name_label[i].place(relx=.45, rely=(.3+(.1*i)))
+
+        y_name_entry[i] = ttk.Entry(body_frame)
+        y_name_entry[i].place(relx=0.66, rely=(.3+(.1*i)), relwidth=0.3)
+
+
+    z_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Does the X-Axis Show a Period of Time?:")
+    z_label.place(relx=0.01, rely=0.7)
+
+    chart_selection = ttk.OptionMenu(body_frame, line_chart_date, "Please make a selection", "Yes", "No")
+    chart_selection.place(relx=0.36, rely=0.7, relwidth=0.25)
+
+    # Create a drop down menu
+    chart_selection = ttk.OptionMenu(body_frame, sum_mean, "Please make a selection", "None", "Sum", "Mean")
+    chart_selection.place(relx=0.65, rely=0.7, relwidth=0.25)
+
+    limit_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Would you like to place a limit?")
+    limit_label.place(relx=0.01, rely=0.8)
+
+    chart_selection = ttk.OptionMenu(body_frame, limit_menu, "Please make a selection", "Yes", "No")
+    chart_selection.place(relx=0.3, rely=0.8, relwidth=0.25)
+
+    value_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Enter a limit, or 0 for none")
+    value_label.place(relx=0.6, rely=0.8)
+
+    limit_entry = ttk.Entry(body_frame)
+    limit_entry.place(relx=0.84, rely=0.8, relwidth=0.15)
+
+    if for_dash:
+        # Create a submit button to send all user entries to a variable
+        # The parameters are each of the entries returning their user input
+        # each if loop checks how many lines there are, and makes the submit command get all appropriate y_data and
+        # place it in the proper place in an array to pass to submit_info
+        if count == 2:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      submit_info(chart_title_entry.get(),
+                                                                                                  x_title_entry.get(),
+                                                                                                  x_entry.get(),
+                                                                                                  y_title_entry.get(),
+                                                                                                  y_array, None,
+                                                                                                  sum_mean.get(),
+                                                                                                  limit_menu.get(),
+                                                                                                  limit_entry.get(),
+                                                                                                  line_chart_date.get(),
+                                                                                                  None, None, "Stack Bar"),
+                                                                                      request.request_dash(dash_data)])
+        elif count == 3:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Stack Bar"),
+                                                                                      request.request_dash(dash_data)])
+        else:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      y_array.append([y_data_entry[3].get(),
+                                                                                                      y_name_entry[3].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Stack Bar"),
+                                                                                      request.request_dash(dash_data)])
+        submit_button.place(relx=0.9, rely=0.92)
+    else:
+        # each if loop checks how many lines there are, and makes the submit command get all appropriate y_data and
+        # place it in the proper place in an array to pass to submit_info
+        if count == 2:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Stack Bar")])
+        elif count == 3:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Stack Bar")])
+        else:
+            submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
+                                                                                                      y_name_entry[0].get()]),
+                                                                                      y_array.append([y_data_entry[1].get(),
+                                                                                                      y_name_entry[1].get()]),
+                                                                                      y_array.append([y_data_entry[2].get(),
+                                                                                                      y_name_entry[2].get()]),
+                                                                                      y_array.append([y_data_entry[3].get(),
+                                                                                                      y_name_entry[3].get()]),
+                                                                                      submit_info(
+                                                                                          chart_title_entry.get(),
+                                                                                          x_title_entry.get(),
+                                                                                          x_entry.get(),
+                                                                                          y_title_entry.get(),
+                                                                                          y_array, None,
+                                                                                          sum_mean.get(),
+                                                                                          limit_menu.get(),
+                                                                                          limit_entry.get(),
+                                                                                          line_chart_date.get(),
+                                                                                          None, None, "Stack Bar")])
+
+        submit_button.place(relx=0.9, rely=0.92)
 
     # Creates a back button to allow the user to go back to the chart selection page
     bck_button = tk.Button(background, text="Back", command=front_page)
@@ -678,6 +990,80 @@ def dashboard():
     next_button.place(relx=0.9, rely=0.92)
 
 
+def multi_line_number():
+
+    clear()
+
+    background = tk.Frame(window, bg='#10435e')
+    background.place(relwidth=1, relheight=1)
+
+    # Create a new label to hold the title text
+    title = tk.Label(background, bg='#10435e', fg='white', text="Project Carrot")
+    font_style = ('', 25)  # can be used to edit font style, '' can be replaced with a new font name
+    title.config(font=font_style)  # applies the new font style
+    # places the label in the top middle of the screen
+    title.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
+
+    # Creates a new frame to hold new widgets
+    lower_frame = tk.Frame(background, bg='#10435e')
+    # Places the frame near the center of the screen
+    lower_frame.place(relx=0.5, rely=0.2, relwidth=0.75, relheight=0.5, anchor='n')
+
+    # Creates a label indicating to the user to select a chart type
+    text = tk.Label(lower_frame, bg='#10435e', fg='white', text="Please select the number of data sources for"
+                                                                "the multi-line chart: ")
+    font_style = ('', 12)
+    text.config(font=font_style)
+    text.place(relx=0.5, rely=0.35, anchor='n')
+
+    # Creates a menu with the charts as options
+    chart_selection = ttk.OptionMenu(lower_frame, option, "Select a Number", "2", "3",
+                                     "4")
+    chart_selection.place(relx=0.5, rely=0.5, relwidth=0.25, relheight=0.15, anchor='n')
+
+    # Create a button that will get the chart selected from the menu
+    next_button = ttk.Button(background, text="Next Page", command=lambda: multi_line(option.get()))
+    # places the button in the lower right corner of the screen
+    next_button.place(relx=0.9, rely=0.92)
+
+def stacked_bar_number():
+
+    clear()
+
+    background = tk.Frame(window, bg='#10435e')
+    background.place(relwidth=1, relheight=1)
+
+    # Create a new label to hold the title text
+    title = tk.Label(background, bg='#10435e', fg='white', text="Project Carrot")
+    font_style = ('', 25)  # can be used to edit font style, '' can be replaced with a new font name
+    title.config(font=font_style)  # applies the new font style
+    # places the label in the top middle of the screen
+    title.place(relx=0.5, rely=0.05, relwidth=0.9, relheight=0.15, anchor='n')
+
+    # Creates a new frame to hold new widgets
+    lower_frame = tk.Frame(background, bg='#10435e')
+    # Places the frame near the center of the screen
+    lower_frame.place(relx=0.5, rely=0.2, relwidth=0.75, relheight=0.5, anchor='n')
+
+    # Creates a label indicating to the user to select a chart type
+    text = tk.Label(lower_frame, bg='#10435e', fg='white', text="Please select the number of data sources for"
+                                                                "the Stacked Bar chart: ")
+    font_style = ('', 12)
+    text.config(font=font_style)
+    text.place(relx=0.5, rely=0.35, anchor='n')
+
+    # Creates a menu with the charts as options
+    chart_selection = ttk.OptionMenu(lower_frame, option, "Select a Number", "2", "3",
+                                     "4")
+    chart_selection.place(relx=0.5, rely=0.5, relwidth=0.25, relheight=0.15, anchor='n')
+
+    # Create a button that will get the chart selected from the menu
+    next_button = ttk.Button(background, text="Next Page", command=lambda: stacked_bar(option.get()))
+    # places the button in the lower right corner of the screen
+    next_button.place(relx=0.9, rely=0.92)
+
+
+
 # Function used to get the chart that the user selected from the option menu on the front page
 def get_chart():
     if option.get() == "Bar Chart":
@@ -693,10 +1079,10 @@ def get_chart():
         line_chart()
 
     elif option.get() == "MultiLine Chart":
-        multi_line()
+        multi_line_number()
 
     elif option.get() == "Stacked Bar Chart":
-        stacked_bar()
+        stacked_bar_number()
 
     elif option.get() == "Dashboard":
         dashboard()
@@ -774,10 +1160,19 @@ def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_optio
             request.request_heat(chart_data, for_dash)
     elif chart_key == "Line Chart":
         if for_dash:
-            dash_data['multi'] = request.request_line(chart_data, for_dash)
+            dash_data['line'] = request.request_line(chart_data, for_dash)
         else:
             request.request_line(chart_data, for_dash)
-
+    elif chart_key == "Multi Line":
+        if for_dash:
+            dash_data['multi'] = request.request_multi(chart_data, for_dash)
+        else:
+            request.request_multi(chart_data, for_dash)
+    elif chart_key == "Stack Bar":
+        if for_dash:
+            dash_data['stack'] = request.request_stack(chart_data, for_dash)
+        else:
+            request.request_stack(chart_data, for_dash)
 
 # Function that can be called by a button or other widget that will allow the user to select the file they
 # wish to open, this function will change the value in the global dictionary
