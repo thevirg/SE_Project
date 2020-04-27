@@ -3,7 +3,7 @@ from tkinter import filedialog
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 import Plots.RequestHandler as request
-
+import pandas as pd
 
 # Function used to clear the window to prepare it for a new page
 def clear():
@@ -75,7 +75,9 @@ def bar_chart():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: [file_selector(file_path_entry),
+                                                                                  update_dropdown(x_entry, x_option),
+                                                                                  update_dropdown(y_entry, y1_option)])
     file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
@@ -93,7 +95,7 @@ def bar_chart():
     x_column_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Column of X-Axis Data:")
     x_column_label.place(relx=0.45, rely=0.2)
 
-    x_entry = ttk.Entry(body_frame)
+    x_entry = ttk.OptionMenu(body_frame, x_option, column_choices)
     x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
 
     y_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Y Axis Title:")
@@ -105,7 +107,7 @@ def bar_chart():
     y_column_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Column of Y-Axis Data:")
     y_column_label.place(relx=0.45, rely=0.39)
 
-    y_entry = ttk.Entry(body_frame)
+    y_entry = ttk.OptionMenu(body_frame, y1_option, column_choices)
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
     # Create a drop down menu
@@ -124,20 +126,20 @@ def bar_chart():
     limit_entry = tk.Entry(body_frame)
     limit_entry.place(relx=0.84, rely=0.58)
 
-    # Create a submit button to send all user entries to a variable
-    # The parameters are each of the entries returning their user input
-    submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
-                                                                                     x_title_entry.get(),
-                                                                                     x_entry.get(),
-                                                                                     y_title_entry.get(),
-                                                                                     y_entry.get(),
-                                                                                     None,
-                                                                                     sum_mean.get(),
-                                                                                     limit_menu.get(),
-                                                                                     limit_entry.get(), None, None,
-                                                                                     None,
-                                                                                     None, "Bar Chart"))
-    submit_button.place(relx=0.93, rely=0.92)
+    # # Create a submit button to send all user entries to a variable
+    # # The parameters are each of the entries returning their user input
+    # submit_button = tk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
+    #                                                                                  x_title_entry.get(),
+    #                                                                                  x_option.get(),
+    #                                                                                  y_title_entry.get(),
+    #                                                                                  y1_option.get(),
+    #                                                                                  None,
+    #                                                                                  sum_mean.get(),
+    #                                                                                  limit_menu.get(),
+    #                                                                                  limit_entry.get(), None, None,
+    #                                                                                  None,
+    #                                                                                  None, "Bar Chart"))
+    # submit_button.place(relx=0.93, rely=0.92)
 
     limit_entry = ttk.Entry(body_frame)
     limit_entry.place(relx=0.84, rely=0.58, relwidth=0.15)
@@ -156,7 +158,7 @@ def bar_chart():
                                                                                             sum_mean.get(),
                                                                                             limit_menu.get(),
                                                                                             limit_entry.get(), None,
-                                                                                            None, None,
+                                                                                            None, None, None,
                                                                                             "Bar Chart"),
                                                                                 bubble_chart()])
         next_button.place(relx=0.9, rely=0.92)
@@ -164,14 +166,14 @@ def bar_chart():
         submit_button = ttk.Button(background, text="Generate Chart", command=lambda: submit_info(
             chart_title_entry.get(),
             x_title_entry.get(),
-            x_entry.get(),
+            x_option.get(),
             y_title_entry.get(),
-            y_entry.get(),
+            y1_option.get(),
             None,
             sum_mean.get(),
             limit_menu.get(),
             limit_entry.get(), None, None,
-            None,
+            None, None,
             "Bar Chart"))
         submit_button.place(relx=0.88, rely=0.92)
 
@@ -1315,6 +1317,16 @@ def file_selector(button):
     print(button_update)
     button_update = "../"+button_update[-2]+"/"+button_update[-1]
     button.config(text = button_update)
+    df = pd.read_csv(chart_data['file'])
+    array = list(df.columns)
+    for x in array:
+        column_choices.append(x)
+
+def update_dropdown(dropdown, option_var):
+    menu = dropdown["menu"]
+    for x in column_choices:
+        menu.add_command(label=x, command=lambda value=x: option_var.set(value))
+
 
 
 def set_dash_title(title):
@@ -1334,6 +1346,7 @@ chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title'
               'sort': None, 'y_array': None}
 dash_data = {'bar': None, 'bubble': None, 'heat': None, 'line': None, 'multi': None, 'stack': None, 'dash_title': None}
 
+column_choices = ['Select a File']
 
 stack_color = ['','','','']
 # Create a new window
@@ -1354,6 +1367,16 @@ line_chart_date = tk.StringVar(window)
 
 # Creates a tkinter variable to be used in the drop down menu to select whether the chart will be sorted
 sort_menu = tk.StringVar(window)
+
+# Creates a tkinter variable to be used in the drop down menu to select X data column
+x_option = tk.StringVar(window)
+
+# Creates a tkinter variable to be used in the drop down menu to select y data columns
+
+y1_option = tk.StringVar(window)
+y2_option = tk.StringVar(window)
+y3_option = tk.StringVar(window)
+y4_option = tk.StringVar(window)
 
 # Holds a boolean value to determine if the charts should be generated for a dashboard
 # if the user selects a dashboard on the front page the value changes to 1

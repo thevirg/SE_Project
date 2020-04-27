@@ -52,8 +52,8 @@ def request_stack(chart_data, for_dash):
     if chart_data['limit'] == 1:
         chart.limit_true(chart_data['limit_num'])
 
-    # if chart_data['sort'] == 1:
-    #     chart.sort_by(chart_data['sortby'])
+    if chart_data['sort'] == 1:
+        chart.sort_by(chart_data['sortby'])
 
     if chart_data['date'] == 1:
         chart.date_true()
