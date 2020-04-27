@@ -3,7 +3,7 @@ from tkinter import filedialog
 from tkinter import ttk
 from tkinter.colorchooser import askcolor
 import Plots.RequestHandler as request
-
+import pandas as pd
 
 # Function used to clear the window to prepare it for a new page
 def clear():
@@ -93,7 +93,7 @@ def bar_chart():
     x_column_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Column of X-Axis Data:")
     x_column_label.place(relx=0.45, rely=0.2)
 
-    x_entry = ttk.Entry(body_frame)
+    x_entry = ttk.OptionMenu(body_frame, option, column_choices)
     x_entry.place(relx=0.66, rely=0.2, relwidth=0.3)
 
     y_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Y Axis Title:")
@@ -1226,6 +1226,14 @@ def file_selector(button):
     print(button_update)
     button_update = "../"+button_update[-2]+"/"+button_update[-1]
     button.config(text = button_update)
+    df = pd.read_csv(chart_data['file'])
+    array = list(df.columns)
+    for x in array:
+        column_choices.append(x)
+
+def update_dropdown(dropdown):
+    print(dropdown['menu'])
+
 
 
 def set_dash_title(title):
@@ -1244,6 +1252,7 @@ chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title'
               'sum': 0, 'mean': 0, 'limit': 0, 'limit_num': 0, 'date': 0, 'marker_data': None, 'category': None}
 dash_data = {'bar': None, 'bubble': None, 'heat': None, 'line': None, 'multi': None, 'stack': None, 'dash_title': None}
 
+column_choices = ['Select a File']
 
 stack_color = ['','','','']
 # Create a new window
