@@ -75,7 +75,9 @@ def bar_chart():
     file_path_label.place(relx=0.01, rely=0.01)
 
     # Create a button for the user to select the file
-    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: file_selector(file_path_entry))
+    file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: [file_selector(file_path_entry),
+                                                                                  update_dropdown(x_entry),
+                                                                                  update_dropdown(y_entry)])
     file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
     chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
@@ -105,7 +107,7 @@ def bar_chart():
     y_column_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Column of Y-Axis Data:")
     y_column_label.place(relx=0.45, rely=0.39)
 
-    y_entry = ttk.Entry(body_frame)
+    y_entry = ttk.OptionMenu(body_frame, option, column_choices)
     y_entry.place(relx=0.66, rely=0.39, relwidth=0.3)
 
     # Create a drop down menu
@@ -1321,7 +1323,9 @@ def file_selector(button):
         column_choices.append(x)
 
 def update_dropdown(dropdown):
-    print(dropdown['menu'])
+    menu = dropdown["menu"]
+    for x in column_choices:
+        menu.add_command(label=x, command=lambda value=x: option.set(value))
 
 
 
