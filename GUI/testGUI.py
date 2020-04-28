@@ -297,7 +297,7 @@ def bubble_chart():
                                                                                               limit_menu.get(),
                                                                                               limit_entry.get(), None,
                                                                                               marker_entry.get(),
-                                                                                              category_entry.get(),
+                                                                                              category_entry.get(), None,
                                                                                               "Bubble Chart"),
                                                                                   heat_map()])
         submit_button.place(relx=0.9, rely=0.92)
@@ -312,7 +312,7 @@ def bubble_chart():
                                                                limit_menu.get(),
                                                                limit_entry.get(), None,
                                                                marker_entry.get(),
-                                                               category_entry.get(),
+                                                               category_entry.get(), None,
                                                                "Bubble Chart"))
         submit_button.place(relx=0.88, rely=0.92)
 
@@ -428,7 +428,7 @@ def heat_map():
                                                                                               sum_mean.get(),
                                                                                               limit_menu.get(),
                                                                                               limit_entry.get(), None,
-                                                                                              None, None, "Heat Map"),
+                                                                                              None, None, None, "Heat Map"),
                                                                                   line_chart()])
         submit_button.place(relx=0.9, rely=0.92)
     else:
@@ -441,7 +441,7 @@ def heat_map():
                                                                                           sum_mean.get(),
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(), None, None,
-                                                                                          None, "Heat Map"))
+                                                                                          None, None, "Heat Map"))
         submit_button.place(relx=0.9, rely=0.92)
 
 
@@ -555,7 +555,7 @@ def line_chart():
                                                                                               limit_menu.get(),
                                                                                               limit_entry.get(),
                                                                                               line_chart_date.get(),
-                                                                                              None, None, "Line Chart"),
+                                                                                              None, None, None, "Line Chart"),
                                                                                   multi_line_number()])
         submit_button.place(relx=0.9, rely=0.92)
     else:
@@ -568,7 +568,7 @@ def line_chart():
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(), None,
-                                                                                          None, "Line Chart"))
+                                                                                          None, None, "Line Chart"))
         submit_button.place(relx=0.9, rely=0.92)
 
 
@@ -693,7 +693,7 @@ def multi_line(num_lines):
                                                                                                   limit_menu.get(),
                                                                                                   limit_entry.get(),
                                                                                                   line_chart_date.get(),
-                                                                                                  None, None, "Multi Line"),
+                                                                                                  None, None, None, "Multi Line"),
                                                                                       stacked_bar_number()])
         elif count == 3:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
@@ -712,7 +712,7 @@ def multi_line(num_lines):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Multi Line"),
+                                                                                          None, None, None, "Multi Line"),
                                                                                       stacked_bar_number()])
         else:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
@@ -733,7 +733,7 @@ def multi_line(num_lines):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Multi Line"),
+                                                                                          None, None, None, "Multi Line"),
                                                                                       stacked_bar_number()])
         submit_button.place(relx=0.9, rely=0.92)
     else:
@@ -754,7 +754,7 @@ def multi_line(num_lines):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Multi Line")])
+                                                                                          None, None, None, "Multi Line")])
         elif count == 3:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
                                                                                                       y_name_entry[0].get()]),
@@ -772,7 +772,7 @@ def multi_line(num_lines):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Multi Line")])
+                                                                                          None, None, None, "Multi Line")])
         else:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
                                                                                                       y_name_entry[0].get()]),
@@ -792,7 +792,7 @@ def multi_line(num_lines):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Multi Line")])
+                                                                                          None, None, None, "Multi Line")])
 
         submit_button.place(relx=0.9, rely=0.92)
 
@@ -949,7 +949,7 @@ def stacked_bar(num_bars):
                                                                                                   limit_menu.get(),
                                                                                                   limit_entry.get(),
                                                                                                   line_chart_date.get(),
-                                                                                                  None, None, "Stack Bar"),
+                                                                                                  None, None, None, "Stack Bar"),
                                                                                       request.request_dash(dash_data)])
         elif count == 3:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
@@ -971,7 +971,7 @@ def stacked_bar(num_bars):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Stack Bar"),
+                                                                                          None, None, None, "Stack Bar"),
                                                                                       request.request_dash(dash_data)])
         else:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
@@ -996,7 +996,7 @@ def stacked_bar(num_bars):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Stack Bar"),
+                                                                                          None, None, None, "Stack Bar"),
                                                                                       request.request_dash(dash_data)])
         submit_button.place(relx=0.9, rely=0.92)
     else:
@@ -1019,7 +1019,7 @@ def stacked_bar(num_bars):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Stack Bar")])
+                                                                                          None, None, None, "Stack Bar")])
         elif count == 3:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
                                                                                                       y_name_entry[0].get(),
@@ -1040,7 +1040,7 @@ def stacked_bar(num_bars):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Stack Bar")])
+                                                                                          None, None, None, "Stack Bar")])
         else:
             submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y_data_entry[0].get(),
                                                                                                       y_name_entry[0].get(),
@@ -1064,7 +1064,7 @@ def stacked_bar(num_bars):
                                                                                           limit_menu.get(),
                                                                                           limit_entry.get(),
                                                                                           line_chart_date.get(),
-                                                                                          None, None, "Stack Bar")])
+                                                                                          None, None, None, "Stack Bar")])
 
         submit_button.place(relx=0.9, rely=0.92)
 
