@@ -53,10 +53,12 @@ class Bubblechart:
 
         category_check = new_df.get(self.category)
         for x in category_check:
-            if isinstance(x, Number):
-                print("not int")
+            if not isinstance(x, Number):
+                print("Passed value is not a number. Category must hold numbers between [0,inf]")
+                return
             elif x < 0:
-                print("negative")
+                print("Passed category contains negative numbers. Category must hold numbers between [0,inf]")
+                return
 
         # Preparing data
         graph_data = [go.Scatter(x=new_df[self.x], y=new_df[self.y], text=new_df[self.category], mode='markers',

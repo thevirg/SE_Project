@@ -575,14 +575,14 @@ def main():
                                                                                           update_dropdown(x_entry, x_option),
                                                                                           update_dropdown(y_entry[0], y1_option),
                                                                                           update_dropdown(y_entry[1], y2_option),
-                                                                                          update_dropdown(y_entry[2], y2_option)])
+                                                                                          update_dropdown(y_entry[2], y3_option)])
         elif count == 4:
             file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: [file_selector(file_path_entry),
                                                                                           update_dropdown(x_entry, x_option),
                                                                                           update_dropdown(y_entry[0], y1_option),
                                                                                           update_dropdown(y_entry[1], y2_option),
-                                                                                          update_dropdown(y_entry[2], y2_option),
-                                                                                          update_dropdown(y_entry[3], y2_option)])
+                                                                                          update_dropdown(y_entry[2], y3_option),
+                                                                                          update_dropdown(y_entry[3], y4_option)])
 
 
         file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
@@ -832,7 +832,7 @@ def main():
                                                                                           update_dropdown(y_entry[1],
                                                                                                           y2_option),
                                                                                           update_dropdown(y_entry[2],
-                                                                                                          y2_option)])
+                                                                                                          y3_option)])
         elif count == 4:
             file_path_entry = ttk.Button(body_frame, text="Select file", command=lambda: [file_selector(file_path_entry),
                                                                                           update_dropdown(x_entry,
@@ -842,9 +842,9 @@ def main():
                                                                                           update_dropdown(y_entry[1],
                                                                                                           y2_option),
                                                                                           update_dropdown(y_entry[2],
-                                                                                                          y2_option),
+                                                                                                          y3_option),
                                                                                           update_dropdown(y_entry[3],
-                                                                                                          y2_option)])
+                                                                                                          y4_option)])
 
         file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
