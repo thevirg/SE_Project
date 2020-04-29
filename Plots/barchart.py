@@ -29,12 +29,19 @@ class Barchart:
         # Removing empty spaces to avoid errors
         filtered_df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
         new_df = filtered_df
-        # Creating sum of Y column group by X Column
-        if self.sum:
-            new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
-        elif self.mean:
-            new_df = filtered_df.groupby(self.x)[self.y].mean().reset_index()
-        # Sorting values and select first limit_num entries
+        try:
+            # Creating sum of Y column group by X Column
+            if self.sum:
+                new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
+            elif self.mean:
+                new_df = filtered_df.groupby(self.x)[self.y].mean().reset_index()
+            # Sorting values and select first limit_num entries
+        except:
+            self.sum = 0
+            self.mean = 0
+            print("Error with Sum/Mean. Check that passed Y is numerical")
+            self.generate(for_dash)
+
         if self.limit:
             new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
 

@@ -881,7 +881,7 @@ def main():
             y_data_label[i] = tk.Label(body_frame, bg='#10435e', fg='white', text="Y"+number+" data:")
             y_data_label[i].place(relx=.45, rely=(.3+(.1*i)))
 
-            y_entry[i] = ttk.Entry(body_frame)
+            y_entry[i] = ttk.OptionMenu(body_frame, y_option_var[i], column_choices)
             y_entry[i].place(relx=0.55, rely=(.3+(.1*i)), relwidth=0.3)
 
             y_name_label[i] = tk.Label(body_frame, bg='#10435e', fg='white', text="Y" + number + " Label:")

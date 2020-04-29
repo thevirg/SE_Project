@@ -33,14 +33,26 @@ class Bubblechart:
         filtered_df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
         new_df = filtered_df
 
-        # Creating sum of x and y column group by category Column
-        if self.sum:
-            new_df = filtered_df.groupby([self.category]).agg({self.x: 'sum', self.y: 'sum', self.marker_data: 'sum'}).reset_index()
-        elif self.mean:
-            new_df = filtered_df.groupby([self.category]).agg({self.x: 'mean', self.y: 'mean', self.marker_data: 'mean'}).reset_index()
-        # If limit is true, selecting first limit_num entries of y data
-        if self.limit:
-            new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
+        try:
+
+            # Creating sum of x and y column group by category Column
+            if self.sum:
+                new_df = filtered_df.groupby([self.category]).agg({self.x: 'sum', self.y: 'sum', self.marker_data: 'sum'}).reset_index()
+            elif self.mean:
+                new_df = filtered_df.groupby([self.category]).agg({self.x: 'mean', self.y: 'mean', self.marker_data: 'mean'}).reset_index()
+            # If limit is true, selecting first limit_num entries of y data
+            if self.limit:
+                new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
+
+        except:
+            self.sum = 0
+            self.mean = 0
+            print("Error with Sum/Mean. Current implementation requires X, Y, and Marker data to be numerical for this "
+                  "feature. Generating without Sum/Mean.")
+            self.generate(for_dash)
+
+
+
 
         # Preparing data
         graph_data = [go.Scatter(x=new_df[self.x], y=new_df[self.y], text=new_df[self.category], mode='markers',
