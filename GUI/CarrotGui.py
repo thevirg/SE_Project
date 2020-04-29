@@ -773,7 +773,7 @@ def main():
 
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = tk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92)
 
 
@@ -1074,7 +1074,7 @@ def main():
 
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = tk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92)
 
 
