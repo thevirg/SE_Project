@@ -61,7 +61,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
@@ -177,7 +177,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
@@ -306,7 +306,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
@@ -421,7 +421,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
@@ -547,7 +547,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
@@ -661,7 +661,7 @@ def main():
                                                                                                           y_name_entry[1].get()]),
                                                                                           submit_info(chart_title_entry.get(),
                                                                                                       x_title_entry.get(),
-                                                                                                      x_entry.get(),
+                                                                                                      x_option.get(),
                                                                                                       y_title_entry.get(),
                                                                                                       y_array, None,
                                                                                                       sum_mean.get(),
@@ -680,7 +680,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -701,7 +701,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -722,7 +722,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -740,7 +740,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -749,7 +749,7 @@ def main():
                                                                                               line_chart_date.get(),
                                                                                               None, None, None, "Multi Line")])
             else:
-                submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y1_option.get().get(),
+                submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y1_option.get(),
                                                                                                           y_name_entry[0].get()]),
                                                                                           y_array.append([y2_option.get().get(),
                                                                                                           y_name_entry[1].get()]),
@@ -760,7 +760,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -798,7 +798,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
@@ -946,7 +946,7 @@ def main():
                                                                                                           stack_color[1]]),
                                                                                           submit_info(chart_title_entry.get(),
                                                                                                       x_title_entry.get(),
-                                                                                                      x_entry.get(),
+                                                                                                      x_option.get(),
                                                                                                       y_title_entry.get(),
                                                                                                       y_array, None,
                                                                                                       sum_mean.get(),
@@ -968,7 +968,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -993,7 +993,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -1016,7 +1016,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -1037,7 +1037,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -1061,7 +1061,7 @@ def main():
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
                                                                                               x_title_entry.get(),
-                                                                                              x_entry.get(),
+                                                                                              x_option.get(),
                                                                                               y_title_entry.get(),
                                                                                               y_array, None,
                                                                                               sum_mean.get(),
@@ -1088,7 +1088,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=front_page)
+        bck_button = ttk.Button(background, text="Back", command=back_front_page)
         bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
@@ -1108,6 +1108,10 @@ def main():
                                                                                 bar_chart()])
         # places the button in the lower right corner of the screen
         next_button.place(relx=0.9, rely=0.92)
+
+        # Creates a back button to allow the user to go back to the chart selection page
+        bck_button = tk.Button(background, text="Back", command=front_page)
+        bck_button.place(relx=0.01, rely=0.92)
 
 
     def multi_line_number():
@@ -1146,6 +1150,10 @@ def main():
         # places the button in the lower right corner of the screen
         next_button.place(relx=0.9, rely=0.92)
 
+        # Creates a back button to allow the user to go back to the chart selection page
+        bck_button = tk.Button(background, text="Back", command=front_page)
+        bck_button.place(relx=0.01, rely=0.92)
+
     def stacked_bar_number():
 
         clear()
@@ -1181,6 +1189,10 @@ def main():
         next_button = ttk.Button(background, text="Next Page", command=lambda: stacked_bar(option.get()))
         # places the button in the lower right corner of the screen
         next_button.place(relx=0.9, rely=0.92)
+
+        # Creates a back button to allow the user to go back to the chart selection page
+        bck_button = tk.Button(background, text="Back", command=front_page)
+        bck_button.place(relx=0.01, rely=0.92)
 
 
 
@@ -1340,6 +1352,11 @@ def main():
     def get_color(index, button_array):
         stack_color[index] = askcolor()[1]
         button_array[index].config(bg=stack_color[index])
+
+    def back_front_page():
+        column_choices.clear()
+        column_choices.append('Select a File')
+        front_page()
 
     # Create a global dictionary that can be sent to RequestHandler.py
     chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,

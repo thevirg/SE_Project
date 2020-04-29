@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.offline as pyo
 import plotly.graph_objs as go
-
+from numbers import Number
 
 class Bubblechart:
     sum = 0
@@ -51,8 +51,12 @@ class Bubblechart:
                   "feature. Generating without Sum/Mean.")
             self.generate(for_dash)
 
-
-
+        category_check = new_df.get(self.category)
+        for x in category_check:
+            if isinstance(x, Number):
+                print("not int")
+            elif x < 0:
+                print("negative")
 
         # Preparing data
         graph_data = [go.Scatter(x=new_df[self.x], y=new_df[self.y], text=new_df[self.category], mode='markers',

@@ -47,6 +47,7 @@ class Heatmap:
         if self.limit:
             new_df = new_df.sort_values(by=[self.z], ascending=[False]).head(self.limit_num)
 
+
         # Preparing data
         graph_data = [go.Heatmap(x=new_df[self.x], y=new_df[self.y], z=new_df[self.z].values.tolist(), colorscale='Jet')]
 
