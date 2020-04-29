@@ -43,13 +43,22 @@ class Multiline:
         new_df2 = new_df
         # Preparing data
         graph_data = []
-        for i in range(len(self.y_array)):
-            if self.sum:
-                new_df2 = new_df.agg({self.y_array[i][0]: 'sum'}).reset_index()
-            elif self.mean:
-                new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
-            trace = go.Scatter(x=new_df2[self.x], y=new_df2[self.y_array[i][0]], mode='lines', name=self.y_array[i][1])
-            graph_data.append(trace)
+
+        try:
+
+            for i in range(len(self.y_array)):
+                if self.sum:
+                    new_df2 = new_df.agg({self.y_array[i][0]: 'sum'}).reset_index()
+                elif self.mean:
+                    new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
+                trace = go.Scatter(x=new_df2[self.x], y=new_df2[self.y_array[i][0]], mode='lines', name=self.y_array[i][1])
+                graph_data.append(trace)
+        except:
+            self.sum = 0
+            self.mean = 0
+            print("Error with Sum/Mean. Current implementation requires all Y data values to be numerical. Generating"
+                  "without Sum/Mean")
+            self.generate(for_dash)
 
 
         # Preparing layout

@@ -29,14 +29,24 @@ class Heatmap:
         filtered_df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
         new_df = filtered_df
 
-        # Creating sum of Y column group by X Column
-        if self.sum:
-            new_df = filtered_df.groupby(self.x)[self.z].sum().reset_index()
-        elif self.mean:
-            new_df = filtered_df.groupby(self.x)[self.z].mean().reset_index()
-        # Sorting values and select first limit_num entries
+        try:
+
+            # Creating sum of Y column group by X Column
+            if self.sum:
+                new_df = filtered_df.groupby(self.x)[self.z].sum().reset_index()
+            elif self.mean:
+                new_df = filtered_df.groupby(self.x)[self.z].mean().reset_index()
+            # Sorting values and select first limit_num entries
+
+        except:
+            self.sum = 0
+            self.mean = 0
+            print("Error with Sum/Mean. Check that Z is numerical to use this feature. Generating without Sum/Mean")
+            self.generate(for_dash)
+
         if self.limit:
             new_df = new_df.sort_values(by=[self.z], ascending=[False]).head(self.limit_num)
+
 
         # Preparing data
         graph_data = [go.Heatmap(x=new_df[self.x], y=new_df[self.y], z=new_df[self.z].values.tolist(), colorscale='Jet')]

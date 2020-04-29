@@ -47,18 +47,27 @@ class Stackbar:
         new_df2 = new_df
         # Preparing data
         graph_data = []
-        for i in range(len(self.y_array)):
-            if self.sum:
-                new_df2 = new_df.agg({self.y_array[i][0]: 'sum'}).reset_index()
-            elif self.mean:
-                new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
 
-            trace = go.Bar(x=new_df[self.x],
-                           y=new_df[self.y_array[i][0]],
-                           name=self.y_array[i][1],
-                           marker={'color': self.y_array[i][2]})
-            graph_data.append(trace)
+        try:
 
+            for i in range(len(self.y_array)):
+                if self.sum:
+                    new_df2 = new_df.agg({self.y_array[i][0]: 'sum'}).reset_index()
+                elif self.mean:
+                    new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
+
+                trace = go.Bar(x=new_df[self.x],
+                               y=new_df[self.y_array[i][0]],
+                               name=self.y_array[i][1],
+                               marker={'color': self.y_array[i][2]})
+                graph_data.append(trace)
+
+        except:
+            self.sum = 0
+            self.mean = 0
+            print("Error with Sum/Mean. Current implementation requires all Y data values to be numerical. Generating"
+                  "without Sum/Mean")
+            self.generate(for_dash)
         # if for a dashboard, return graph_data. Otherwise, generate HTML form
 
 
