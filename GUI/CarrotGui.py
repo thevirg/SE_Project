@@ -13,7 +13,6 @@ def main():
     def clear():
         background.destroy()
 
-
     def front_page():
         global for_dash
         for_dash = 0  # changes the value back to 0 in case the user uses the back button
@@ -50,7 +49,6 @@ def main():
         next_button = ttk.Button(background, text="Next Page", command=get_chart)
         # places the button in the lower right corner of the screen
         next_button.place(relx=0.9, rely=0.92)
-
 
     def bar_chart():
         global for_dash
@@ -127,10 +125,6 @@ def main():
         value_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Enter a limit, or 0 for none")
         value_label.place(relx=0.6, rely=0.58)
 
-        limit_entry = tk.Entry(body_frame)
-        limit_entry.place(relx=0.84, rely=0.58)
-
-
         limit_entry = ttk.Entry(body_frame)
         limit_entry.place(relx=0.84, rely=0.58, relwidth=0.15)
 
@@ -166,7 +160,6 @@ def main():
                                                                                                 None, None,
                                                                                                 "Bar Chart"))
             submit_button.place(relx=0.88, rely=0.92)
-
 
     def bubble_chart():
         global for_dash
@@ -260,8 +253,6 @@ def main():
         category_entry = ttk.OptionMenu(body_frame, category_option, column_choices)
         category_entry.place(relx=0.15, rely=0.9)
 
-
-
         # This if statement checks to see if the user selected to generate a dashboard
         # If a dashboard was selected the submit button will take the user to the next chart to enter data for
         if for_dash:
@@ -295,7 +286,6 @@ def main():
                                                                    category_option.get(), None,
                                                                    "Bubble Chart"))
             submit_button.place(relx=0.88, rely=0.92)
-
 
     def heat_map():
         global for_dash
@@ -412,7 +402,6 @@ def main():
                                                                                               None, None, "Heat Map"))
             submit_button.place(relx=0.9, rely=0.92)
 
-
     def line_chart():
         clear()
         # The two lines of code below create an empty background frame that can be added to
@@ -525,7 +514,6 @@ def main():
                                                                                               line_chart_date.get(), None,
                                                                                               None, None, "Line Chart"))
             submit_button.place(relx=0.9, rely=0.92)
-
 
     def multi_line(num_lines):
 
@@ -770,12 +758,6 @@ def main():
                                                                                               None, None, None, "Multi Line")])
 
             submit_button.place(relx=0.9, rely=0.92)
-
-
-        # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=back_front_page)
-        bck_button.place(relx=0.01, rely=0.92)
-
 
     def stacked_bar(num_bars):
 
@@ -1072,12 +1054,6 @@ def main():
 
             submit_button.place(relx=0.9, rely=0.92)
 
-
-        # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=back_front_page)
-        bck_button.place(relx=0.01, rely=0.92)
-
-
     def dashboard():
         global for_dash
         for_dash = 1  # changes the value to 1 so that charts will be generated for the dashboard
@@ -1113,7 +1089,6 @@ def main():
         bck_button = tk.Button(background, text="Back", command=front_page)
         bck_button.place(relx=0.01, rely=0.92)
 
-
     def multi_line_number():
 
         clear()
@@ -1135,7 +1110,7 @@ def main():
 
         # Creates a label indicating to the user to select a chart type
         text = tk.Label(lower_frame, bg='#10435e', fg='white', text="Please select the number of data sources for"
-                                                                    "the multi-line chart: ")
+                                                                    " the multi-line chart: ")
         font_style = ('', 12)
         text.config(font=font_style)
         text.place(relx=0.5, rely=0.35, anchor='n')
@@ -1175,7 +1150,7 @@ def main():
 
         # Creates a label indicating to the user to select a chart type
         text = tk.Label(lower_frame, bg='#10435e', fg='white', text="Please select the number of data sources for"
-                                                                    "the Stacked Bar chart: ")
+                                                                    " the Stacked Bar chart: ")
         font_style = ('', 12)
         text.config(font=font_style)
         text.place(relx=0.5, rely=0.35, anchor='n')
@@ -1193,8 +1168,6 @@ def main():
         # Creates a back button to allow the user to go back to the chart selection page
         bck_button = tk.Button(background, text="Back", command=front_page)
         bck_button.place(relx=0.01, rely=0.92)
-
-
 
     # Function used to get the chart that the user selected from the option menu on the front page
     def get_chart():
@@ -1238,7 +1211,6 @@ def main():
             # Create button to close error box
             button = ttk.Button(error_box, text="OK", command=error_box.destroy)
             button.place(relx=0.5, rely=0.5, anchor='n')
-
 
     # This method gets the data from the heat map entry widgets to populate the dictionary that can be handled by the
     # RequestHandler.py
@@ -1317,8 +1289,6 @@ def main():
             else:
                 request.request_stack(chart_data, for_dash)
 
-
-
     # Function that can be called by a button or other widget that will allow the user to select the file they
     # wish to open, this function will change the value in the global dictionary
     # This function is used so that the user does not have to type the file path themselves
@@ -1354,12 +1324,11 @@ def main():
         for x in column_choices:
             menu.add_command(label=x, command=lambda value=x: option_var.set(value))
 
-        previous_column_size = len(column_choices)
 
+        previous_column_size = len(column_choices)
 
     def set_dash_title(title):
         dash_data['dash_title'] = title
-
 
     # Takes in the index of the calling button (specified in the for loop in stacked_bar(), and uses it to assign
     # a color to the corresponding stack_color nased on the tkinter colorpicker. Then, sets the color of the calling button
