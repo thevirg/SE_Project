@@ -152,6 +152,8 @@ def main():
                                                                                                 "Bar Chart"),
                                                                                     bubble_chart()])
             next_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=back_front_page())
+            bck_button.place(relx=0.01, rely=0.92)
         else:
             submit_button = ttk.Button(background, text="Generate Chart", command=lambda: submit_info(
                                                                                                 chart_title_entry.get(),
@@ -166,6 +168,8 @@ def main():
                                                                                                 None, None,
                                                                                                 "Bar Chart"))
             submit_button.place(relx=0.88, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=back_front_page)
+            bck_button.place(relx=0.01, rely=0.92)
 
 
     def bubble_chart():
@@ -281,6 +285,8 @@ def main():
                                                                                                   "Bubble Chart"),
                                                                                       heat_map()])
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=[back_dash(), bar_chart()])
+            bck_button.place(relx=0.01, rely=0.92)
         else:
             submit_button = ttk.Button(background, text="Generate Chart",
                                        command=lambda: submit_info(chart_title_entry.get(),
@@ -295,6 +301,8 @@ def main():
                                                                    category_option.get(), None,
                                                                    "Bubble Chart"))
             submit_button.place(relx=0.88, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=back_front_page)
+            bck_button.place(relx=0.01, rely=0.92)
 
 
     def heat_map():
@@ -305,9 +313,6 @@ def main():
         background = tk.Frame(window, bg='#10435e')
         background.place(relwidth=1, relheight=1)
 
-        # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=back_front_page)
-        bck_button.place(relx=0.01, rely=0.92, relwidth=0.05)
 
         # Create a title label to be placed at the top of the page
         title_label = tk.Label(background, bg='#10435e', fg='white', text="Heat Map")
@@ -399,6 +404,8 @@ def main():
                                                                                                   None, None, None, "Heat Map"),
                                                                                       line_chart()])
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command= [back_dash(), bubble_chart()])
+            bck_button.place(relx=0.01, rely=0.92)
         else:
             submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
                                                                                               x_title_entry.get(),
@@ -411,6 +418,8 @@ def main():
                                                                                               limit_entry.get(), None, None,
                                                                                               None, None, "Heat Map"))
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=back_front_page)
+            bck_button.place(relx=0.01, rely=0.92)
 
 
     def line_chart():
@@ -513,6 +522,8 @@ def main():
                                                                                                   None, None, None, "Line Chart"),
                                                                                       multi_line_number()])
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=[back_dash(), heat_map()])
+            bck_button.place(relx=0.01, rely=0.92)
         else:
             submit_button = ttk.Button(background, text="Submit", command=lambda: submit_info(chart_title_entry.get(),
                                                                                               x_title_entry.get(),
@@ -525,6 +536,8 @@ def main():
                                                                                               line_chart_date.get(), None,
                                                                                               None, None, "Line Chart"))
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=back_front_page)
+            bck_button.place(relx=0.01, rely=0.92)
 
 
     def multi_line(num_lines):
@@ -711,6 +724,9 @@ def main():
                                                                                               None, None, None, "Multi Line"),
                                                                                           stacked_bar_number()])
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=lambda: [back_dash(), line_chart()])
+            bck_button.place(relx=0.01, rely=0.92)
+
         else:
             # each if loop checks how many lines there are, and makes the submit command get all appropriate y_data and
             # place it in the proper place in an array to pass to submit_info
@@ -770,11 +786,9 @@ def main():
                                                                                               None, None, None, "Multi Line")])
 
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=back_front_page)
+            bck_button.place(relx=0.01, rely=0.92)
 
-
-        # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = ttk.Button(background, text="Back", command=back_front_page)
-        bck_button.place(relx=0.01, rely=0.92)
 
 
     def stacked_bar(num_bars):
@@ -1003,6 +1017,8 @@ def main():
                                                                                               None, None, None, "Stack Bar"),
                                                                                           request.request_dash(dash_data)])
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=lambda: [back_front_page(), multi_line_number()])
+            bck_button.place(relx=0.01, rely=0.92)
         else:
             # each if loop checks how many lines there are, and makes the submit command get all appropriate y_data and
             # place it in the proper place in an array to pass to submit_info
@@ -1071,6 +1087,8 @@ def main():
                                                                                               None, None, None, "Stack Bar")])
 
             submit_button.place(relx=0.9, rely=0.92)
+            bck_button = ttk.Button(background, text="Back", command=back_front_page)
+            bck_button.place(relx=0.01, rely=0.92)
 
 
         # Creates a back button to allow the user to go back to the chart selection page
@@ -1368,9 +1386,25 @@ def main():
         stack_color[index] = askcolor()[1]
         button_array[index].config(bg=stack_color[index])
 
+
+    def back_dash():
+        column_choices.clear()
+        column_choices.append('Select a Column')
+        chart_data["limit"] = 0
+        chart_data["mean"] = 0
+        chart_data["sum"] = 0
+        chart_data["limit_num"] = 0
+        chart_data["date"] = 0
+
+
     def back_front_page():
         column_choices.clear()
         column_choices.append('Select a Column')
+        chart_data["limit"] = 0
+        chart_data["mean"] = 0
+        chart_data["sum"] = 0
+        chart_data["limit_num"] = 0
+        chart_data["date"] = 0
         front_page()
 
     # Create a global dictionary that can be sent to RequestHandler.py
