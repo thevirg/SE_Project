@@ -755,11 +755,11 @@ def main():
             else:
                 submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y1_option.get(),
                                                                                                           y_name_entry[0].get()]),
-                                                                                          y_array.append([y2_option.get().get(),
+                                                                                          y_array.append([y2_option.get(),
                                                                                                           y_name_entry[1].get()]),
-                                                                                          y_array.append([y3_option.get().get(),
+                                                                                          y_array.append([y3_option.get(),
                                                                                                           y_name_entry[2].get()]),
-                                                                                          y_array.append([y4_option.get().get(),
+                                                                                          y_array.append([y4_option.get(),
                                                                                                           y_name_entry[3].get()]),
                                                                                           submit_info(
                                                                                               chart_title_entry.get(),
