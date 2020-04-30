@@ -51,6 +51,16 @@ class Bubblechart:
                   "feature. Generating without Sum/Mean.")
             self.generate(for_dash)
 
+        marker_check = new_df.get(self.marker_data)
+        for x in marker_check:
+            if not isinstance(x, Number):
+                print("Passed value is not a number. Category must hold numbers between [0,inf]")
+                return
+            elif x < 0:
+                print("Passed category contains negative numbers. Category must hold numbers between [0,inf]")
+                return
+
+
         category_check = new_df.get(self.category)
         for x in category_check:
             if not isinstance(x, Number):

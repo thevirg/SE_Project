@@ -1293,6 +1293,10 @@ def main():
     # wish to open, this function will change the value in the global dictionary
     # This function is used so that the user does not have to type the file path themselves
     def file_selector(button):
+
+        if chart_data['file'] is not None:
+            print("clear hit")
+            clear()
         chart_data['file'] = filedialog.askopenfilename()
         if chart_data['file'] == '':
             return
@@ -1302,13 +1306,26 @@ def main():
         button.config(text = button_update)
         df = pd.read_csv(chart_data['file'])
         array = list(df.columns)
+
+        global previous_column_choices
+        previous_column_choices = column_choices
+
+        column_choices.clear()
+
         for x in array:
             column_choices.append(x)
 
     def update_dropdown(dropdown, option_var):
+        global previous_column_size
         menu = dropdown["menu"]
+
+        menu.delete(1,previous_column_size)
+
         for x in column_choices:
             menu.add_command(label=x, command=lambda value=x: option_var.set(value))
+
+
+        previous_column_size = len(column_choices)
 
     def set_dash_title(title):
         dash_data['dash_title'] = title
@@ -1322,7 +1339,7 @@ def main():
 
     def back_front_page():
         column_choices.clear()
-        column_choices.append('Select a File')
+        column_choices.append('Select a Column')
         front_page()
 
     # Create a global dictionary that can be sent to RequestHandler.py
@@ -1331,11 +1348,13 @@ def main():
                   'sort': None, 'y_array': None}
     dash_data = {'bar': None, 'bubble': None, 'heat': None, 'line': None, 'multi': None, 'stack': None, 'dash_title': None}
 
-    column_choices = ['Select a File']
+    column_choices = ['Select a Column']
 
     stack_color = ['','','','']
     # Create a new window
     window = tk.Tk()
+
+
 
     # Change the title of the window
     window.title("Project Carrot")
@@ -1368,7 +1387,7 @@ def main():
     marker_option = tk.StringVar(window)
     # Holds a boolean value to determine if the charts should be generated for a dashboard
     # if the user selects a dashboard on the front page the value changes to 1
-    for_dash = 0
+
 
     # Create a canvas to adjust the window size
     window_size = tk.Canvas(window, width=800, height=400)
@@ -1383,3 +1402,7 @@ def main():
 
     window.mainloop()
 
+
+for_dash = 0
+
+previous_column_size = 0
