@@ -33,9 +33,9 @@ class Heatmap:
 
             # Creating sum of Y column group by X Column
             if self.sum:
-                new_df = filtered_df.groupby(self.x)[self.z].sum().reset_index()
+                new_df = filtered_df.groupby([self.x,self.y])[self.z].sum().reset_index()
             elif self.mean:
-                new_df = filtered_df.groupby(self.x)[self.z].mean().reset_index()
+                new_df = filtered_df.groupby([self.x,self.y])[self.z].mean().reset_index()
             # Sorting values and select first limit_num entries
 
         except:
