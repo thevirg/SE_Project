@@ -44,9 +44,16 @@ class Multiline:
         filtered_df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
         new_df = filtered_df
 
-        # Creating sum of x and y column group by category Column
-        if self.date:
-            new_df[self.x] = pd.to_datetime(new_df[self.x])
+
+        try:
+            # Creating sum of x and y column group by category Column
+            if self.date:
+                new_df[self.x] = pd.to_datetime(new_df[self.x])
+        except:
+            self.date(0)
+            print("Error with Period of Time. Check that X axis is numerical series of time. Generating without Period "
+                  "of Time")
+            self.generate(for_dash)
 
         # If limit is true, selecting first limit_num entries of y data. Always sorts by first trace
         if self.limit:
