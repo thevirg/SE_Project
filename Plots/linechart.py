@@ -3,12 +3,24 @@ import plotly.offline as pyo
 import plotly.graph_objs as go
 
 class Line:
-
+    # limit_num: Holds the number of X entries to limit the dataframe to
+    # limit = integer boolean, 1=true=use limit, 0=false=don't use limit
+    # sum = integer boolean, 1=true=use sum, 0=false=don't use sum
+    # mean = integer boolean, 1=true=use mean, 0=false=don't use mean
+    # date = integer boolean for converting x axis to date time
     sum = 0
     limit = 0
     limit_num = 0
     date = 0
+    mean = 0
 
+
+    # Initializes Barchart object and sets the basic variables to empty strings. These variables must be populated in
+    # request handler to use this code
+    # file = path to csv
+    # x = column to use for x axis data
+    # y = column to use for y axis data
+    # title, x_title, y_title: Titles of graph, x axis, and y axis respectively
     def __init__(self):
         self.file = ''
         self.x = ''
@@ -16,7 +28,7 @@ class Line:
         self.title = ''
         self.x_title = ''
         self.y_title = ''
-        self.mean = 0
+
 
     # generates Linechart using provided data. MUST SET DATA BY ASSIGNING DIRECTLY TO VARIABLES FIRST
     # Call with a 0 to generate a chart by itself, call with a 1 to send to a dashboard
@@ -31,10 +43,20 @@ class Line:
         # Creating sum of x and y column group by category Column
         if self.date:
             new_df[self.x] = pd.to_datetime(new_df[self.x])
-        if self.sum:
-            new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
-        elif self.mean:
-            new_df = filtered_df.groupby(self.x)[self.y].mean().reset_index()
+
+        try:
+            if self.sum:
+                new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
+            elif self.mean:
+                new_df = filtered_df.groupby(self.x)[self.y].mean().reset_index()
+        # if error occurs for sum/mean, regenerates after setting sum/mean boolean to false. Prints out error message
+        # to console saying why error occuered (Y is not a number)
+        except:
+            self.sum = 0
+            self.mean = 0
+            print("Error with Sum/Mean. Check that Y is numerical to use this feature. Generating without Sum/Mean")
+            self.generate(for_dash)
+
         # If limit is true, selecting first limit_num entries of y data
         if self.limit:
             new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
@@ -50,7 +72,7 @@ class Line:
         fig = go.Figure(data=graph_data, layout=layout)
 
         if for_dash:
-            return graph_data
+            return fig
         else:
             pyo.plot(fig, filename='linechart.html')
 
@@ -80,6 +102,7 @@ class Line:
         for x in range(len(ydata)):
             self.y_array.append(ydata[x])
 
+    # Gets the titles for dashboard. Usec by RequestHandler to get descriptions for Dashboard
     def get_dash_titles(self):
         data = {'Title': self.title,
                 'XAxis': self.x_title,

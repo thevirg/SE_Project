@@ -8,6 +8,16 @@ class Bubblechart:
     limit = 0
     limit_num = 0
 
+
+    # Initializes Barchart object and sets the basic variables to empty strings. These variables must be populated in
+    # request handler to use this code
+    # file = path to csv
+    # x = column to use for x axis data. must be a positive number
+    # y = column to use for y axis data. must be a positive number
+    # title, x_title, y_title: Titles of graph, x axis, and y axis respectively
+    # category = sets the column of data to use for bubble names/rows for marker_data.
+    # maker_data = sets the column of data to use for bubble size/marker data. must be a positive number
+    # bubble scale = currently unused, sets the scale to divide marker_data by
     def __init__(self):
         self.file = ''
         self.x = ''
@@ -44,6 +54,9 @@ class Bubblechart:
             if self.limit:
                 new_df = new_df.sort_values(by=[self.y], ascending=[False]).head(self.limit_num)
 
+        # if error occurs for sum/mean, regenerates after setting sum/mean boolean to false. Prints out error message
+        # to console saying why error occuered (y,x, marker is not a number)
+
         except:
             self.sum = 0
             self.mean = 0
@@ -51,6 +64,8 @@ class Bubblechart:
                   "feature. Generating without Sum/Mean.")
             self.generate(for_dash)
 
+        # Checks that marker is both a number and positive. Displays error message if either is false, as category
+        # must contain only positive numbers
         marker_check = new_df.get(self.marker_data)
         for x in marker_check:
             if not isinstance(x, Number):
@@ -60,6 +75,8 @@ class Bubblechart:
                 print("Passed category contains negative numbers. Category must hold numbers between [0,inf]")
                 return
 
+        # Checks that category is both a number and positive. Displays error message if either is false, as category
+        # must contain only positive numbers
 
         category_check = new_df.get(self.category)
         for x in category_check:
@@ -102,6 +119,7 @@ class Bubblechart:
         self.mean = 1
         self.sum = 0
 
+# Gets the titles for dashboard. Usec by RequestHandler to get descriptions for Dashboard
     def get_dash_titles(self):
         data = {'Title': self.title,
                 'XAxis': self.x_title,

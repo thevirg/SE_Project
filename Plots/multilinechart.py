@@ -4,12 +4,24 @@ import plotly.graph_objs as go
 
 
 class Multiline:
+    # limit_num: Holds the number of X entries to limit the dataframe to
+    # limit = integer boolean, 1=true=use limit, 0=false=don't use limit
+    # sum = integer boolean, 1=true=use sum, 0=false=don't use sum
+    # mean = integer boolean, 1=true=use mean, 0=false=don't use mean
+    # date = integer boolean for converting x axis to date time
 
     sum = 0
     limit = 0
     limit_num = 0
     date = 0
+    mean = 0
 
+    # Initializes Barchart object and sets the basic variables to empty strings. These variables must be populated in
+    # request handler to use this code
+    # file = path to csv
+    # x = column to use for x axis data
+    # y = column to use for y axis data
+    # title, x_title, y_title: Titles of graph, x axis, and y axis respectively
     def __init__(self):
         self.file = ''
         self.x = ''
@@ -20,7 +32,7 @@ class Multiline:
         self.title = ''
         self.x_title = ''
         self.y_title = ''
-        self.mean = 0
+
 
     # generates Bubblechart using provided data. MUST SET DATA BY ASSIGNING DIRECTLY TO VARIABLES FIRST
     # Call with a 0 to generate a chart by itself, call with a 1 to send to a dashboard
@@ -53,6 +65,8 @@ class Multiline:
                     new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
                 trace = go.Scatter(x=new_df2[self.x], y=new_df2[self.y_array[i][0]], mode='lines', name=self.y_array[i][1])
                 graph_data.append(trace)
+        # if error occurs for sum/mean, regenerates after setting sum/mean boolean to false. Prints out error message
+        # to console saying why error occuered (y is not a number)
         except:
             self.sum = 0
             self.mean = 0
@@ -99,6 +113,7 @@ class Multiline:
         for x in range(len(ydata)):
             self.y_array.append(ydata[x])
 
+    # Gets the titles for dashboard. Usec by RequestHandler to get descriptions for Dashboard
     def get_dash_titles(self):
         data = {'Title': self.title,
                 'XAxis': self.x_title,

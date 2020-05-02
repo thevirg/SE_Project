@@ -6,6 +6,15 @@ from Plots.multilinechart import Multiline
 from Plots.heatmap import Heatmap
 import Plots.Dashboard as d
 
+
+# Called by the GUI to generate a bar chart. If not for a dash, generates the chart and displays it. If for a dash,
+# generates the chart and sends the figure and description to the calling function for display.
+
+# Takes in the chart_data dictionary as an argument, and the for_dash boolean. If for_dash is 0, generates chart, if 1,
+# returns information for a dashboard. The chart_data dictionary is used to populate the variables in the chart
+# object, based on the keys of the global dictionary passed. See the individual chart_name.py script for information
+# about variables
+
 def request_bar(chart_data, for_dash):
     chart = Barchart()
     chart.title = chart_data['title']
@@ -30,6 +39,15 @@ def request_bar(chart_data, for_dash):
     else:
         chart.generate(0)
 
+
+
+# Called by the GUI to generate a stack bar chart. If not for a dash, generates the chart and displays it. If for a dash,
+# generates the chart and sends the figure and description to the calling function for display.
+
+# Takes in the chart_data dictionary as an argument, and the for_dash boolean. If for_dash is 0, generates chart, if 1,
+# returns information for a dashboard. The chart_data dictionary is used to populate the variables in the chart
+# object, based on the keys of the global dictionary passed. See the individual chart_name.py script for information
+# about variables
 
 def request_stack(chart_data, for_dash):
     chart = Stackbar()
@@ -66,6 +84,15 @@ def request_stack(chart_data, for_dash):
         chart.generate(0)
 
 
+
+# Called by the GUI to generate a multi-line chart. If not for a dash, generates the chart and displays it. If for a dash,
+# generates the chart and sends the figure and description to the calling function for display.
+
+# Takes in the chart_data dictionary as an argument, and the for_dash boolean. If for_dash is 0, generates chart, if 1,
+# returns information for a dashboard. The chart_data dictionary is used to populate the variables in the chart
+# object, based on the keys of the global dictionary passed. See the individual chart_name.py script for information
+# about variables
+
 def request_multi(chart_data, for_dash):
 
     chart = Multiline()
@@ -99,6 +126,15 @@ def request_multi(chart_data, for_dash):
         chart.generate(0)
 
 
+
+# Called by the GUI to generate a line chart. If not for a dash, generates the chart and displays it. If for a dash,
+# generates the chart and sends the figure and description to the calling function for display.
+
+# Takes in the chart_data dictionary as an argument, and the for_dash boolean. If for_dash is 0, generates chart, if 1,
+# returns information for a dashboard. The chart_data dictionary is used to populate the variables in the chart
+# object, based on the keys of the global dictionary passed. See the individual chart_name.py script for information
+# about variables
+
 def request_line(chart_data, for_dash):
 
     chart = Line()
@@ -129,6 +165,15 @@ def request_line(chart_data, for_dash):
     else:
         chart.generate(0)
 
+
+
+# Called by the GUI to generate a bubble chart. If not for a dash, generates the chart and displays it. If for a dash,
+# generates the chart and sends the figure and description to the calling function for display.
+
+# Takes in the chart_data dictionary as an argument, and the for_dash boolean. If for_dash is 0, generates chart, if 1,
+# returns information for a dashboard. The chart_data dictionary is used to populate the variables in the chart
+# object, based on the keys of the global dictionary passed. See the individual chart_name.py script for information
+# about variables
 
 def request_bubble(chart_data, for_dash):
     chart = Bubblechart()
@@ -161,6 +206,15 @@ def request_bubble(chart_data, for_dash):
         chart.generate(0)
 
 
+
+# Called by the GUI to generate a heat map. If not for a dash, generates the chart and displays it. If for a dash,
+# generates the chart and sends the figure and description to the calling function for display.
+
+# Takes in the chart_data dictionary as an argument, and the for_dash boolean. If for_dash is 0, generates chart, if 1,
+# returns information for a dashboard. The chart_data dictionary is used to populate the variables in the chart
+# object, based on the keys of the global dictionary passed. See the individual chart_name.py script for information
+# about variables
+
 def request_heat(chart_data, for_dash):
     chart = Heatmap()
     chart.title = chart_data['title']
@@ -191,6 +245,9 @@ def request_heat(chart_data, for_dash):
 
 # Dash request method. For the dash_data argument, looks for a dictionary of the format
 # {'bar': bar_data, 'line': line_data, 'stack': stack_data, etc...}
+# takes in the dash_data dictionary, which is a dictionary of dictionaries containing each chart's data. Each chart's
+# data is passed to the respective request functions above, and the returned figures and descriptions are then passed
+# to the Dashboard.py script to generate the dashboard HTML page.
 
 
 def request_dash(dash_data):
