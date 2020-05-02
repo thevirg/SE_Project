@@ -6,11 +6,23 @@ import plotly.graph_objs as go
 
 
 class Barchart:
+
+    # limit_num: Holds the number of X entries to limit the dataframe to
+    # limit = integer boolean, 1=true=use limit, 0=false=don't use limit
+    # sum = integer boolean, 1=true=use sum, 0=false=don't use sum
+    # mean = integer boolean, 1=true=use mean, 0=false=don't use mean
     limit_num = 0
     limit = 0
     sum = 0
     mean = 0
 
+
+    # Initializes Barchart object and sets the basic variables to empty strings. These variables must be populated in
+    # request handler to use this code
+    # file = path to csv
+    # x = column to use for x axis data
+    # y = column to use for y axis data
+    # title, x_title, y_title: Titles of graph, x axis, and y axis respectively
     def __init__(self):
 
         self.file = ''
@@ -30,13 +42,15 @@ class Barchart:
         filtered_df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
         new_df = filtered_df
         try:
-            # Creating sum of Y column group by X Column
+            # Creating sum or mean of Y column group by X Column if boolean set
             if self.sum:
                 new_df = filtered_df.groupby(self.x)[self.y].sum().reset_index()
             elif self.mean:
                 new_df = filtered_df.groupby(self.x)[self.y].mean().reset_index()
             # Sorting values and select first limit_num entries
         except:
+            # if error occurs for sum/mean, regenerates after setting sum/mean boolean to false. Prints out error message
+            # to console saying why error occuered (y is not a number)
             self.sum = 0
             self.mean = 0
             print("Error with Sum/Mean. Check that passed Y is numerical")
@@ -79,6 +93,7 @@ class Barchart:
         self.mean = 1
         self.sum = 0
 
+    # Gets the titles for dashboard. Usec by RequestHandler to get descriptions for Dashboard
     def get_dash_titles(self):
         data = {'Title': self.title,
                 'XAxis': self.x_title,

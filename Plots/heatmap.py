@@ -4,11 +4,23 @@ import pandas as pd
 
 class Heatmap:
 
+    # limit_num: Holds the number of X entries to limit the dataframe to
+    # limit = integer boolean, 1=true=use limit, 0=false=don't use limit
+    # sum = integer boolean, 1=true=use sum, 0=false=don't use sum
+    # mean = integer boolean, 1=true=use mean, 0=false=don't use mean
     limit_num = 0
     limit = 0
     sum = 0
     mean = 0
 
+
+    # Initializes Barchart object and sets the basic variables to empty strings. These variables must be populated in
+    # request handler to use this code
+    # file = path to csv
+    # x = column to use for x axis data
+    # y = column to use for y axis data - must be
+    # title, x_title, y_title: Titles of graph, x axis, and y axis respectively
+    # z = column to use for z axis, which is color/value of each square. must be a positive number
     def __init__(self):
 
         self.file = ''
@@ -38,6 +50,8 @@ class Heatmap:
                 new_df = filtered_df.groupby([self.x,self.y])[self.z].mean().reset_index()
             # Sorting values and select first limit_num entries
 
+        # if error occurs for sum/mean, regenerates after setting sum/mean boolean to false. Prints out error message
+        # to console saying why error occuered (z is not a number)
         except:
             self.sum = 0
             self.mean = 0
@@ -82,6 +96,7 @@ class Heatmap:
         self.mean = 1
         self.sum = 0
 
+    # Gets the titles for dashboard. Usec by RequestHandler to get descriptions for Dashboard
     def get_dash_titles(self):
         data = {'Title': self.title,
                 'XAxis': self.x_title,
