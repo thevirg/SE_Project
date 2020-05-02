@@ -1273,32 +1273,32 @@ def main():
         # Reads the chart key to determine which type of chart should be generated from the request handler
         if chart_key == "Bar Chart":
             if for_dash:  # Checks to see if the chart will be generated as a dashboard
-                dash_data['bar'] = chart_data  # stores data inside global dictionary
+                dash_data['bar'] = chart_data.copy()  # stores data inside global dictionary
             else:
                 request.request_bar(chart_data, for_dash)
         elif chart_key == "Bubble Chart":
             if for_dash:
-                dash_data['bubble'] = chart_data
+                dash_data['bubble'] = chart_data.copy()
             else:
                 request.request_bubble(chart_data, for_dash)
         elif chart_key == "Heat Map":
             if for_dash:
-                dash_data['heat'] = chart_data
+                dash_data['heat'] = chart_data.copy()
             else:
                 request.request_heat(chart_data, for_dash)
         elif chart_key == "Line Chart":
             if for_dash:
-                dash_data['line'] = chart_data
+                dash_data['line'] = chart_data.copy()
             else:
                 request.request_line(chart_data, 0)
         elif chart_key == "Multi Line":
             if for_dash:
-                dash_data['multi'] = chart_data
+                dash_data['multi'] = chart_data.copy()
             else:
                 request.request_multi(chart_data, for_dash)
         elif chart_key == "Stack Bar":
             if for_dash:
-                dash_data['stack'] = chart_data
+                dash_data['stack'] = chart_data.copy()
             else:
                 request.request_stack(chart_data, for_dash)
 
