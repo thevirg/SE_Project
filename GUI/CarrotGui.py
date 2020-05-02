@@ -144,9 +144,11 @@ def main():
                                                                                                 limit_entry.get(), None,
                                                                                                 None, None, None,
                                                                                                 "Bar Chart"),
+                                                                                    column_clear(),
                                                                                     bubble_chart()])
             next_button.place(relx=0.9, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=back_front_page())
+
+            bck_button = ttk.Button(background, text="Back", command=lambda: dashboard())
             bck_button.place(relx=0.01, rely=0.92)
         else:
             submit_button = ttk.Button(background, text="Generate Chart", command=lambda: submit_info(
@@ -274,9 +276,10 @@ def main():
                                                                                                   marker_option.get(),
                                                                                                   category_option.get(), None,
                                                                                                   "Bubble Chart"),
+                                                                                      column_clear(),
                                                                                       heat_map()])
             submit_button.place(relx=0.9, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=[back_dash(), bar_chart()])
+            bck_button = ttk.Button(background, text="Back", command=lambda: [back_dash(), bar_chart()])
             bck_button.place(relx=0.01, rely=0.92)
         else:
             submit_button = ttk.Button(background, text="Generate Chart",
@@ -392,6 +395,7 @@ def main():
                                                                                                   limit_menu.get(),
                                                                                                   limit_entry.get(), None,
                                                                                                   None, None, None, "Heat Map"),
+                                                                                      column_clear(),
                                                                                       line_chart()])
             submit_button.place(relx=0.9, rely=0.92)
             bck_button = ttk.Button(background, text="Back", command= [back_dash(), bubble_chart()])
@@ -509,6 +513,7 @@ def main():
                                                                                                   limit_entry.get(),
                                                                                                   line_chart_date.get(),
                                                                                                   None, None, None, "Line Chart"),
+                                                                                      column_clear(),
                                                                                       multi_line_number()])
             submit_button.place(relx=0.9, rely=0.92)
             bck_button = ttk.Button(background, text="Back", command=[back_dash(), heat_map()])
@@ -670,6 +675,7 @@ def main():
                                                                                                       limit_entry.get(),
                                                                                                       line_chart_date.get(),
                                                                                                       None, None, None, "Multi Line"),
+                                                                                          column_clear(),
                                                                                           stacked_bar_number()])
             elif count == 3:
                 submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y1_option.get(),
@@ -689,6 +695,7 @@ def main():
                                                                                               limit_entry.get(),
                                                                                               line_chart_date.get(),
                                                                                               None, None, None, "Multi Line"),
+                                                                                          column_clear(),
                                                                                           stacked_bar_number()])
             else:
                 submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y1_option.get(),
@@ -710,6 +717,7 @@ def main():
                                                                                               limit_entry.get(),
                                                                                               line_chart_date.get(),
                                                                                               None, None, None, "Multi Line"),
+                                                                                          column_clear(),
                                                                                           stacked_bar_number()])
             submit_button.place(relx=0.9, rely=0.92)
             bck_button = ttk.Button(background, text="Back", command=lambda: [back_dash(), line_chart()])
@@ -955,6 +963,7 @@ def main():
                                                                                                       limit_entry.get(),
                                                                                                       line_chart_date.get(),
                                                                                                       None, None, None, "Stack Bar"),
+                                                                                          column_clear(),
                                                                                           request.request_dash(dash_data)])
             elif count == 3:
                 submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y1_option.get(),
@@ -977,6 +986,7 @@ def main():
                                                                                               limit_entry.get(),
                                                                                               line_chart_date.get(),
                                                                                               None, None, None, "Stack Bar"),
+                                                                                          column_clear(),
                                                                                           request.request_dash(dash_data)])
             else:
                 submit_button = ttk.Button(background, text="Next Page", command=lambda: [y_array.append([y1_option.get(),
@@ -1002,6 +1012,7 @@ def main():
                                                                                               limit_entry.get(),
                                                                                               line_chart_date.get(),
                                                                                               None, None, None, "Stack Bar"),
+                                                                                          column_clear(),
                                                                                           request.request_dash(dash_data)])
             submit_button.place(relx=0.9, rely=0.92)
             bck_button = ttk.Button(background, text="Back", command=lambda: [back_front_page(), multi_line_number()])
@@ -1108,9 +1119,6 @@ def main():
         # places the button in the lower right corner of the screen
         next_button.place(relx=0.9, rely=0.92)
 
-        # Creates a back button to allow the user to go back to the chart selection page
-        bck_button = tk.Button(background, text="Back", command=front_page)
-        bck_button.place(relx=0.01, rely=0.92)
 
     def multi_line_number():
 
@@ -1350,8 +1358,7 @@ def main():
 
         previous_column_size = len(column_choices)
 
-    def set_dash_title(title):
-        dash_data['dash_title'] = title
+
 
     # Takes in the index of the calling button (specified in the for loop in stacked_bar(), and uses it to assign
     # a color to the corresponding stack_color nased on the tkinter colorpicker. Then, sets the color of the calling button
@@ -1380,6 +1387,14 @@ def main():
         chart_data["limit_num"] = 0
         chart_data["date"] = 0
         front_page()
+
+    def set_dash_title(title):
+        dash_data['dash_title'] = title
+        bar_chart()
+
+    def column_clear():
+        column_choices.clear()
+        column_choices.append('Select a Column')
 
     # Create a global dictionary that can be sent to RequestHandler.py
     chart_data = {'file': None, 'title': None, 'x_title': None, 'x': None, 'y_title': None, 'y': None, 'z': None,
