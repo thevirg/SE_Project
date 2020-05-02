@@ -1128,7 +1128,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Create a new label to hold the title text
-        title = tk.Label(background, bg='#10435e', fg='white', text="Project Carrot")
+        title = tk.Label(background, bg='#10435e', fg='white', text="Multi-Line")
         font_style = ('', 25)  # can be used to edit font style, '' can be replaced with a new font name
         title.config(font=font_style)  # applies the new font style
         # places the label in the top middle of the screen
@@ -1168,7 +1168,7 @@ def main():
         background.place(relwidth=1, relheight=1)
 
         # Create a new label to hold the title text
-        title = tk.Label(background, bg='#10435e', fg='white', text="Project Carrot")
+        title = tk.Label(background, bg='#10435e', fg='white', text="Stack Bar Chart")
         font_style = ('', 25)  # can be used to edit font style, '' can be replaced with a new font name
         title.config(font=font_style)  # applies the new font style
         # places the label in the top middle of the screen
