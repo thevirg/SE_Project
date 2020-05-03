@@ -1,6 +1,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+import webbrowser
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.graph_objs as go
@@ -77,5 +78,3 @@ def generate_dash(bar_fig, bar_desc, stack_fig, stack_desc, line_fig, line_desc,
     #                                                                    xaxis={'title': 'Country'},
     #                                                                    yaxis={'title': 'Number of confirmed cases'})}
     #
-
-
