@@ -78,5 +78,3 @@ def generate_dash(bar_fig, bar_desc, stack_fig, stack_desc, line_fig, line_desc,
     #                                                                    xaxis={'title': 'Country'},
     #                                                                    yaxis={'title': 'Number of confirmed cases'})}
     #
-
-
