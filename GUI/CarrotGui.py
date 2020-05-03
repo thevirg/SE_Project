@@ -9,17 +9,17 @@ import platform
 
 def main():
 
-
     # Function used to clear the window to prepare it for a new page
     def clear():
         background.destroy()
 
+    # Creates the front page of the GUI
     def front_page():
         global for_dash
         for_dash = 0  # changes the value back to 0 in case the user uses the back button
-        clear()
+        clear()  # calls the clear method to create a blank page
 
-        background = tk.Frame(window, bg='#10435e')
+        background = tk.Frame(window, bg='#10435e')  # Creates a new blank page for widgets to be placed on
         background.place(relwidth=1, relheight=1)
 
         # Create a new label to hold the title text
@@ -37,8 +37,8 @@ def main():
         # Creates a label indicating to the user to select a chart type
         text = tk.Label(lower_frame, bg='#10435e', fg='white', text="Please select the type of chart you "
                                                                     "would like to build: ")
-        font_style = ('', 12)
-        text.config(font=font_style)
+        font_style = ('', 12)  # Creates a new font style
+        text.config(font=font_style)  # Assigns the new style to the text
         text.place(relx=0.5, rely=0.35, anchor='n')
 
         # Creates a menu with the charts as options
@@ -51,6 +51,7 @@ def main():
         # places the button in the lower right corner of the screen
         next_button.place(relx=0.9, rely=0.92)
 
+    # Creates a page to take in information for a bar chart
     def bar_chart():
         global for_dash
         clear()
@@ -83,9 +84,11 @@ def main():
                                                                                       update_dropdown(y_entry, y1_option)])
         file_path_entry.place(relx=0.19, rely=0.01, relwidth=0.40)
 
+        # Creates a label to indicate for the user to enter the chart title
         chart_title_label = tk.Label(body_frame, bg='#10435e', fg='white', text="Chart Title:")
         chart_title_label.place(relx=0.6, rely=0.01)
 
+        # Creates a textbox that allows the user to type the chart title
         chart_title_entry = ttk.Entry(body_frame)
         chart_title_entry.place(relx=0.701, rely=0.01, relwidth=0.25)
 
@@ -167,6 +170,7 @@ def main():
             bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
+    # Creates a page to take in information for a bubble chart
     def bubble_chart():
         global for_dash
         clear()
@@ -298,6 +302,7 @@ def main():
             bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
+    # Creates a page to take in information for a heat map
     def heat_map():
         global for_dash
         clear()
@@ -415,6 +420,7 @@ def main():
             bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
+    # Creates a page to take in information for a line chart
     def line_chart():
         clear()
         # The two lines of code below create an empty background frame that can be added to
@@ -533,9 +539,11 @@ def main():
             bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
+    # Creates a page to take in information for a multi line chart
+    # multi_line_number calls this method after the user chooses the number of data sources
     def multi_line(num_lines):
 
-        count = int(num_lines)
+        count = int(num_lines)  # casts num_lines to an int
 
         y_data_label = [None] * count
         y_entry = [None] * count
@@ -785,6 +793,8 @@ def main():
             bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
+    # Creates a page to take in information for a stacked bar chart
+    # stacked_bar_number calls this method after the user chooses the number of data sources
     def stacked_bar(num_bars):
 
         count = int(num_bars)
@@ -1087,6 +1097,7 @@ def main():
             bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
+    # Creates the front page for the dashboard
     def dashboard():
         global for_dash
         for_dash = 1  # changes the value to 1 so that charts will be generated for the dashboard
@@ -1118,6 +1129,7 @@ def main():
         # places the button in the lower right corner of the screen
         next_button.place(relx=0.9, rely=0.92)
 
+    # Creates a page asking the user how many data sources will be used in the multiline generation
     def multi_line_number():
 
         clear()
@@ -1158,6 +1170,7 @@ def main():
         bck_button = tk.Button(background, text="Back", command=front_page)
         bck_button.place(relx=0.01, rely=0.92)
 
+    # Creates a page asking the user how many data sources will be used in the stack bar generation
     def stacked_bar_number():
 
         clear()
@@ -1245,8 +1258,8 @@ def main():
     # RequestHandler.py
     # The chart key should be different depending on which chart calls this method so that the correct method from the
     # RequestHandler.py can be called
-    def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_option, limit_value, date, marker, category,
-                    sort, chart_key):
+    def submit_info(chart_title, x_title, x, y_title, y, z, sum_or_mean, limit_option, limit_value, date, marker,
+                    category, sort, chart_key):
         global for_dash
 
         chart_data['title'] = chart_title
@@ -1315,6 +1328,8 @@ def main():
     # Function that can be called by a button or other widget that will allow the user to select the file they
     # wish to open, this function will change the value in the global dictionary
     # This function is used so that the user does not have to type the file path themselves
+    # Using the file path drop down menus can be populated with column names from the csv file,
+    # so that users do not have to type the column name
     def file_selector(button):
 
         if chart_data['file'] is not None:
@@ -1325,7 +1340,7 @@ def main():
             return
         button_update = chart_data['file'].split('/')
         print(button_update)
-        button_update = "../"+button_update[-2]+"/"+button_update[-1]
+        button_update = "../"+button_update[-2]+"/"+button_update[-1]  # updates the button with file path
         button.config(text = button_update)
         df = pd.read_csv(chart_data['file'])
         array = list(df.columns)
@@ -1350,21 +1365,24 @@ def main():
 
         previous_column_size = len(column_choices)
 
+    # Used to set the title for the dashboard
     def set_dash_title(title):
         dash_data['dash_title'] = title
 
     # Takes in the index of the calling button (specified in the for loop in stacked_bar(), and uses it to assign
-    # a color to the corresponding stack_color nased on the tkinter colorpicker. Then, sets the color of the calling button
+    # a color to the corresponding stack_color nased on the tkinter colorpicker.
+    # Then, sets the color of the calling button
     # to the selected color.
     def get_color(index, button_array):
         stack_color[index] = askcolor()[1]
         button_array[index].config(bg=stack_color[index])
 
-
+    # Can be used to clear the choices inside a drop down menu
     def column_clear():
         column_choices.clear()
         column_choices.append('Select a Column')
 
+    # Back button used for dashboard generation. Clears the drop down menu choices
     def back_dash():
         column_choices.clear()
         column_choices.append('Select a Column')
@@ -1374,7 +1392,7 @@ def main():
         chart_data["limit_num"] = 0
         chart_data["date"] = 0
 
-
+    # Used to return to the front page of the GUI, clears all drop down menu choices
     def back_front_page():
         column_choices.clear()
         column_choices.append('Select a Column')
@@ -1396,9 +1414,13 @@ def main():
     stack_color = ['','','','']
     # Create a new window
     window = tk.Tk()
-
     # Change the title of the window
     window.title("Project Carrot")
+    # Checks to see if the OS that the program is running on is windows
+    if platform.system() == "Windows":
+        # changes the icon of the program if the os is Windows
+        window.iconbitmap('icon.ico')
+
     # Creates a tkinter variable to be used in drop down menu for chart selection on front page
     option = tk.StringVar(window)
     # Creates a tkinter variable to be used in drop down menu to select a sum or mean
@@ -1414,8 +1436,7 @@ def main():
     # Creates a tkinter variable to be used in the drop down menu to select X data column
     x_option = tk.StringVar(window)
 
-    # Creates a tkinter variable to be used in the drop down menu to select y data columns
-
+    # Creates a tkinter variables to be used in the drop down menu to select y data columns
     y1_option = tk.StringVar(window)
     y2_option = tk.StringVar(window)
     y3_option = tk.StringVar(window)
@@ -1424,9 +1445,6 @@ def main():
     z_option = tk.StringVar(window)
     category_option = tk.StringVar(window)
     marker_option = tk.StringVar(window)
-    # Holds a boolean value to determine if the charts should be generated for a dashboard
-    # if the user selects a dashboard on the front page the value changes to 1
-
 
     # Create a canvas to adjust the window size
     window_size = tk.Canvas(window, width=800, height=400)
@@ -1442,6 +1460,8 @@ def main():
     window.mainloop()
 
 
+# Holds a boolean value to determine if the charts should be generated for a dashboard
+# if the user selects a dashboard on the front page the value changes to 1
 for_dash = 0
 
 previous_column_size = 0
