@@ -252,10 +252,6 @@ def request_heat(chart_data, for_dash):
 
 def request_dash(dash_data):
 
-    for i in range(len(dash_data['stack']['y'])):
-        if  dash_data['stack']['y'][i][2] == '':
-            print("Color selections are required for Stack")
-            return
     bar_fig, bar_desc = request_bar(dash_data['bar'], 1)
     stack_fig, stack_desc = request_stack(dash_data['stack'], 1)
     line_fig, line_desc = request_line(dash_data['line'], 1)

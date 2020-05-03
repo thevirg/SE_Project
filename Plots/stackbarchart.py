@@ -64,7 +64,8 @@ class Stackbar:
                     new_df2 = new_df.agg({self.y_array[i][0]: 'sum'}).reset_index()
                 elif self.mean:
                     new_df2 = new_df.agg({self.y_array[i][0]: 'mean'}).reset_index()
-
+                if self.y_array[i][2] == '':
+                    self.y_array[i][2] = '#DCDCDC'
                 trace = go.Bar(x=new_df[self.x],
                                y=new_df[self.y_array[i][0]],
                                name=self.y_array[i][1],
