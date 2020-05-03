@@ -167,18 +167,18 @@ app.layout = html.Div(children=[
 ])
 
 
-@app.callback(Output('graph1', 'figure'),
-              [Input('select-continent', 'value')])
-def update_figure(selected_continent):
-    filtered_df = df1[df1['Continent'] == selected_continent]
-
-    filtered_df = filtered_df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
-    new_df = filtered_df.groupby(['Country'])['Confirmed'].sum().reset_index()
-    new_df = new_df.sort_values(by=['Confirmed'], ascending=[False]).head(20)
-    data_interactive_barchart = [go.Bar(x=new_df['Country'], y=new_df['Confirmed'])]
-    return {'data': data_interactive_barchart, 'layout': go.Layout(title='Corona Virus Confirmed Cases in '+selected_continent,
-                                                                   xaxis={'title': 'Country'},
-                                                                   yaxis={'title': 'Number of confirmed cases'})}
+# @app.callback(Output('graph1', 'figure'),
+#               [Input('select-continent', 'value')])
+# def update_figure(selected_continent):
+#     filtered_df = df1[df1['Continent'] == selected_continent]
+#
+#     filtered_df = filtered_df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
+#     new_df = filtered_df.groupby(['Country'])['Confirmed'].sum().reset_index()
+#     new_df = new_df.sort_values(by=['Confirmed'], ascending=[False]).head(20)
+#     data_interactive_barchart = [go.Bar(x=new_df['Country'], y=new_df['Confirmed'])]
+#     return {'data': data_interactive_barchart, 'layout': go.Layout(title='Corona Virus Confirmed Cases in '+selected_continent,
+#                                                                    xaxis={'title': 'Country'},
+#                                                                    yaxis={'title': 'Number of confirmed cases'})}
 
 
 if __name__ == '__main__':
