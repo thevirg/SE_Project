@@ -1299,6 +1299,7 @@ def main():
         elif chart_key == "Stack Bar":
             if for_dash:
                 dash_data['stack'] = chart_data.copy()
+                request.request_dash(dash_data)
             else:
                 request.request_stack(chart_data, for_dash)
 
