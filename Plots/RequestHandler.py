@@ -252,7 +252,10 @@ def request_heat(chart_data, for_dash):
 
 def request_dash(dash_data):
 
-
+    for i in range(len(dash_data['stack']['y'])):
+        if  dash_data['stack']['y'][i][2] == '':
+            print("Color selections are required for Stack")
+            return
     bar_fig, bar_desc = request_bar(dash_data['bar'], 1)
     stack_fig, stack_desc = request_stack(dash_data['stack'], 1)
     line_fig, line_desc = request_line(dash_data['line'], 1)
@@ -260,6 +263,7 @@ def request_dash(dash_data):
     bubble_fig, bubble_desc = request_bubble(dash_data['bubble'], 1)
     heat_fig, heat_desc = request_heat(dash_data['heat'], 1)
     dash_title = dash_data['dash_title']
+    print("request_dash")
 
     d.generate_dash(bar_fig, bar_desc, stack_fig, stack_desc, line_fig, line_desc,
                     multi_fig, multi_desc, heat_fig, heat_desc, bubble_fig, bubble_desc, dash_title)

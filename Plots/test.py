@@ -88,15 +88,15 @@ df2 = pd.read_csv('../Datasets/Olympic2016Rio.csv', usecols=['NOC'])
 # print(y_array[0][0])
 #
 #
-#
-# example_dict = {"title": "test title", "xtitle": ""}
-#
-# bar_data = {"file": '', "x": '', }
-#
-# example_dict["xtitle"] = "dict entry"
-#
-# print(example_dict["title"])
+example_dict = {"title": {"test": [["a","z"],"b","c"]}, "xtitle": ""}
+
+bar_data = {"file": '', "x": '', }
+
+example_dict["xtitle"] = "dict entry"
+
+print(example_dict["title"]["test"][0][1])
 # print(example_dict["xtitle"])
+
 #
 # # # test multiline
 # # #

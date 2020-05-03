@@ -60,6 +60,9 @@ def generate_dash(bar_fig, bar_desc, stack_fig, stack_desc, line_fig, line_desc,
                   figure=heat_fig)
     ])
 
+    app.run_server()
+    webbrowser.open("http://127.0.0.1:8050")
+
 
     # @app.callback(Output('graph1', 'figure'),
     #               [Input('select-continent', 'value')])
@@ -75,4 +78,4 @@ def generate_dash(bar_fig, bar_desc, stack_fig, stack_desc, line_fig, line_desc,
     #                                                                    yaxis={'title': 'Number of confirmed cases'})}
     #
 
-    app.run_server()
+
