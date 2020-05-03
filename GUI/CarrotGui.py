@@ -164,7 +164,7 @@ def main():
                                                                                                 None, None,
                                                                                                 "Bar Chart"))
             submit_button.place(relx=0.88, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page)
+            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
     def bubble_chart():
@@ -295,7 +295,7 @@ def main():
                                                                    category_option.get(), None,
                                                                    "Bubble Chart"))
             submit_button.place(relx=0.88, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page)
+            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
     def heat_map():
@@ -412,7 +412,7 @@ def main():
                                                                                               limit_entry.get(), None, None,
                                                                                               None, None, "Heat Map"))
             submit_button.place(relx=0.9, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page)
+            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
     def line_chart():
@@ -530,7 +530,7 @@ def main():
                                                                                               line_chart_date.get(), None,
                                                                                               None, None, "Line Chart"))
             submit_button.place(relx=0.9, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page)
+            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
     def multi_line(num_lines):
@@ -782,7 +782,7 @@ def main():
                                                                                               None, None, None, "Multi Line")])
 
             submit_button.place(relx=0.9, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page)
+            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
     def stacked_bar(num_bars):
@@ -1084,7 +1084,7 @@ def main():
                                                                                               None, None, None, "Stack Bar")])
 
             submit_button.place(relx=0.9, rely=0.92)
-            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page)
+            bck_button = ttk.Button(background, text="Back", command=lambda: back_front_page())
             bck_button.place(relx=0.01, rely=0.92)
 
     def dashboard():
