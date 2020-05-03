@@ -260,6 +260,7 @@ def request_dash(dash_data):
     bubble_fig, bubble_desc = request_bubble(dash_data['bubble'], 1)
     heat_fig, heat_desc = request_heat(dash_data['heat'], 1)
     dash_title = dash_data['dash_title']
+    print("request_dash")
 
     d.generate_dash(bar_fig, bar_desc, stack_fig, stack_desc, line_fig, line_desc,
                     multi_fig, multi_desc, heat_fig, heat_desc, bubble_fig, bubble_desc, dash_title)
